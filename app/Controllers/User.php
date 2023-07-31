@@ -4,7 +4,10 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 
-class Auth extends BaseController
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
+class User extends BaseController
 {
     public function index()
     {
@@ -28,8 +31,20 @@ class Auth extends BaseController
         $isAuth = $userModel->auth($email, $password);
 
         // generate token
+        $key = 'example_key';
+        $payload = [
+            'iss' => 'http://example.org', // server name
+            'iat' => 1356999524, // time when token created
+            'nbf' => 1357000000,  // time token should be valid
+            'user' => 'email'
+        ];
 
+        if ($isAuth) {
+            $jwt = JWT::encode($payload, $key, 'HS256');
 
-        return var_dump($isAuth);
+            return var_dump($jwt);
+        }
+
+        return view('login_page.php');
     }
 }
