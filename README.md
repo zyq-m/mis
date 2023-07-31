@@ -1,62 +1,181 @@
-# CodeIgniter 4 Application Starter
+<div align='center'>
+    <h3 style="font-size:3rem">Memogram Information System</h3>
+    <em>Developed by Haziq & Aqief</em>
+</div>
 
-## What is CodeIgniter?
+## Setup & Installation
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Clone or copy this repository.
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+Run `composer install` on terminal to download all packages.
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+Create `.env` file and paste this code below:
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+```.env
+#--------------------------------------------------------------------
+# Example Environment Configuration file
+#
+# This file can be used as a starting point for your own
+# custom .env files, and contains most of the possible settings
+# available in a default install.
+#
+# By default, all of the settings are commented out. If you want
+# to override the setting, you must un-comment it by removing the '#'
+# at the beginning of the line.
+#--------------------------------------------------------------------
 
-## Installation & updates
+#--------------------------------------------------------------------
+# ENVIRONMENT
+#--------------------------------------------------------------------
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+# CI_ENVIRONMENT = production
+CI_ENVIRONMENT = development
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+#--------------------------------------------------------------------
+# APP
+#--------------------------------------------------------------------
 
-## Setup
+# app.baseURL = ''
+# If you have trouble with `.`, you could also use `_`.
+# app_baseURL = ''
+# app.forceGlobalSecureRequests = false
+# app.CSPEnabled = false
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+#--------------------------------------------------------------------
+# DATABASE
+#--------------------------------------------------------------------
 
-## Important Change with index.php
+database.default.hostname = localhost
+database.default.database = mis
+database.default.username = root
+database.default.password =
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
+database.default.port = 3306
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+# database.tests.hostname = localhost
+# database.tests.database = ci4_test
+# database.tests.username = root
+# database.tests.password = root
+# database.tests.DBDriver = MySQLi
+# database.tests.DBPrefix =
+# database.tests.port = 3306
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+#--------------------------------------------------------------------
+# CONTENT SECURITY POLICY
+#--------------------------------------------------------------------
 
-**Please** read the user guide for a better explanation of how CI4 works!
+# contentsecuritypolicy.reportOnly = false
+# contentsecuritypolicy.defaultSrc = 'none'
+# contentsecuritypolicy.scriptSrc = 'self'
+# contentsecuritypolicy.styleSrc = 'self'
+# contentsecuritypolicy.imageSrc = 'self'
+# contentsecuritypolicy.baseURI = null
+# contentsecuritypolicy.childSrc = null
+# contentsecuritypolicy.connectSrc = 'self'
+# contentsecuritypolicy.fontSrc = null
+# contentsecuritypolicy.formAction = null
+# contentsecuritypolicy.frameAncestors = null
+# contentsecuritypolicy.frameSrc = null
+# contentsecuritypolicy.mediaSrc = null
+# contentsecuritypolicy.objectSrc = null
+# contentsecuritypolicy.pluginTypes = null
+# contentsecuritypolicy.reportURI = null
+# contentsecuritypolicy.sandbox = false
+# contentsecuritypolicy.upgradeInsecureRequests = false
+# contentsecuritypolicy.styleNonceTag = '{csp-style-nonce}'
+# contentsecuritypolicy.scriptNonceTag = '{csp-script-nonce}'
+# contentsecuritypolicy.autoNonce = true
 
-## Repository Management
+#--------------------------------------------------------------------
+# COOKIE
+#--------------------------------------------------------------------
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+# cookie.prefix = ''
+# cookie.expires = 0
+# cookie.path = '/'
+# cookie.domain = ''
+# cookie.secure = false
+# cookie.httponly = false
+# cookie.samesite = 'Lax'
+# cookie.raw = false
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+#--------------------------------------------------------------------
+# ENCRYPTION
+#--------------------------------------------------------------------
 
-## Server Requirements
+# encryption.key =
+# encryption.driver = OpenSSL
+# encryption.blockSize = 16
+# encryption.digest = SHA512
 
-PHP version 7.4 or higher is required, with the following extensions installed:
+#--------------------------------------------------------------------
+# HONEYPOT
+#--------------------------------------------------------------------
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+# honeypot.hidden = 'true'
+# honeypot.label = 'Fill This Field'
+# honeypot.name = 'honeypot'
+# honeypot.template = '<label>{label}</label><input type="text" name="{name}" value=""/>'
+# honeypot.container = '<div style="display:none">{template}</div>'
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+#--------------------------------------------------------------------
+# SECURITY
+#--------------------------------------------------------------------
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+# security.csrfProtection = 'cookie'
+# security.tokenRandomize = false
+# security.tokenName = 'csrf_token_name'
+# security.headerName = 'X-CSRF-TOKEN'
+# security.cookieName = 'csrf_cookie_name'
+# security.expires = 7200
+# security.regenerate = true
+# security.redirect = false
+# security.samesite = 'Lax'
+
+#--------------------------------------------------------------------
+# SESSION
+#--------------------------------------------------------------------
+
+# session.driver = 'CodeIgniter\Session\Handlers\FileHandler'
+# session.cookieName = 'ci_session'
+# session.expiration = 7200
+# session.savePath = null
+# session.matchIP = false
+# session.timeToUpdate = 300
+# session.regenerateDestroy = false
+
+#--------------------------------------------------------------------
+# LOGGER
+#--------------------------------------------------------------------
+
+# logger.threshold = 4
+
+#--------------------------------------------------------------------
+# CURLRequest
+#--------------------------------------------------------------------
+
+# curlrequest.shareOptions = true
+```
+
+## Stacks
+
+1. CodeIgniter 4
+2. Semantic UI
+
+## Pages & Links
+
+Pages located [at](app/Views/)
+
+1. Login `/`
+2. Register `/register`
+3. Urine Test `/urine_test`
+4. Image Repository `/image_repo`
+
+> [`Views/layout`](app/Views/layout/default.php) where we setup layout template.
+
+## Database & ER Diagram
+
+Database will be upload soon.
+
+ER Diagram [here](https://lucid.app/lucidchart/a21aa534-b6c0-4b84-a343-b19050e88d2a/edit?viewport_loc=-13%2C-210%2C1664%2C831%2C0_0&invitationId=inv_8bbfed06-f13c-4310-82b9-fbe06f3a9284)
