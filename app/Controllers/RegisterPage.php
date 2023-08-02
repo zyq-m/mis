@@ -8,6 +8,6 @@ class RegisterPage extends BaseController
     {
         $pageTitle = ["title" => "Register"];
 
-        return view('user/register.php', $pageTitle);
+        return view('user/RegisterPage.php', $pageTitle);
     }
 }

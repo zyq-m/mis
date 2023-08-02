@@ -8,6 +8,6 @@ class ImageRep extends BaseController
     {
         $pageTitle = ["title" => "Image Repository"];
 
-        return view('form/image_repo.php', $pageTitle);
+        return view('form/ImageRep.php', $pageTitle);
     }
 }

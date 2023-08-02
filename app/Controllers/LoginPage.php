@@ -8,7 +8,7 @@ class LoginPage extends BaseController
     {
         $pageTitle = ["title" => "Login"];
 
-        return view('user/login_page.php', $pageTitle);
+        return view('user/LoginPage.php', $pageTitle);
     }
 
     public function login()
