@@ -6,6 +6,8 @@ class UTFormPage extends BaseController
 {
     public function index()
     {
-        return view('utformpage');
+        $pageTitle = ["title" => "Urine Test"];
+
+        return view('form/urine_test.php', $pageTitle);
     }
 }

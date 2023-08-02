@@ -6,6 +6,8 @@ class ImageRep extends BaseController
 {
     public function index()
     {
-        return view('imagerep');
+        $pageTitle = ["title" => "Image Repository"];
+
+        return view('form/image_repo.php', $pageTitle);
     }
 }
