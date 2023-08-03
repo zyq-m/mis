@@ -120,8 +120,8 @@ nb-configuration.xml
 
 #Secret
 node_modules/
-*.package.json
-*.package-lock.json
+package.json
+package-lock.json
 
 # Visual Studio Code
 .vscode/
