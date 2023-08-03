@@ -2,13 +2,15 @@
 
 namespace App\Controllers;
 
-class LoginPage extends BaseController
+use App\Models\UserModel;
+
+class Login extends BaseController
 {
     public function index()
     {
         $pageTitle = ["title" => "Login"];
 
-        return view('user/LoginPage.php', $pageTitle);
+        return view('user/login_page.php', $pageTitle);
     }
 
     public function login()

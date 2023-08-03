@@ -2,12 +2,12 @@
 
 namespace App\Controllers;
 
-class ImageRep extends BaseController
+class ImageRepo extends BaseController
 {
     public function index()
     {
         $pageTitle = ["title" => "Image Repository"];
 
-        return view('form/ImageRep.php', $pageTitle);
+        return view('form/image_repo.php', $pageTitle);
     }
 }

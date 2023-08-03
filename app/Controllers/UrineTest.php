@@ -2,12 +2,12 @@
 
 namespace App\Controllers;
 
-class UTFormPage extends BaseController
+class UrineTest extends BaseController
 {
     public function index()
     {
         $pageTitle = ["title" => "Urine Test"];
 
-        return view('form/UTFormPage.php', $pageTitle);
+        return view('form/urine_test.php', $pageTitle);
     }
 }

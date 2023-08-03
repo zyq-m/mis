@@ -2,12 +2,12 @@
 
 namespace App\Controllers;
 
-class RegisterPage extends BaseController
+class Register extends BaseController
 {
     public function index()
     {
         $pageTitle = ["title" => "Register"];
 
-        return view('user/RegisterPage.php', $pageTitle);
+        return view('user/register.php', $pageTitle);
     }
 }
