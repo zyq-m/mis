@@ -118,10 +118,14 @@ nb-configuration.xml
 .phpintel
 /api/
 
+#Secret
+node_modules/
+package.json
+package-lock.json
+
 # Visual Studio Code
 .vscode/
 
 /results/
 /phpunit*.xml
 /.phpunit.*.cache
-
