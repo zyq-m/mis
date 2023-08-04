@@ -1,17 +1,17 @@
-<?=$this->extend("layout/mainpage")?>
+<?= $this->extend("layout/mainpage") ?>
 
-<?=$this->section("pageTitle")?>
+<?= $this->section("pageTitle") ?>
 Login Page
 
-<?=$this->endSection()?>
+<?= $this->endSection() ?>
 
-<?=$this->section("content")?>
+<?= $this->section("content") ?>
 
 <div class="ui four column centered grid" style="width: 1000vh;">
 
   <div class="middle aligned column">
     <h1>Login</h1>
-    <div >Please insert your account detail:</div>
+    <div>Please insert your account detail:</div>
     <div>
       <div class="ui labeled input fluid" style="margin-top: 10px;">
         <div class="ui black label">
@@ -53,4 +53,4 @@ Login Page
   }
 </script>
 
-<?=$this->endSection()?>
+<?= $this->endSection() ?>
