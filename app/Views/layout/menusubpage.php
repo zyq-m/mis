@@ -118,6 +118,24 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js" integrity="sha512-Xo0Jh8MsOn72LGV8kU5LsclG7SUzJsWGhXbWcYs2MAmChkQzwiW/yTQwdJ8w6UA9C6EVG18GHb/TrYpYCjyAQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script>
+      $(document).ready(function() {
+        // Get the current page URL
+        var currentUrl = window.location.pathname;
+        
+        // Add click event handler to all menu items
+        $('.ui.inverted.secondary.pointing.menu a.item').each(function() {
+          var menuItemUrl = $(this).attr('href');
+        
+          // Check if the menu item URL matches the current page URL
+          if (currentUrl === menuItemUrl) {
+            $(this).addClass('active item'); // Add the "active item" class to the matching link
+          }
+        });
+      });
+
+    </script>
+
 </body>
 
 </html>
