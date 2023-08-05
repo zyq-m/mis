@@ -9,7 +9,8 @@ Login Page
 
 <div class="ui four column centered grid" style="width: 1000vh;">
 
-  <div class="middle aligned column">
+  <form action="<?= url_to('login') ?>" method="post" class="middle aligned column">
+    <?= csrf_field() ?>
     <h1>Login</h1>
     <div>Please insert your account detail:</div>
     <div>
@@ -29,13 +30,13 @@ Login Page
       </div>
     </div>
     <div style="margin-top: 10px;">
-      <button class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Forgot Password?</button>
+      <button type="button" class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Forgot Password?</button>
       <a href="/register" class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Create New Account</a>
     </div>
     <div style="margin-top: 10px;">
-      <a href="/dashboard" class="ui black button flat no-caps" onclick="submitLogin()">Login</a>
+      <button type="submit" class="ui black button flat no-caps" onclick="submitLogin()">Login</button>
     </div>
-  </div>
+  </form>
 
   <div class="middle aligned column">
   </div>
