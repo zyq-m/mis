@@ -30,15 +30,17 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-service('auth')->routes($routes);
 // $routes->post('/login', 'Login::login');
 
 $routes->get('/register', 'Register::index');
+
 $routes->get('/urine_test', 'UrineTest::index');
+$routes->post('/urine_test', 'UrineTest::submitForm');
+
 $routes->get('/image_repo', 'ImageRepo::index');
 $routes->get('/dashboard', 'Dashboard::index');
-$routes->delete('/logout', auth()->logout());
 
+service('auth')->routes($routes);
 /*
  * --------------------------------------------------------------------
  * Additional Routing
