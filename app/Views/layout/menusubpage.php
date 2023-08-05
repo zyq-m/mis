@@ -16,12 +16,13 @@
             justify-content: center;
             height: 100vh;
         }
-        .ui.inverted.menu {
+        .ui.inverted.segment {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             background-color: #222;
+            border-radius: 0;
         }
         .background-image {
             position: fixed;
@@ -91,11 +92,27 @@
 
 <body>
 
-    <div class="ui inverted menu">
-        <a href="/dashboard" class="item">Dashboard</a>
-        <a href="/urine_test" class="item">Urine Test Request Form</a>
-        <a href="/image_repo" class="item">Image Repository</a>
+    <div class="ui inverted segment">
+      <div class="ui inverted secondary pointing menu">
+        <a href="/dashboard" class="item">
+            Dashboard
+        </a>
+        <a href="/urine_test" class="item">
+            Urine Test Request Form
+        </a>
+        <a href="/image_repo" class="item">
+            Image Repository
+        </a>
+        <div class="right menu">
+            <a href="/" class="ui secondary button">
+                <i class="ui logout icon"></i>
+                Logout
+            </a>
+        </div>
+      </div> 
     </div>
+
+    
     
     <div class="background-image"></div>
     
