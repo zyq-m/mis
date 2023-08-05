@@ -1,10 +1,10 @@
-<?=$this->extend("layout/subpage")?>
+ <?= $this->extend("layout/subpage") ?>
 
-<?=$this->section("pageTitle")?>
+<?= $this->section("pageTitle") ?>
 Register 
-<?=$this->endSection()?>
+<?= $this->endSection() ?>
   
-<?=$this->section("content")?>
+<?= $this->section("content") ?>
 
 <div class="ui two column centered grid" style="width: 150vh;">
   <div class="middle aligned column">
@@ -59,4 +59,4 @@ Register
   }
 </script>
 
-<?=$this->endSection()?>
+<?= $this->endSection() ?>
