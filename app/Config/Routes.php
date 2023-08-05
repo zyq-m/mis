@@ -35,6 +35,7 @@ $routes->post('/login', 'Login::login');
 $routes->get('/register', 'Register::index');
 $routes->get('/urine_test', 'UrineTest::index');
 $routes->get('/image_repo', 'ImageRepo::index');
+$routes->get('/dashboard', 'Dashboard::index');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

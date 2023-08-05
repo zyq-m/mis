@@ -1,23 +1,56 @@
-<?= $this->extend('layout/default') ?>
+<?=$this->extend("layout/mainpage")?>
 
-<?= $this->section('pageTitle') ?> <?= esc($title) ?> <?= $this->endSection() ?>
+<?=$this->section("pageTitle")?>
+Login Page
 
-<?= $this->section('content') ?>
+<?=$this->endSection()?>
 
-<h1>Login</h1>
+<?=$this->section("content")?>
 
-<form action="./login" method="post">
-    <?= csrf_field() ?>
-    <!-- creates a hidden input with a CSRF token that helps protect against some common attacks. -->
+<div class="ui four column centered grid" style="width: 1000vh;">
 
-    <?= helper('form') ?>
-    <!-- load form helper lib -->
+  <div class="middle aligned column">
+    <h1>Login</h1>
+    <div >Please insert your account detail:</div>
+    <div>
+      <div class="ui labeled input fluid" style="margin-top: 10px;">
+        <div class="ui black label">
+          <i class="mail icon"></i>
+        </div>
+        <input type="text" id="email" name="email" placeholder="Please enter email *">
+      </div>
+    </div>
+    <div style="margin-top: 10px;">
+      <div class="ui labeled input fluid">
+        <div class="ui black label">
+          <i class="lock icon"></i>
+        </div>
+        <input type="password" id="password" name="password" placeholder="Enter password *">
+      </div>
+    </div>
+    <div style="margin-top: 10px;">
+      <button class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Forgot Password?</button>
+      <a href="/register" class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Create New Account</a>
+    </div>
+    <div style="margin-top: 10px;">
+      <a href="/dashboard" class="ui black button flat no-caps" onclick="submitLogin()">Login</a>
+    </div>
+  </div>
 
-    <input type="email" name="email" placeholder="Email" value="<?= set_value('email') ?>">
-    <br>
-    <input type="password" name="password" placeholder="Password" value="<?= set_value('password') ?>">
-    <br>
-    <button type="submit">Login</button>
-</form>
+  <div class="middle aligned column">
+  </div>
 
-<?= $this->endSection() ?>
+  <div class="middle aligned column">
+    <h1>Memogram Information System(MIS)</h1>
+  </div>
+
+</div>
+
+<script>
+  // Custom JavaScript functions here, including the submitRegistration() function
+  function submitRegistration() {
+    // Implement the registration form submission
+  }
+</script>
+
+<?=$this->endSection()?>
