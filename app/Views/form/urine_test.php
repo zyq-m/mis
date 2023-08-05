@@ -1,10 +1,10 @@
-<?=$this->extend("layout/menusubpage")?>
+<?= $this->extend("layout/menusubpage") ?>
 
-<?=$this->section("pageTitle")?>
+<?= $this->section("pageTitle") ?>
 Urine Test Request Form
-<?=$this->endSection()?>
+<?= $this->endSection() ?>
   
-<?=$this->section("content")?>
+<?= $this->section("content") ?>
 
 <div class="ui two column centered grid" style="width: 100%">
   <div class="middle aligned column">
@@ -35,4 +35,4 @@ Urine Test Request Form
   </div>
 </div>
 
-<?=$this->endSection()?>
+<?= $this->endSection() ?>
