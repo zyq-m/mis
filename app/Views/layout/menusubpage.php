@@ -102,6 +102,7 @@
         <a href="<?= url_to('dashboard') ?>" class="item">Dashboard</a>
         <a href="<?= url_to('urine_test') ?>" class="item">Urine Test Request Form</a>
         <a href="<?= url_to('image_repo') ?>" class="item">Image Repository</a>
+        <a href="<?= url_to('logout') ?>" class="item">Logout</a>
     </div>
 
     <div class="background-image"></div>

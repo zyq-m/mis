@@ -31,7 +31,7 @@ Login Page
     </div>
     <div style="margin-top: 10px;">
       <button type="button" class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Forgot Password?</button>
-      <a href="/register" class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Create New Account</a>
+      <a href="<?= url_to('register') ?>" class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Create New Account</a>
     </div>
     <div style="margin-top: 10px;">
       <button type="submit" class="ui black button flat no-caps" onclick="submitLogin()">Login</button>
