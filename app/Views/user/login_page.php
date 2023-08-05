@@ -1,11 +1,11 @@
-<?=$this->extend("layout/mainpage")?>
+<?= $this->extend("layout/mainpage") ?>
 
-<?=$this->section("pageTitle")?>
+<?= $this->section("pageTitle") ?>
 Login Page
 
-<?=$this->endSection()?>
+<?= $this->endSection() ?>
 
-<?=$this->section("content")?>
+<?= $this->section("content") ?>
 
 <div class="ui four column centered grid" style="width: 1000vh;">
 
@@ -53,4 +53,4 @@ Login Page
   }
 </script>
 
-<?=$this->endSection()?>
+<?= $this->endSection() ?>

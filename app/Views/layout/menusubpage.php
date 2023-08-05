@@ -4,10 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css"
-    integrity="sha512-KXol4x3sVoO+8ZsWPFI/r5KBVB/ssCGB5tsv2nVOKwLg33wTFP3fmnXa47FdSVIshVTgsYk/1734xSk9aFIa4A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" integrity="sha512-KXol4x3sVoO+8ZsWPFI/r5KBVB/ssCGB5tsv2nVOKwLg33wTFP3fmnXa47FdSVIshVTgsYk/1734xSk9aFIa4A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             position: relative;
@@ -33,8 +30,10 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
-            opacity: 0.6; /* Set the opacity value as desired (range from 0 to 1) */
-            z-index: -1; /* Push the background image to the back */
+            /* Set the opacity value as desired (range from 0 to 1) */
+            opacity: 0.6; 
+            /* Push the background image to the back */
+            z-index: -1; 
         }
         .bold-text {
             font-weight: bold;
@@ -69,7 +68,8 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            color: #ffffff; /* Set the color to red (#f00) for a red button */
+            /* Set the color to red (#f00) for a red button */
+            color: #ffffff; 
         }
         .dob-field {
             display: inline-block;
@@ -92,18 +92,16 @@
 <body>
 
     <div class="ui inverted menu">
-        <a href="/dashboard" class="item">Dashboard</a>
-        <a href="/urine_test" class="item">Urine Test Request Form</a>
-        <a href="/image_repo" class="item">Image Repository</a>
+        <a href="./dashboard" class="item">Dashboard</a>
+        <a href="./urine_test" class="item">Urine Test Request Form</a>
+        <a href="./image_repo" class="item">Image Repository</a>
     </div>
     
     <div class="background-image"></div>
     
     <?= $this->renderSection('content') ?>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"
-    integrity="sha512-Xo0Jh8MsOn72LGV8kU5LsclG7SUzJsWGhXbWcYs2MAmChkQzwiW/yTQwdJ8w6UA9C6EVG18GHb/TrYpYCjyAQw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js" integrity="sha512-Xo0Jh8MsOn72LGV8kU5LsclG7SUzJsWGhXbWcYs2MAmChkQzwiW/yTQwdJ8w6UA9C6EVG18GHb/TrYpYCjyAQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
 
