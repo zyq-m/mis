@@ -20,7 +20,7 @@ Login Page
         <input type="text" id="email" name="email" placeholder="Please enter email *">
       </div>
     </div>
-    <div style="margin-top: 10px;">
+    <div style="margin-top: 10px; margin-bottom: 10px;">
       <div class="ui labeled input fluid">
         <div class="ui black label">
           <i class="lock icon"></i>
@@ -28,12 +28,14 @@ Login Page
         <input type="password" id="password" name="password" placeholder="Enter password *">
       </div>
     </div>
-    <div style="margin-top: 10px;">
-      <button class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Forgot Password?</button>
-      <a href="/register" class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Create New Account</a>
-    </div>
-    <div style="margin-top: 10px;">
-      <a href="/dashboard" class="ui black button flat no-caps" onclick="submitLogin()">Login</a>
+    <div class="ui column centered grid">
+      <div style="margin-top: 10px;">
+        <button class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Forgot Password?</button>
+        <a href="/register" class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Create New Account</a>
+      </div>
+      <div style="margin-top: 10px;">
+        <a href="/dashboard" class="ui black button flat no-caps" onclick="submitLogin()">Login</a>
+      </div>
     </div>
   </div>
 
