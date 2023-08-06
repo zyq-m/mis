@@ -9,5 +9,5 @@ class UrineTestModel extends Model
     protected $table = "urine_test";
     protected $primaryKey = "id";
 
-    protected $allowedFields = ['full_name', 'date_of_birth', 'concerns'];
+    protected $allowedFields = ['full_name', 'date_of_birth', 'descriptions'];
 }

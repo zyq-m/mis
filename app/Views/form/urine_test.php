@@ -1,7 +1,7 @@
 <?= $this->extend("layout/menusubpage") ?>
 
 <?= $this->section("pageTitle") ?>
-Urine Test Request Form
+<?= esc($title) ?>
 <?= $this->endSection() ?>
 
 <?= $this->section("content") ?>
@@ -25,7 +25,7 @@ Urine Test Request Form
           <div class="bold-text" style="margin-top: 10px;">Current Symptoms or Concerns :</div>
           <div class="ui form">
             <div class="field">
-              <textarea name="concerns" rows="3" placeholder="Please Enter Current Symptoms or Concerns"></textarea>
+              <textarea name="descriptions" rows="3" placeholder="Please Enter Current Symptoms or Concerns"></textarea>
             </div>
           </div>
         </div>
