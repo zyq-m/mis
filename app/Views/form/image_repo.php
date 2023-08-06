@@ -1,7 +1,7 @@
 <?= $this->extend("layout/menusubpage") ?>
 
 <?= $this->section("pageTitle") ?>
-Image Repository
+<?= esc($title) ?>
 <?= $this->endSection() ?>
 
 <?= $this->section("content") ?>
@@ -11,17 +11,18 @@ Image Repository
         <div class="ui container">
             <h1>Image Repository</h1>
             <div>Please fill in the Image Upload details:</div>
-            <form style="margin-top: 10px;" action="/ImageRep" method="post" enctype="multipart/form-data">
+            <form style="margin-top: 10px;" action="<?= url_to('image_repo/upload') ?>" method="post" enctype="multipart/form-data">
+                <?= csrf_field() ?>
                 <div class="ui raised segment">
                     <div class="ui one column centered grid">
                         <div class="column">
                             <div class="bold-text" style="margin-top: 10px;">Upload Image:</div>
-                            <input type="file" (change)="fileEvent($event)" class="inputfile" id="embedpollfileinput" aria-hidden="true">
+                            <input type="file" name="memoimg" (change)="fileEvent($event)" class="inputfile" id="embedpollfileinput" aria-hidden="true">
                             <label for="embedpollfileinput" class="ui small green left floated button" id="uploadButton">
                                 <i class="ui upload icon"></i>
                                 Upload Image
                             </label>
-                            <input type="file" (change)="fileEvent($event)" class="inputfile1" id="embedpollfileinput1" aria-hidden="true">
+                            <input type="file" name="memoimg" (change)="fileEvent($event)" class="inputfile1" id="embedpollfileinput1" aria-hidden="true">
                             <label for="embedpollfileinput1" class="ui small red left floated button" id="reuploadButton" style="display: none;">
                                 <i class="ui upload icon"></i>
                                 Reupload Image
@@ -34,11 +35,19 @@ Image Repository
                             <div class="bold-text">Comment:</div>
                             <div class="ui form">
                                 <div class="field">
-                                    <textarea rows="3" placeholder="Please Enter Current Symptoms or Concerns"></textarea>
+                                    <textarea name="descriptions" rows="3" placeholder="Please Enter Current Symptoms or Concerns"></textarea>
                                 </div>
                             </div>
+                            <!-- error message -->
+                            <?php foreach ($errors as $error) : ?>
+                                <p><?= esc($error) ?></p>
+                            <?php endforeach ?>
+                            <!-- success message -->
+                            <?php if ($success != null) : ?>
+                                <p><?= $success ?></p>
+                            <?php endif ?>
                         </div>
-                        <a href="/dashboard" class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 20px;">Submit Request</a>
+                        <button type="submit" class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 20px;">Submit Request</button>
                     </div>
                 </div>
             </form>
