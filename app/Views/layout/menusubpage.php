@@ -14,6 +14,7 @@
             justify-content: center;
             height: 100vh;
         }
+      
         .ui.inverted.segment {
             position: fixed;
             top: 0;
@@ -22,6 +23,7 @@
             background-color: #222;
             border-radius: 0;
         }
+
         .background-image {
             position: fixed;
             top: 0;
@@ -32,13 +34,17 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
-            opacity: 0.6; /* Set the opacity value as desired (range from 0 to 1) */
-            z-index: -1; /* Push the background image to the back */
+            opacity: 0.6;
+            /* Set the opacity value as desired (range from 0 to 1) */
+            z-index: -1;
+            /* Push the background image to the back */
         }
+
         .bold-text {
             font-weight: bold;
             text-align: left;
         }
+
         /* Hide the input visually */
         .inputfile {
             position: absolute;
@@ -55,6 +61,7 @@
             background-color: #f0f0f0;
             color: #333;
         }
+
         /* Hide the second input visually */
         .inputfile1 {
             position: absolute;
@@ -68,8 +75,10 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            color: #ffffff; /* Set the color to red (#f00) for a red button */
+            color: #ffffff;
+            /* Set the color to red (#f00) for a red button */
         }
+
         .dob-field {
             display: inline-block;
             vertical-align: top;
@@ -110,10 +119,8 @@
       </div> 
     </div>
 
-    
-    
     <div class="background-image"></div>
-    
+
     <?= $this->renderSection('content') ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js" integrity="sha512-Xo0Jh8MsOn72LGV8kU5LsclG7SUzJsWGhXbWcYs2MAmChkQzwiW/yTQwdJ8w6UA9C6EVG18GHb/TrYpYCjyAQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

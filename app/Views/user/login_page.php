@@ -11,7 +11,7 @@ Login Page
 
   <div class="middle aligned column">
     <h1>Login</h1>
-    <div >Please insert your account detail:</div>
+    <div>Please insert your account detail:</div>
     <div>
       <div class="ui labeled input fluid" style="margin-top: 10px;">
         <div class="ui black label">
