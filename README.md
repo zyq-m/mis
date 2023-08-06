@@ -9,7 +9,7 @@ Clone or copy this repository.
 
 Run `composer install` on terminal to download all packages.
 
-Run 'php spark shield:setup'
+Run `php spark shield:setup`
 
 Create `.env` file and paste this code below:
 
