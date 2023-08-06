@@ -27,7 +27,7 @@ class UrineTest extends BaseController
         $isCreated = $urineTest->save([
             'full_name' => $form['fullname'],
             'date_of_birth' => $form['dob'],
-            'concerns' => $form['concerns'],
+            'descriptions' => $form['descriptions'],
         ]);
 
         if (!$isCreated) {

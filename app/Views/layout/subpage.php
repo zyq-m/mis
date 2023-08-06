@@ -68,7 +68,7 @@
 
     <div class="ui pointing menu">
         <div class="right menu">
-            <a href="/" class="ui secondary button">
+            <a href="<?= url_to('login') ?>" class="ui secondary button">
                 <i class="ui chevron left icon icon"></i>
                 To Login Page
             </a>
