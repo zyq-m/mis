@@ -10,7 +10,7 @@ class UrineTest extends BaseController
     {
         $pageTitle = ["title" => "Urine Test"];
 
-        return view('form/urine_test.php', $pageTitle);
+        return view('form/urine_test', $pageTitle);
     }
 
     public function submitForm()

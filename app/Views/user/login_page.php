@@ -1,8 +1,7 @@
 <?= $this->extend("layout/mainpage") ?>
 
 <?= $this->section("pageTitle") ?>
-Login Page
-
+<?= esc($title) ?>
 <?= $this->endSection() ?>
 
 <?= $this->section("content") ?>

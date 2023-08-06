@@ -1,7 +1,7 @@
  <?= $this->extend("layout/subpage") ?>
 
  <?= $this->section("pageTitle") ?>
- Register
+ <?= esc($title) ?>
  <?= $this->endSection() ?>
 
  <?= $this->section("content") ?>
