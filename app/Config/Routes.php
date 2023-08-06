@@ -34,6 +34,8 @@ $routes->set404Override();
 
 $routes->get('/register', 'Register::index');
 
+$routes->get('/login', 'Login::index');
+
 $routes->get('/urine_test', 'UrineTest::index');
 $routes->post('/urine_test', 'UrineTest::submitForm');
 
