@@ -22,7 +22,7 @@
                                 <i class="ui upload icon"></i>
                                 Upload Image
                             </label>
-                            <input type="file" name="memoimg" (change)="fileEvent($event)" class="inputfile1" id="embedpollfileinput1" aria-hidden="true">
+                            <input type="file" name="memoimg1" (change)="fileEvent($event)" class="inputfile1" id="embedpollfileinput1" aria-hidden="true">
                             <label for="embedpollfileinput1" class="ui small red left floated button" id="reuploadButton" style="display: none;">
                                 <i class="ui upload icon"></i>
                                 Reupload Image
