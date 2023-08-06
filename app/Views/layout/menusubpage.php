@@ -15,12 +15,13 @@
             height: 100vh;
         }
 
-        .ui.inverted.menu {
+        .ui.inverted.segment {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             background-color: #222;
+            border-radius: 0;
         }
 
         .background-image {
@@ -98,11 +99,24 @@
 
 <body>
 
-    <div class="ui inverted menu">
-        <a href="<?= url_to('dashboard') ?>" class="item">Dashboard</a>
-        <a href="<?= url_to('urine_test') ?>" class="item">Urine Test Request Form</a>
-        <a href="<?= url_to('image_repo') ?>" class="item">Image Repository</a>
-        <a href="<?= url_to('logout') ?>" class="item">Logout</a>
+    <div class="ui inverted segment">
+        <div class="ui inverted secondary pointing menu">
+            <a href="<?= url_to('dashboard') ?>" class="item">
+                Dashboard
+            </a>
+            <a href="<?= url_to('urine_test') ?>" class="item">
+                Urine Test Request Form
+            </a>
+            <a href="<?= url_to('image_repo') ?>" class="item">
+                Image Repository
+            </a>
+            <div class="right menu">
+                <a href="<?= url_to('logout') ?>" class="ui secondary button">
+                    <i class="ui logout icon"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="background-image"></div>
@@ -110,6 +124,23 @@
     <?= $this->renderSection('content') ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js" integrity="sha512-Xo0Jh8MsOn72LGV8kU5LsclG7SUzJsWGhXbWcYs2MAmChkQzwiW/yTQwdJ8w6UA9C6EVG18GHb/TrYpYCjyAQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Get the current page URL
+            var currentUrl = window.location.pathname;
+
+            // Add click event handler to all menu items
+            $('.ui.inverted.secondary.pointing.menu a.item').each(function() {
+                var menuItemUrl = $(this).attr('href');
+
+                // Check if the menu item URL matches the current page URL
+                if (currentUrl === menuItemUrl) {
+                    $(this).addClass('active item'); // Add the "active item" class to the matching link
+                }
+            });
+        });
+    </script>
 
 </body>
 

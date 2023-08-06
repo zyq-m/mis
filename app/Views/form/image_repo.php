@@ -1,10 +1,10 @@
-<?=$this->extend("layout/menusubpage")?>
+<?= $this->extend("layout/menusubpage") ?>
 
-<?=$this->section("pageTitle")?>
+<?= $this->section("pageTitle") ?>
 Image Repository
-<?=$this->endSection()?>
-  
-<?=$this->section("content")?>
+<?= $this->endSection() ?>
+
+<?= $this->section("content") ?>
 
 <div class="ui two column centered grid" style="width: 100%">
     <div class="middle aligned column">
@@ -14,22 +14,22 @@ Image Repository
             <form style="margin-top: 10px;" action="/ImageRep" method="post" enctype="multipart/form-data">
                 <div class="ui raised segment">
                     <div class="ui one column centered grid">
-                    <div class="column">
-                    <div class="bold-text" style="margin-top: 10px;">Upload Image:</div>
-                    <input type="file" (change)="fileEvent($event)" class="inputfile" id="embedpollfileinput" aria-hidden="true">
-                    <label for="embedpollfileinput" class="ui small green left floated button" id="uploadButton">
-                        <i class="ui upload icon"></i>
-                        Upload Image
-                    </label>
-                    <input type="file" (change)="fileEvent($event)" class="inputfile1" id="embedpollfileinput1" aria-hidden="true">
-                    <label for="embedpollfileinput1" class="ui small red left floated button" id="reuploadButton" style="display: none;">
-                        <i class="ui upload icon"></i>
-                        Reupload Image
-                    </label>
-                    <div id="successText" style="display: none; color: green; font-weight: bold; margin-top: 10px;">
-                        Image has been inserted!
-                    </div>
-                </div>
+                        <div class="column">
+                            <div class="bold-text" style="margin-top: 10px;">Upload Image:</div>
+                            <input type="file" (change)="fileEvent($event)" class="inputfile" id="embedpollfileinput" aria-hidden="true">
+                            <label for="embedpollfileinput" class="ui small green left floated button" id="uploadButton">
+                                <i class="ui upload icon"></i>
+                                Upload Image
+                            </label>
+                            <input type="file" (change)="fileEvent($event)" class="inputfile1" id="embedpollfileinput1" aria-hidden="true">
+                            <label for="embedpollfileinput1" class="ui small red left floated button" id="reuploadButton" style="display: none;">
+                                <i class="ui upload icon"></i>
+                                Reupload Image
+                            </label>
+                            <div id="successText" style="display: none; color: green; font-weight: bold; margin-top: 10px;">
+                                Image has been inserted!
+                            </div>
+                        </div>
                         <div class="column">
                             <div class="bold-text">Comment:</div>
                             <div class="ui form">
@@ -82,4 +82,4 @@ Image Repository
     }
 </script>
 
-<?=$this->endSection()?>
+<?= $this->endSection() ?>
