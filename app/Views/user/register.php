@@ -1,9 +1,9 @@
- <?= $this->extend("layout/subpage") ?>
+<?= $this->extend("layout/subpage") ?>
 
 <?= $this->section("pageTitle") ?>
-Register 
+Register
 <?= $this->endSection() ?>
-  
+
 <?= $this->section("content") ?>
 
 <div class="ui two column centered grid" style="width: 150vh;">
@@ -47,16 +47,16 @@ Register
         <!-- Add more form fields as needed for registration -->
         <div class="column q-mt-sm" style="margin-top: 10px;">
           <a href="/" class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Register</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-  // Custom JavaScript functions here, including the submitRegistration() function
-  function submitRegistration() {
-    // Implement the registration form submission
-  }
-</script>
+  <script>
+    // Custom JavaScript functions here, including the submitRegistration() function
+    function submitRegistration() {
+      // Implement the registration form submission
+    }
+  </script>
 
-<?= $this->endSection() ?>
+  <?= $this->endSection() ?>

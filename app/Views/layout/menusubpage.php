@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" integrity="sha512-KXol4x3sVoO+8ZsWPFI/r5KBVB/ssCGB5tsv2nVOKwLg33wTFP3fmnXa47FdSVIshVTgsYk/1734xSk9aFIa4A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" integrity="sha512-KXol4x3sVoO+8ZsWPFI/r5KBVB/ssCGB5tsv2nVOKwLg33wTFP3fmnXa47FdSVIshVTgsYk/1734xSk9aFIa4A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             position: relative;
@@ -35,10 +34,10 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
-            /* Set the opacity value as desired (range from 0 to 1) */
             opacity: 0.6;
-            /* Push the background image to the back */
+            /* Set the opacity value as desired (range from 0 to 1) */
             z-index: -1;
+            /* Push the background image to the back */
         }
 
         .bold-text {
@@ -76,8 +75,8 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            /* Set the color to red (#f00) for a red button */
             color: #ffffff;
+            /* Set the color to red (#f00) for a red button */
         }
 
         .dob-field {
@@ -89,6 +88,35 @@
         /* Adjust the width of the input fields */
         .dob-field input {
             width: 100%;
+        }
+
+        #notification {
+            position: fixed;
+            top: 7%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+
+        /* Add other CSS styles to make it look like a popup */
+        #notification .close.icon {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        #notification .header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #notification p {
+            font-size: 14px;
+            margin: 0;
+            line-height: 1.5;
+            text-align: center;
         }
     </style>
 

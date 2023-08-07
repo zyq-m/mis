@@ -3,7 +3,7 @@
 <?= $this->section("pageTitle") ?>
 Urine Test Request Form
 <?= $this->endSection() ?>
-  
+
 <?= $this->section("content") ?>
 
 <div class="ui two column centered grid" style="width: 100%">
@@ -18,9 +18,9 @@ Urine Test Request Form
             <input type="text" id="fullname" name="fullname" placeholder="Please Enter Full Name">
           </div>
           <div class="bold-text" style="margin-top: 10px;">Date of Birth :</div>
-            <div class="ui input">
-              <input type="date" id="dob" name="dob">
-            </div>
+          <div class="ui input">
+            <input type="date" id="dob" name="dob">
+          </div>
           <div class="bold-text" style="margin-top: 10px;">Current Symptoms or Concerns :</div>
           <div class="ui form">
             <div class="field">
@@ -29,10 +29,10 @@ Urine Test Request Form
           </div>
         </div>
       </div>
-    <div class="column" style="margin-top: 10px;">
-      <a href="/dashboard" class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Submit Request</a>
+      <div class="column" style="margin-top: 10px;">
+        <a href="/dashboard" class="ui black button flat no-caps" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">Submit Request</a>
+      </div>
     </div>
   </div>
-</div>
 
-<?= $this->endSection() ?>
+  <?= $this->endSection() ?>
