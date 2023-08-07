@@ -14,7 +14,7 @@
             justify-content: center;
             height: 100vh;
         }
-
+      
         .ui.inverted.segment {
             position: fixed;
             top: 0;
@@ -147,9 +147,7 @@
             </div>
         </div>
     </div>
-
-
-
+  
     <div class="background-image"></div>
 
     <?= $this->renderSection('content') ?>
