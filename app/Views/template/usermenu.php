@@ -1,10 +1,11 @@
-<?php $db = \Config\Database::connect();
+<?php
+$db = \Config\Database::connect();
 $uri = service('uri');
 
 $session = \Config\Services::session();
 
-$u_fullname = $session->get('userdata')['u_fullname'];
-$role = $session->get('userdata')['u_role'];
+// $u_fullname = $session->get('userdata')['u_fullname'];
+// $role = $session->get('userdata')['u_role'];
 
 
 ?>
@@ -24,86 +25,38 @@ $role = $session->get('userdata')['u_role'];
             </div>
             <div class="info">
                 <a href="#" class="d-block">
-                    <?= $u_fullname ?>
                 </a>
             </div>
         </div>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <?php
-                $menu = getDataResult("ek_menuaccess", array(array('log_status', 'A'), array('log_parent', 0), array("log_access LIKE '%" . $role . "%'")), '', array('log_order', 'ASC'));
-                foreach ($menu as $item) :
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-house"></i>
+                        <p class="text">
+                            Menu
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
 
-                    $url = base_url()  . $item->log_controller;
-                    if ($item->log_function != "")
-                        $url .= "/" . $item->log_function;
-
-                    $active = "";
-                    $open = "";
-                    if ($uri->getSegment(1) == $item->log_controller && $uri->getSegment(2) == $item->log_function)
-                        $active = "active";
-
-                    $hasChild = getDataCount("ek_menuaccess", array(array('log_parent', $item->log_id), array('log_status', 'A')));
-                    if ($hasChild > 0) :
-                        $subMenu = getDataResult("ek_menuaccess", array(array('log_status', 'A'), array('log_parent', $item->log_id), array("log_access LIKE '%" . $role . "%'")), '', array('log_order', 'ASC'));
-
-                        if ($uri->getSegment(2)) {
-                            $checkChild = getDataResult("ek_menuaccess", array(array('log_status', 'A'), array('log_parent', $item->log_id), array('log_controller', $uri->getSegment(1)), array('log_function', $uri->getSegment(2))), '', array('log_order', 'ASC'));
-                            if ($checkChild) {
-                                $active = "active";
-                                $open = "menu-open";
-                            } else {
-                                $active = "";
-                                $open = "";
-                            }
-                        }
-
-                ?>
-                        <li class="nav-item <?php echo $open; ?>">
-                            <a href="#" class="nav-link  <?php echo $active; ?>">
-                                <i class="nav-icon fas <?php echo $item->log_icon; ?>"></i>
-                                <p class="text">
-                                    <?php echo $item->log_name; ?>
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <?php foreach ($subMenu as $itemChild) :
-                                    $url2 = base_url()  . $itemChild->log_controller;
-                                    if ($itemChild->log_function != "")
-                                        $url2 .= "/" . $itemChild->log_function;
-
-                                    $active2 = "";
-                                    if ($uri->getSegment(1) == $itemChild->log_controller && $uri->getSegment(2) == $itemChild->log_function)
-                                        $active2 = "active";
-                                ?>
-
-                                    <li class="nav-item <?php echo $active2; ?>">
-                                        <a href="<?php echo $url2; ?>" class="nav-link  <?php echo $active2; ?>">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p class="text"><?php echo $itemChild->log_name; ?></p>
-                                        </a>
-                                    </li>
-
-                                <?php endforeach; ?>
-                            </ul>
-                        </li>
-                    <?php
-                    else :
-                    ?>
-                        <li class="nav-item <?php echo $active; ?>">
-                            <a href="<?php echo $url; ?>" class="nav-link  <?php echo $active; ?>">
-                                <i class="nav-icon fas <?php echo $item->log_icon; ?>"></i>
-                                <p class="text"><?php echo $item->log_name; ?></p>
-
+                        <li class="nav-item active">
+                            <a href="#" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p class="text">Sub Menu</p>
                             </a>
                         </li>
-                    <?php
-                    endif;
-                    ?>
 
-                <?php endforeach; ?>
+                    </ul>
+                </li>
+                <li class="nav-item active">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-house"></i>
+                        <p class="text">Sub Menu</p>
+                    </a>
+                </li>
+
 
 
                 </li>

@@ -32,17 +32,46 @@ $routes->set404Override();
 
 // $routes->post('/login', 'Login::login');
 
-$routes->get('/register', 'Register::index');
+// $routes->get('/register', 'Register::index');
 
-$routes->get('/login', 'Login::index');
+// $routes->get('/login', 'Login::index');
 
-$routes->get('/urine_test', 'UrineTest::index');
-$routes->post('/urine_test', 'UrineTest::submitForm');
+// $routes->get('/urine_test', 'UrineTest::index');
+// $routes->post('/urine_test', 'UrineTest::submitForm');
 
-$routes->get('/image_repo', 'ImageRepo::index');
-$routes->post('/image_repo/upload', 'ImageRepo::upload');
+// $routes->get('/image_repo', 'ImageRepo::index');
+// $routes->post('/image_repo/upload', 'ImageRepo::upload');
 
-$routes->get('/dashboard', 'Dashboard::index');
+// $routes->get('/dashboard', 'Dashboard::index');
+
+$routes->get('/', 'Login::index');
+
+$routes->get('dashboard', 'Home::index', ['as' => 'admin.home']);
+$routes->get('dashboard/test', 'Home::test');
+
+$routes->get('user', 'UserController::index');
+$routes->get('user/edit/(:segment)', 'UserController::edit/$1');
+$routes->post('user/update', 'UserController::update');
+$routes->get('user/add', 'UserController::add');
+$routes->post('user/add', 'UserController::store');
+
+$routes->get('profile', 'UserController::profile');
+$routes->post('profile', 'UserController::updateprofile');
+$routes->get('profile/password', 'UserController::password');
+$routes->post('profile/password', 'UserController::updatepassword');
+
+$routes->get('community', 'CommunityController::index');
+
+$routes->get('hospital', 'HospitalController::index');
+
+$routes->get('registration', 'RegisterController::index');
+$routes->get('registration/add', 'RegisterController::add');
+
+$routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']);
+
+
+$routes->get('login', 'Login::index', ['as' => 'admin.login.form']);
+$routes->post('login', 'AuthController::loginhandler');
 
 service('auth')->routes($routes);
 /*
