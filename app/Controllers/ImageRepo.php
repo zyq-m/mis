@@ -54,7 +54,7 @@ class ImageRepo extends BaseController
             // $data = ['uploaded_fileinfo' => new File($filepath)];
 
             // return 'Success';
-            return view('form/image_repo', ['title' => $this->title, 'error' => [], 'success' => 'Your file successfully uploaded']);
+            return view('form/image_repo', ['title' => $this->title, 'errors' => [], 'success' => 'Your file successfully uploaded']);
         }
 
         $data = ['errors' => 'The file has already been moved.', 'title' => $this->title];
