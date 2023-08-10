@@ -73,6 +73,9 @@ $routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']
 $routes->get('login', 'Login::index', ['as' => 'admin.login.form']);
 $routes->post('login', 'AuthController::loginhandler');
 
+$routes->get('patient', 'PatientController::index');
+$routes->post('patient', 'PatientController::addPatient');
+
 service('auth')->routes($routes);
 /*
  * --------------------------------------------------------------------
