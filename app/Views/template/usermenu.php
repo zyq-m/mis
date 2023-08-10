@@ -7,6 +7,58 @@ $session = \Config\Services::session();
 // $u_fullname = $session->get('userdata')['u_fullname'];
 // $role = $session->get('userdata')['u_role'];
 
+$menuItems = [
+    [
+        'id' => 1,
+        'name' => 'Dashboard',
+        'icon' => 'fa-home',
+        'subItems' => []
+    ],
+    [
+        'id' => 2,
+        'name' => 'Registration',
+        'icon' => 'fa fa-user',
+        'subItems' => []
+    ],
+    [
+        'id' => 3,
+        'name' => 'Community',
+        'icon' => 'fa-map-marker',
+        'subItems' => []
+    ],
+    [
+        'id' => 4,
+        'name' => 'Hospital',
+        'icon' => 'fa-hospital',
+        'subItems' => []
+    ],
+    [
+        'id' => 5,
+        'name' => 'Report',
+        'icon' => 'fa-chart-pie',
+        'subItems' => [
+            ['id' => 51, 'name' => 'Profil Orang Asli', 'icon' => ''],
+            ['id' => 52, 'name' => 'Program Agensi', 'icon' => ''],
+            ['id' => 53, 'name' => 'Pengislaman', 'icon' => ''],
+            ['id' => 54, 'name' => 'Sumbangan', 'icon' => '']
+        ]
+    ],
+    [
+        'id' => 6,
+        'name' => 'Setting',
+        'icon' => 'fa-cog',
+        'subItems' => [
+            ['id' => 61, 'name' => 'Daerah', 'icon' => ''],
+            ['id' => 62, 'name' => 'Pos', 'icon' => ''],
+            ['id' => 63, 'name' => 'Kampung', 'icon' => ''],
+            ['id' => 64, 'name' => 'Suku Kaum', 'icon' => ''],
+            ['id' => 65, 'name' => 'Donor Agency', 'icon' => ''],
+            ['id' => 66, 'name' => 'Organizing Agency', 'icon' => ''],
+            ['id' => 67, 'name' => 'Users', 'icon' => ''],
+        ]
+    ],
+];
+
 
 ?>
 <aside class="main-sidebar elevation-4 sidebar-dark-pink">
@@ -31,35 +83,33 @@ $session = \Config\Services::session();
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-house"></i>
-                        <p class="text">
-                            Menu
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-
-                        <li class="nav-item active">
-                            <a href="#" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p class="text">Sub Menu</p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
-                <li class="nav-item active">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-house"></i>
-                        <p class="text">Sub Menu</p>
-                    </a>
-                </li>
-
-
-
-                </li>
+                <?php foreach ($menuItems as $menuItem) : ?>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas <?= $menuItem['icon'] ?>"></i>
+                            <p class="text">
+                                <?= $menuItem['name'] ?>
+                                <?php if (!empty($menuItem['subItems'])) : ?>
+                                    <i class="fas fa-angle-left right"></i>
+                                <?php endif; ?>
+                            </p>
+                        </a>
+                        <?php if (!empty($menuItem['subItems'])) : ?>
+                            <ul class="nav nav-treeview">
+                                <?php foreach ($menuItem['subItems'] as $subItem) : ?>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <div class="d-flex align-items-center">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p class="text ml-2"><?= $subItem['name'] ?></p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
 
                 <li class="nav-header">ACCOUNT</li>
                 <li class="nav-item ">

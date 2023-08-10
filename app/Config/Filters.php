@@ -2,6 +2,12 @@
 
 namespace Config;
 
+use App\Filters\CIFilter;
+
+use CodeIgniter\Filters\FilterInterface;
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -21,6 +27,9 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'cifilter'      => CIFilter::class,
+        'cifilter:auth'  => \App\Filters\CIFilter::class,
+        'cifilter:guess' => \App\Filters\CIFilter::class,
     ];
 
     /**
