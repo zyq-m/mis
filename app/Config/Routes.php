@@ -102,7 +102,8 @@ $routes->group('', static function ($routes) {
             $routes->get('registration', 'RegisterController::index');
             $routes->get('registration/add', 'RegisterController::add');
 
-
+            $routes->get('urinetest', 'UrineTest::index');
+            $routes->get('imagerepo', 'ImageRepo::index');
 
             $routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']);
         }

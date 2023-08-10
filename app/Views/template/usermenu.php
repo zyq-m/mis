@@ -34,33 +34,63 @@ $menuItems = [
     ],
     [
         'id' => 5,
-        'name' => 'Report',
-        'icon' => 'fa-chart-pie',
+        'name' => 'Form',
+        'icon' => 'fa-file-alt', // You can choose the appropriate icon class
         'subItems' => [
-            ['id' => 51, 'name' => 'Profil Orang Asli', 'icon' => ''],
-            ['id' => 52, 'name' => 'Program Agensi', 'icon' => ''],
-            ['id' => 53, 'name' => 'Pengislaman', 'icon' => ''],
-            ['id' => 54, 'name' => 'Sumbangan', 'icon' => '']
+            ['id' => 51, 'name' => 'Urine Test', 'icon' => ''],
+            ['id' => 52, 'name' => 'Image Repository', 'icon' => ''],
         ]
     ],
     [
         'id' => 6,
+        'name' => 'Report',
+        'icon' => 'fa-chart-pie',
+        'subItems' => [
+            ['id' => 61, 'name' => 'Profil Orang Asli', 'icon' => ''],
+            ['id' => 62, 'name' => 'Program Agensi', 'icon' => ''],
+            ['id' => 63, 'name' => 'Pengislaman', 'icon' => ''],
+            ['id' => 64, 'name' => 'Sumbangan', 'icon' => '']
+        ]
+    ],
+    [
+        'id' => 7,
         'name' => 'Setting',
         'icon' => 'fa-cog',
         'subItems' => [
-            ['id' => 61, 'name' => 'Daerah', 'icon' => ''],
-            ['id' => 62, 'name' => 'Pos', 'icon' => ''],
-            ['id' => 63, 'name' => 'Kampung', 'icon' => ''],
-            ['id' => 64, 'name' => 'Suku Kaum', 'icon' => ''],
-            ['id' => 65, 'name' => 'Donor Agency', 'icon' => ''],
-            ['id' => 66, 'name' => 'Organizing Agency', 'icon' => ''],
-            ['id' => 67, 'name' => 'Users', 'icon' => ''],
+            ['id' => 71, 'name' => 'Daerah', 'icon' => ''],
+            ['id' => 72, 'name' => 'Pos', 'icon' => ''],
+            ['id' => 73, 'name' => 'Kampung', 'icon' => ''],
+            ['id' => 74, 'name' => 'Suku Kaum', 'icon' => ''],
+            ['id' => 75, 'name' => 'Donor Agency', 'icon' => ''],
+            ['id' => 76, 'name' => 'Organizing Agency', 'icon' => ''],
+            ['id' => 77, 'name' => 'Users', 'icon' => ''],
         ]
     ],
 ];
 
+function getMenuHref($itemId)
+{
+    // Replace this logic with your actual URLs for each menu item
+    switch ($itemId) {
+        case 1:
+            return './dashboard';
+        case 2:
+            return './registration';
+        case 3:
+            return './community';
+        case 4:
+            return './hospital';
+        case 51:
+            return './urinetest';
+        case 52:
+            return './imagerepo';
+        default:
+            return '#'; // Default case if no match found
+    }
+}
 
 ?>
+
 <aside class="main-sidebar elevation-4 sidebar-dark-pink">
     <!-- Brand Logo -->
     <a href="<?= base_url() ?>dashboard" class="brand-link bg-white">
@@ -85,7 +115,7 @@ $menuItems = [
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <?php foreach ($menuItems as $menuItem) : ?>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="<?= getMenuHref($menuItem['id']) ?>" class="nav-link">
                             <i class="nav-icon fas <?= $menuItem['icon'] ?>"></i>
                             <p class="text">
                                 <?= $menuItem['name'] ?>
@@ -98,7 +128,7 @@ $menuItems = [
                             <ul class="nav nav-treeview">
                                 <?php foreach ($menuItem['subItems'] as $subItem) : ?>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="<?= getMenuHref($subItem['id']) ?>" class="nav-link">
                                             <div class="d-flex align-items-center">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p class="text ml-2"><?= $subItem['name'] ?></p>
@@ -138,3 +168,22 @@ $menuItems = [
     </div>
     <!-- /.sidebar -->
 </aside>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Add "active" class to clicked link and initialize active menu item
+        $('.nav-link').on('click', function() {
+            $('.nav-link').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        // Initialize active menu item on page load
+        $('.nav-link').each(function() {
+            if ($(this).attr('href') === window.location.pathname) {
+                $(this).addClass('active');
+            }
+        });
+    });
+</script>
