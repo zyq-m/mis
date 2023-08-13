@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Controllers\PatientController;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -73,7 +75,7 @@ $routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']
 $routes->get('login', 'Login::index', ['as' => 'admin.login.form']);
 $routes->post('login', 'AuthController::loginhandler');
 
-$routes->get('patient/(:num)', 'PatientController::viewPatient');
+$routes->get('patient/(:num)', [PatientController::class, 'viewPatient']);
 $routes->get('patient', 'PatientController::index');
 $routes->post('patient', 'PatientController::addPatient');
 
