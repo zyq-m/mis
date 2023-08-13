@@ -18,9 +18,10 @@
                                 <label>Upload Image:</label>
                                 <div>
                                     <label for="fileInput" class="custom-file-upload" id="customFileLabel">
-                                        <input type="file" name="memoimg" id="fileInput" required>
                                         Select Image
+                                        <input type="file" name="memoimg" id="fileInput" accept=".jpg, .jpeg, .png" required style="display: none;">
                                     </label>
+                                    <span id="imageInsertedMessage" style="margin-left: 10px;"></span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -35,7 +36,7 @@
                 <div class="card-footer">
                     <div class="text-center">
                         <button type="reset" class="btn btn-danger btn-reset" id="reset">Reset</button>
-                        <button type="submit" class="btn btn-primary btn-submit" id="submit">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-submit" id="submit">Submit Form</button>
                     </div>
                 </div>
             </div>
@@ -51,18 +52,48 @@
         if (!fileInput.files[0] || descriptions === '') {
             alert('Please fill in all required fields.');
             event.preventDefault();
+        } else if (!validateFileExtension(fileInput)) {
+            alert('Please upload a PNG, JPEG, or JPG image only.');
+            event.preventDefault();
         }
     });
 
+    function validateFileExtension(fileInput) {
+        var allowedExtensions = /\.(jpg|jpeg|png)$/i; // Case-insensitive regex for jpg, jpeg, and png
+        return allowedExtensions.test(fileInput.value);
+    }
+
     var fileInput = document.getElementById('fileInput');
     var customFileUpload = document.querySelector('.custom-file-upload');
+    var imageInsertedMessage = document.getElementById('imageInsertedMessage');
 
     fileInput.addEventListener('change', function() {
         if (fileInput.files.length > 0) {
-            customFileUpload.classList.add('image-uploaded');
+            if (validateFileExtension(fileInput)) {
+                customFileUpload.classList.add('image-uploaded');
+                imageInsertedMessage.textContent = 'Image has been inserted.';
+                imageInsertedMessage.classList.add('image-inserted'); // Apply the green color class
+            } else {
+                alert('Please upload a PNG, JPEG, or JPG image only.');
+                fileInput.value = ''; // Clear the invalid selection
+                customFileUpload.classList.remove('image-uploaded'); // Remove uploaded class
+                imageInsertedMessage.textContent = ''; // Clear the message
+                imageInsertedMessage.classList.remove('image-inserted'); // Remove the green color class
+            }
         } else {
             customFileUpload.classList.remove('image-uploaded');
+            imageInsertedMessage.textContent = ''; // Clear the message
+            imageInsertedMessage.classList.remove('image-inserted'); // Remove the green color class
         }
+    });
+
+    document.getElementById('reset').addEventListener('click', function() {
+        document.getElementById('fileInput').value = ''; // Clear the file input
+        document.getElementById('descriptions').value = ''; // Clear the textarea
+        var customFileUpload = document.querySelector('.custom-file-upload');
+        customFileUpload.classList.remove('image-uploaded'); // Remove uploaded class
+        imageInsertedMessage.textContent = ''; // Clear the message
+        imageInsertedMessage.classList.remove('image-inserted'); // Remove the green color class
     });
 </script>
 
@@ -79,6 +110,10 @@
 
     .custom-file-upload.image-uploaded {
         background-color: #dc3545;
+    }
+
+    .image-inserted {
+        color: #50C878;
     }
 </style>
 
