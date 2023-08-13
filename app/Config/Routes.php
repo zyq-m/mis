@@ -67,6 +67,12 @@ $routes->get('hospital', 'HospitalController::index');
 $routes->get('registration', 'RegisterController::index');
 $routes->get('registration/add', 'RegisterController::add');
 
+$routes->get('urinetest', 'UrineTest::index');
+$routes->post('urine_test', 'UrineTest::submitForm');
+
+$routes->get('imagerepo', 'ImageRepo::index');
+$routes->post('image_repo', 'ImageRepo::upload');
+
 $routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']);
 
 
