@@ -46,78 +46,34 @@ $routes->set404Override();
 
 $routes->get('/', 'Login::index');
 
-// $routes->get('dashboard', 'Home::index', ['as' => 'admin.home']);
-// $routes->get('dashboard/test', 'Home::test');
+$routes->get('dashboard', 'Home::index', ['as' => 'admin.home']);
+$routes->get('dashboard/test', 'Home::test');
 
-// $routes->get('user', 'UserController::index');
-// $routes->get('user/edit/(:segment)', 'UserController::edit/$1');
-// $routes->post('user/update', 'UserController::update');
-// $routes->get('user/add', 'UserController::add');
-// $routes->post('user/add', 'UserController::store');
+$routes->get('user', 'UserController::index');
+$routes->get('user/edit/(:segment)', 'UserController::edit/$1');
+$routes->post('user/update', 'UserController::update');
+$routes->get('user/add', 'UserController::add');
+$routes->post('user/add', 'UserController::store');
 
-// $routes->get('profile', 'UserController::profile');
-// $routes->post('profile', 'UserController::updateprofile');
-// $routes->get('profile/password', 'UserController::password');
-// $routes->post('profile/password', 'UserController::updatepassword');
+$routes->get('profile', 'UserController::profile');
+$routes->post('profile', 'UserController::updateprofile');
+$routes->get('profile/password', 'UserController::password');
+$routes->post('profile/password', 'UserController::updatepassword');
 
-// $routes->get('community', 'CommunityController::index');
+$routes->get('community', 'CommunityController::index');
 
-// $routes->get('hospital', 'HospitalController::index');
+$routes->get('hospital', 'HospitalController::index');
 
-// $routes->get('registration', 'RegisterController::index');
-// $routes->get('registration/add', 'RegisterController::add');
+$routes->get('registration', 'RegisterController::index');
+$routes->get('registration/add', 'RegisterController::add');
 
-// $routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']);
+$routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']);
 
 
-// $routes->get('login', 'Login::index', ['as' => 'admin.login.form']);
-// $routes->post('login', 'AuthController::loginhandler');
+$routes->get('login', 'Login::index', ['as' => 'admin.login.form']);
+$routes->post('login', 'AuthController::loginhandler');
 
-// service('auth')->routes($routes);
-
-$routes->group('', static function ($routes) {
-
-    $routes->group(
-        '',
-        ['filter' => 'cifilter:auth'],
-        static function ($routes) {
-            $routes->get('dashboard', 'Home::index', ['as' => 'admin.home']);
-            $routes->get('dashboard/test', 'Home::test');
-
-            $routes->get('user', 'UserController::index');
-            $routes->get('user/edit/(:segment)', 'UserController::edit/$1');
-            $routes->post('user/update', 'UserController::update');
-            $routes->get('user/add', 'UserController::add');
-            $routes->post('user/add', 'UserController::store');
-
-            $routes->get('profile', 'UserController::profile');
-            $routes->post('profile', 'UserController::updateprofile');
-            $routes->get('profile/password', 'UserController::password');
-            $routes->post('profile/password', 'UserController::updatepassword');
-
-            $routes->get('community', 'CommunityController::index');
-
-            $routes->get('hospital', 'HospitalController::index');
-
-            $routes->get('registration', 'RegisterController::index');
-            $routes->get('registration/add', 'RegisterController::add');
-
-            $routes->get('urinetest', 'UrineTest::index');
-            $routes->get('imagerepo', 'ImageRepo::index');
-
-            $routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']);
-        }
-
-    );
-    $routes->group(
-        '',
-        ['filter' => 'cifilter:guess'],
-        static function ($routes) {
-            $routes->get('login', 'Login::index', ['as' => 'admin.login.form']);
-            $routes->post('login', 'AuthController::loginhandler');
-        }
-    );
-});
+service('auth')->routes($routes);
 /*
  * --------------------------------------------------------------------
  * Additional Routing
