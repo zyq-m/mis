@@ -2,12 +2,14 @@
 <?= $this->section("content"); ?>
 <?= validation_list_errors() ?>
 
-<h2>Add new patient</h2>
-
-<form action="<?= url_to('patient') ?>" method="post">
+<form action="<?= url_to('patient') ?>" method="post" enctype="multipart/form-data">
     <?= csrf_field() ?>
 
-    <!-- Name -->
+    <!-- avatar -->
+    <p>Avatar</p>
+    <input type="file" name="avatar" id="avatar">
+
+    <!-- name -->
     <p>Name</p>
     <input type="text" name="name" id="name" value="<?= set_value('name') ?>">
 
