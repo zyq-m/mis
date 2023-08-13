@@ -69,10 +69,9 @@ class PatientController extends BaseController
     public function viewPatient($id = null)
     {
         $patient = model(PatientModel::class);
-        $patient_data = $patient->where(['id' => $id])->first();
+        $patient_data = $patient->where('id', $id)->find();
 
-        return var_dump($id);
-        $data = ['title' => 'Patient Details', 'patient' => $patient->where('id', $id)->find(), 'id' => $id];
+        $data = ['title' => 'Patient Details', 'patient' => $patient_data, 'id' => $id];
 
         return view('patient/view', $data);
     }

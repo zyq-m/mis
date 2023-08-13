@@ -2,6 +2,8 @@
 <?= $this->section("content"); ?>
 <?= validation_list_errors() ?>
 
+<!-- buat template utk error message -->
+<!-- jgn ubah field -->
 <form action="<?= url_to('patient') ?>" method="post" enctype="multipart/form-data">
     <?= csrf_field() ?>
 
