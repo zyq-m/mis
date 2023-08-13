@@ -16,7 +16,6 @@ class UserController extends BaseController
     {
         $data['title'] = "Users";
         $db = \Config\Database::connect();
-        $role = $this->session->get('userdata')['u_role'];
 
         $query = $db->table('ek_admin');
 

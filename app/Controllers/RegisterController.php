@@ -12,6 +12,7 @@ class RegisterController extends BaseController
 
         return view('registration/register_listing', $data);
     }
+
     public function add()
     {
         $data['title'] = "Add New Resident";
