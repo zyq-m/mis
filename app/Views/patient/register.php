@@ -4,7 +4,7 @@
 
 <!-- buat template utk error message -->
 <!-- jgn ubah field -->
-<form action="<?= url_to('patient') ?>" method="post" enctype="multipart/form-data">
+<form action="<?= url_to('patient/register') ?>" method="post" enctype="multipart/form-data">
     <?= csrf_field() ?>
 
     <!-- avatar -->
