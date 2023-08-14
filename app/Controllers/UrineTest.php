@@ -6,12 +6,15 @@ use App\Controllers\BaseController;
 
 class UrineTest extends BaseController
 {
+    protected $helper = ['form'];
+
     public function index()
     {
-        $data['title'] = "Urine Test Request Form";
-        helper('form');
-        return view('urinetest/urine_test', $data);
+        $data['title'] = "Urine Test";
+
+        return view('urine_test/urine_test', $data);
     }
+
     public function submitForm()
     {
         /**
