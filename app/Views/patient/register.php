@@ -21,6 +21,11 @@
     <br>
     <input type="radio" name="gender" id="gender" value="female" <?= set_radio('gender', 'female') ?>>Female
 
+    <!-- ic number -->
+    <p>IC Number</p>
+    <input type="text" name="ic_no" id="ic_no" value="<?= set_value('ic_no') ?>">
+    <br>
+
     <!-- phone number -->
     <p>Phone Number</p>
     <input type="text" name="phone_number" id="phone_number" value="<?= set_value('phone_number') ?>">
