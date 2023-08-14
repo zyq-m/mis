@@ -28,8 +28,24 @@ class UrineTest extends BaseController
         }
 
         $rules = [
-            'full_name' => 'required|max_length[200]|min_length[10]|alphabetic',
-            'date_of_birth' => 'required|date',
+            'full_name' => [
+                'label' => 'Full Name',
+                'rules' => 'required|max_length[200]|min_length[10]|alpha_numeric',
+                'errors' => [
+                    'required' => 'Please enter your full name',
+                    'max_length' => 'Your full name must be less than 200 characters',
+                    'min_length' => 'Your full name must be more than 10 characters',
+                    'alpha_numeric' => 'Your full name can only contain letters and numbers'
+                ]
+            ],
+            'date_of_birth' => [
+                'label' => 'Date of Birth',
+                'rules' => 'required|date',
+                'errors' => [
+                    'required' => 'Please enter your date of birth',
+                    'date' => 'Please enter a valid date of birth'
+                ]
+            ]
         ];
 
         if (!$this->validate($rules)) {

@@ -15,11 +15,19 @@
                             <div class="form-group">
                                 <label for="full_name">Full Name:</label>
                                 <input type="text" id="full_name" class="form-control" name="full_name" placeholder="Enter Full Name" value="<?= set_value('full_name') ?>">
+
+                                <?php if (validation_show_error('full_name')) : ?>
+                                    <span><?= validation_show_error('full_name') ?></span>
+                                <?php endif; ?>
                             </div>
 
                             <div class="form-group">
                                 <label for="date_of_birth">Date of Birth:</label>
                                 <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="<?= set_value('date_of_birth') ?>">
+
+                                <?php if (validation_show_error('date_of_birth')) : ?>
+                                    <span><?= validation_show_error('date_of_birth') ?></span>
+                                <?php endif; ?>
                             </div>
 
                             <div class="form-group">
