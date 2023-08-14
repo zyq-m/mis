@@ -25,11 +25,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <div>
-                            <button type="reset" class="btn btn-danger btn-reset" id="reset">Reset</button>
-                            <button type="submit" class="btn btn-primary btn-submit" id="submit">Submit Form</button>
-                        </div>
+                </div>
+                <div class="card-footer">
+                    <div>
+                        <button type="reset" class="btn btn-danger btn-reset" id="reset">Reset</button>
+                        <button type="submit" class="btn btn-primary btn-submit" id="submit">Submit Form</button>
                     </div>
                 </div>
         </form>
