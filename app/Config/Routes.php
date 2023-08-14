@@ -80,6 +80,13 @@ $routes->get('patient', 'PatientController::index');
 $routes->get('patient/register', 'PatientController::addPatient');
 $routes->post('patient/register', 'PatientController::addPatient');
 
+/**
+ * this route is used for testing & development purposes
+ * plesase remove later
+ */
+$routes->get('patient/fake', 'PatientController::fakePatient');
+$routes->get('patient/fake/generate/(:num)', [PatientController::class, 'onFakePatient']);
+
 service('auth')->routes($routes);
 /*
  * --------------------------------------------------------------------
