@@ -16,7 +16,7 @@ $menuItems = [
     ],
     [
         'id' => 2,
-        'name' => 'Patient',
+        'name' => 'Patients',
         'icon' => 'fa-user', // You can choose the appropriate icon class
         'subItems' => []
     ],
