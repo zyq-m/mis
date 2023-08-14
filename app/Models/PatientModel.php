@@ -32,4 +32,13 @@ class PatientModel extends Model
             $this->insert($this->fake());
         }
     }
+
+    public function getPatient($id = null)
+    {
+        if ($id == null) {
+            return $this->findAll();
+        }
+
+        return $this->where(['id' => $id])->find();
+    }
 }
