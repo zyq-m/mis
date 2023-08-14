@@ -35,6 +35,7 @@
                                 <th width="3%">No</th>
                                 <th>Name</th>
                                 <th width="10%">Gender</th>
+                                <th width="10%">IC No.</th>
                                 <th width="15%">Phone No.</th>
                                 <th width="40%">Address</th>
                             </tr>
@@ -58,6 +59,7 @@
                                             </a>
                                         </td>
                                         <td class="text-capitalize"><?= esc($patient['gender']) ?></td>
+                                        <td><?= esc($patient['ic_no']) ?></td>
                                         <td><?= esc($patient['phone_number']) ?></td>
                                         <td><?= esc($patient['address']) ?></td>
                                     </tr>

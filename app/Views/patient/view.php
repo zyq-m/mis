@@ -23,7 +23,12 @@
             </tr>
 
             <tr>
-                <td>Phone Number</td>
+                <td>IC No.</td>
+                <td><?= esc($patient_details['ic_no']) ?></td>
+            </tr>
+
+            <tr>
+                <td>Phone No.</td>
                 <td><?= esc($patient_details['phone_number']) ?></td>
             </tr>
 
