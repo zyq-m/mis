@@ -9,7 +9,7 @@ use App\Controllers\BaseController;
 
 class ImageRepo extends BaseController
 {
-    protected $helper = ['form'];
+    protected $helpers = ['form'];
 
     public function index()
     {
