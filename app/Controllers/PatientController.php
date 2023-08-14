@@ -13,6 +13,10 @@ class PatientController extends BaseController
     public function index()
     {
         $data['title'] = "Patients";
+        $patient = model(PatientModel::class);
+
+        $patientList = $patient->getPatient();
+        $data = ['title' => 'Patients', 'patientList' => $patientList];
 
         return view('patient/index', $data);
     }
@@ -75,13 +79,6 @@ class PatientController extends BaseController
     public function viewPatient($id = null)
     {
         $patient = model(PatientModel::class);
-
-        if ($id == null) {
-            $patientList = $patient->getPatients();
-            $data = ['title' => 'Patient', 'patientList' => $patientList];
-
-            return view('patient/list', $data);
-        }
 
         $patient_data = $patient->getPatient($id);
         $data = ['title' => 'Patient Details', 'patient' => $patient_data, 'id' => $id];
