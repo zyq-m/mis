@@ -33,14 +33,9 @@ class ImageRepo extends BaseController
                 ],
             ],
         ];
-        if (!$this->validate($validationRule)) {
-            $data = [
-                'errors' => $this->validator->getErrors(),
-                'title' => 'Image Repository Form', // Use the appropriate title here
-                'success' => null,
-            ];
 
-            return view('image_repo/image_repo', $data);
+        if (!$this->validate($validationRule)) {
+            return redirect()->back()->withInput();
         }
 
         $img = $this->request->getFile('memoimg');
