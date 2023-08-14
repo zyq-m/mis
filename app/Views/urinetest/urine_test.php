@@ -3,7 +3,7 @@
 <?= $this->section("content") ?>
 
 <div class="row">
-    <div>
+    <div class="col-md-12">
         <form action="<?= base_url('urine_test') ?>" method="post" class="form-horizontal ui raised segment" id="urineTestForm">
             <?= csrf_field() ?>
             <div class="card">
