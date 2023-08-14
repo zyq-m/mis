@@ -58,7 +58,7 @@
                                                 <?= esc($patient['name']) ?>
                                             </a>
                                         </td>
-                                        <td class="text-capitalize"><?= esc($patient['gender']) ?></td>
+                                        <td><?= esc($patient['gender']) ?></td>
                                         <td><?= esc($patient['ic_no']) ?></td>
                                         <td><?= esc($patient['phone_number']) ?></td>
                                         <td><?= esc($patient['address']) ?></td>

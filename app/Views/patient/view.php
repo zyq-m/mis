@@ -28,6 +28,16 @@
             </tr>
 
             <tr>
+                <td>Date of Birth</td>
+                <td>12/12/2001</td>
+            </tr>
+
+            <tr>
+                <td>Age</td>
+                <td>22 years-old</td>
+            </tr>
+
+            <tr>
                 <td>Phone No.</td>
                 <td><?= esc($patient_details['phone_number']) ?></td>
             </tr>
