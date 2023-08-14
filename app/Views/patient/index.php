@@ -1,36 +1,81 @@
 <?= $this->extend("template/layout"); ?>
+
+<?= $this->section("stylesheet"); ?>
+<link rel="stylesheet" href="<?= base_url('assets/v3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/v3/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/v3/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') ?>">
+<?= $this->endSection() ?>
+
+<?= $this->section("scripts"); ?>
+<script src="<?= base_url('assets/v3/plugins/datatables/jquery.dataTables.min.js') ?>"></script>
+<script src="<?= base_url('assets/v3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
+<script src="<?= base_url('assets/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js') ?>"></script>
+<script src="<?= base_url('assets/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') ?>"></script>
+<script>
+    $(function() {
+        $('#tblist').DataTable();
+
+    });
+</script>
+<?= $this->endSection() ?>
+
 <?= $this->section("content"); ?>
-<?= validation_list_errors() ?>
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
 
-<!-- buat template utk error message -->
-<!-- jgn ubah field -->
-<form action="<?= url_to('patient') ?>" method="post" enctype="multipart/form-data">
-    <?= csrf_field() ?>
+                <div class="card-body pb-5">
 
-    <!-- avatar -->
-    <p>Avatar</p>
-    <input type="file" name="avatar" id="avatar">
+                    <div class="text-right"><a href="<?= url_to('patient/register') ?>"><span class="btn btn-primary"> <i class="fa fa-plus"></i> Add New</span></a><br><br></div>
 
-    <!-- name -->
-    <p>Name</p>
-    <input type="text" name="name" id="name" value="<?= set_value('name') ?>">
+                    <table class="table table-striped table-bordered table-hover" id="tblist">
+                        <thead>
+                            <tr role="row">
+                                <th width="3%">No</th>
+                                <th>Name</th>
+                                <th width="10%">Gender</th>
+                                <th width="10%">IC No.</th>
+                                <th width="15%">Phone No.</th>
+                                <th width="40%">Address</th>
+                            </tr>
+                        </thead>
 
-    <!-- gender -->
-    <p>Gender</p>
-    <input type="radio" name="gender" id="gender" value="male" <?= set_radio('gender', 'male') ?>>Male
-    <br>
-    <input type="radio" name="gender" id="gender" value="female" <?= set_radio('gender', 'female') ?>>Female
+                        <tbody>
 
-    <!-- phone number -->
-    <p>Phone Number</p>
-    <input type="text" name="phone_number" id="phone_number" value="<?= set_value('phone_number') ?>">
-    <br>
+                            <?php if (!empty($patientList) && is_array($patientList)) : ?>
 
-    <!-- address -->
-    <p>Address</p>
-    <textarea name="address" id="address" cols="30" rows="10"><?= set_value('address') ?></textarea>
-    <br>
+                                <?php $no = 1; ?>
 
-    <button type="submit">Save</button>
-</form>
+                                <?php foreach ($patientList as $patient) : ?>
+
+                                    <tr>
+                                        <td class="text-center">
+                                            <?= $no ?>
+                                        </td>
+                                        <td>
+                                            <a href="<?= url_to('patient') . '/' . esc($patient['id']) ?>">
+                                                <?= esc($patient['name']) ?>
+                                            </a>
+                                        </td>
+                                        <td><?= esc($patient['gender']) ?></td>
+                                        <td><?= esc($patient['ic_no']) ?></td>
+                                        <td><?= esc($patient['phone_number']) ?></td>
+                                        <td><?= esc($patient['address']) ?></td>
+                                    </tr>
+
+                                    <?php $no++ ?>
+
+                                <?php endforeach ?>
+
+                            <?php endif ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <?= $this->endSection(); ?>
