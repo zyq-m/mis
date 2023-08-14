@@ -77,7 +77,8 @@ $routes->post('login', 'AuthController::loginhandler');
 
 $routes->get('patient/(:num)', [PatientController::class, 'viewPatient']);
 $routes->get('patient', 'PatientController::index');
-$routes->post('patient', 'PatientController::addPatient');
+$routes->get('patient/register', 'PatientController::addPatient');
+$routes->post('patient/register', 'PatientController::addPatient');
 
 service('auth')->routes($routes);
 /*

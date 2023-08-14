@@ -12,7 +12,7 @@ class PatientController extends BaseController
 
     public function index()
     {
-        $data['title'] = "Patient";
+        $data['title'] = "Patients";
 
         return view('patient/index', $data);
     }
@@ -20,6 +20,12 @@ class PatientController extends BaseController
     public function addPatient()
     {
         // request validation
+        if ($this->request->is('get')) {
+            $data['title'] = 'Add Patient';
+
+            return view('patient/register', $data);
+        }
+
         if (!$this->request->is('post')) {
             return redirect()->back()->withInput();
         }
@@ -69,8 +75,15 @@ class PatientController extends BaseController
     public function viewPatient($id = null)
     {
         $patient = model(PatientModel::class);
-        $patient_data = $patient->where('id', $id)->find();
 
+        if ($id == null) {
+            $patientList = $patient->getPatients();
+            $data = ['title' => 'Patient', 'patientList' => $patientList];
+
+            return view('patient/list', $data);
+        }
+
+        $patient_data = $patient->getPatient($id);
         $data = ['title' => 'Patient Details', 'patient' => $patient_data, 'id' => $id];
 
         return view('patient/view', $data);
