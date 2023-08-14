@@ -9,11 +9,13 @@ use App\Controllers\BaseController;
 
 class ImageRepo extends BaseController
 {
+    protected $helper = ['form'];
+
     public function index()
     {
-        $data['title'] = "Image Repository Form";
-        helper('form');
-        return view('imagerepo/image_repo', $data);
+        $data['title'] = "Image Repository";
+
+        return view('image_repo/image_repo', $data);
     }
 
     public function upload()
@@ -38,7 +40,7 @@ class ImageRepo extends BaseController
                 'success' => null,
             ];
 
-            return view('imagerepo/image_repo', $data);
+            return view('image_repo/image_repo', $data);
         }
 
         $img = $this->request->getFile('memoimg');
@@ -62,6 +64,6 @@ class ImageRepo extends BaseController
 
         $data = ['errors' => 'The file has already been moved.', 'title' => $this->title];
 
-        return view('imagerepo/image_repo', $data);
+        return view('image_repo/image_repo', $data);
     }
 }

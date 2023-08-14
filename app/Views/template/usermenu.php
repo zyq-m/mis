@@ -36,13 +36,13 @@ function getMenuHref($itemId)
     // Replace this logic with your actual URLs for each menu item
     switch ($itemId) {
         case 1:
-            return './dashboard';
+            return 'dashboard';
         case 2:
-            return './patient';
+            return 'patient';
         case 51:
-            return './urinetest';
+            return 'urine_test';
         case 52:
-            return './imagerepo';
+            return 'image_repo';
         default:
             return '#'; // Default case if no match found
     }
@@ -73,7 +73,7 @@ function getMenuHref($itemId)
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <?php foreach ($menuItems as $menuItem) : ?>
                     <li class="nav-item">
-                        <a href="<?= getMenuHref($menuItem['id']) ?>" class="nav-link">
+                        <a href="<?= base_url(getMenuHref($menuItem['id'])) ?>" class="nav-link">
                             <i class="nav-icon fas <?= $menuItem['icon'] ?>"></i>
                             <p class="text">
                                 <?= $menuItem['name'] ?>
@@ -86,7 +86,7 @@ function getMenuHref($itemId)
                             <ul class="nav nav-treeview">
                                 <?php foreach ($menuItem['subItems'] as $subItem) : ?>
                                     <li class="nav-item">
-                                        <a href="<?= getMenuHref($subItem['id']) ?>" class="nav-link">
+                                        <a href="<?= base_url(getMenuHref($subItem['id'])) ?>" class="nav-link">
                                             <div class="d-flex align-items-center">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p class="text ml-2"><?= $subItem['name'] ?></p>
