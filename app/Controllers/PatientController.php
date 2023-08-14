@@ -76,7 +76,7 @@ class PatientController extends BaseController
         }
     }
 
-    public function viewPatient($id = null)
+    public function viewPatient($id = 0)
     {
         $patient = model(PatientModel::class);
 
@@ -84,5 +84,20 @@ class PatientController extends BaseController
         $data = ['title' => 'Patient Details', 'patient' => $patient_data, 'id' => $id];
 
         return view('patient/view', $data);
+    }
+
+    public function fakePatient()
+    {
+        $patient = model(PatientModel::class);
+
+        return var_dump($patient->fake());
+    }
+
+    public function onFakePatient($value = 0)
+    {
+        $patient = model(PatientModel::class);
+        $patient->generateFakePatients($value);
+
+        return $value . ' has been created';
     }
 }
