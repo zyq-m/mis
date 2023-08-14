@@ -49,12 +49,17 @@
                                 <?php foreach ($patientList as $patient) : ?>
 
                                     <tr>
-
-                                        <td class="text-center"><?= $no ?></td>
-                                        <td><?= $patient['name'] ?></td>
-                                        <td class="text-capitalize"><?= $patient['gender'] ?></td>
-                                        <td><?= $patient['phone_number'] ?></td>
-                                        <td><?= $patient['address'] ?></td>
+                                        <td class="text-center">
+                                            <?= $no ?>
+                                        </td>
+                                        <td>
+                                            <a href="<?= url_to('patient') . '/' . esc($patient['id']) ?>">
+                                                <?= esc($patient['name']) ?>
+                                            </a>
+                                        </td>
+                                        <td class="text-capitalize"><?= esc($patient['gender']) ?></td>
+                                        <td><?= esc($patient['phone_number']) ?></td>
+                                        <td><?= esc($patient['address']) ?></td>
                                     </tr>
 
                                     <?php $no++ ?>
