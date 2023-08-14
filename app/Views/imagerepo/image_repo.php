@@ -3,15 +3,14 @@
 <?= $this->section("content") ?>
 
 <div class="row">
-    <div>
+    <div class="col-md-12">
         <form action="<?= url_to('image_repo') ?>" method="post" class="form-horizontal ui raised segment" enctype="multipart/form-data" id="imageUploadForm">
             <?= csrf_field() ?>
             <div class="card">
                 <div class="card-body">
                     <div class="row">
 
-
-                        <div>
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Upload Image:</label>
                                 <div>
