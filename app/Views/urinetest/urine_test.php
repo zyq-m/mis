@@ -9,7 +9,6 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Full Name:</label>
