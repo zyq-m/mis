@@ -38,15 +38,15 @@ class PatientController extends BaseController
         $rules = [
             'name' => 'required|max_length[200]|min_length[5]',
             'gender' => 'required',
-            'phone_number' => 'required|max_length[15]|min_length[10]',
-            // 'avatar' => 'required',
+            'ic_no' => 'required|max_length[12]|min_length[12]|numeric',
+            'phone_number' => 'required|max_length[15]|min_length[10]|numeric',
             'address' => 'required',
             'avatar' => [
                 'label' => 'avatar',
                 'rules' => [
                     'uploaded[avatar]',
                     'is_image[avatar]',
-                    'mime_in[avatar,image/jpg,image/jpeg,image/gif,image/png,image/webp]',
+                    'mime_in[avatar,image/jpg,image/jpeg,image/png]',
                     'max_size[avatar,200]',
                     // 'max_dims[avatar,1024,768]',
                 ],
