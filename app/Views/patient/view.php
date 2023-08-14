@@ -8,42 +8,44 @@
 
     <?php foreach ($patient as $patient_details) : ?>
 
-        <img src="<?= esc($patient_details['avatar']) ?>" alt="avatar">
+        <img src="<?= esc($patient_details['avatar']) ?>" alt="avatar" class="mx-auto d-block" style="max-width: 300px;">
+
+        <br>
 
         <!-- terpulang nk buat pakai table ke x, better rujuk bootstrap -->
-        <table>
+        <table class="table table-striped table-bordered table-sm">
             <tr>
-                <td>Name</td>
+                <th>Name</th>
                 <td><?= esc($patient_details['name']) ?></td>
             </tr>
 
             <tr>
-                <td>Gender</td>
+                <th>Gender</th>
                 <td><?= esc($patient_details['gender']) ?></td>
             </tr>
 
             <tr>
-                <td>IC No.</td>
+                <th>IC No.</th>
                 <td><?= esc($patient_details['ic_no']) ?></td>
             </tr>
 
             <tr>
-                <td>Date of Birth</td>
+                <th>Date of Birth</th>
                 <td>12/12/2001</td>
             </tr>
 
             <tr>
-                <td>Age</td>
+                <th>Age</th>
                 <td>22 years-old</td>
             </tr>
 
             <tr>
-                <td>Phone No.</td>
+                <th>Phone No.</th>
                 <td><?= esc($patient_details['phone_number']) ?></td>
             </tr>
 
             <tr>
-                <td>Address</td>
+                <th>Address</th>
                 <td><?= esc($patient_details['address']) ?></td>
             </tr>
         </table>
