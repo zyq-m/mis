@@ -40,7 +40,7 @@ $routes->set404Override();
 
 // $routes->get('/dashboard', 'Dashboard::index');
 
-// $routes->get('/', 'Login::index');
+$routes->get('/', 'Login::index');
 
 $routes->get('dashboard', 'Dashboard::index');
 

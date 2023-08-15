@@ -10,64 +10,70 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="form-group">
+                    <div class="form-group <?= (validation_show_error('avatar')) ? 'has-error' : '' ?>">
                         <label for="avatar">Avatar:</label>
-                        <div class="input-group mb-3">
+                        <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="avatar" id="avatar">
+                                <input type="file" class="custom-file-input <?= (validation_show_error('avatar')) ? 'is-invalid' : '' ?>" name="avatar" id="avatar">
                                 <label class="custom-file-label" for="avatar">Choose file</label>
                             </div>
                         </div>
                         <?php if (validation_show_error('avatar')) : ?>
-                            <span style="color: red;"><?= validation_show_error('avatar') ?></span>
+                            <span class="error-message"><?= validation_show_error('avatar') ?></span>
                         <?php endif; ?>
                     </div>
-                    <div class="form-group">
+
+                    <div class="form-group <?= (validation_show_error('name')) ? 'has-error' : '' ?>">
                         <label for="name">Name:</label>
-                        <input type="text" name="name" id="name" value="<?= set_value('name') ?>" class="form-control" placeholder="Please Enter Full Name">
+                        <input type="text" name="name" id="name" value="<?= set_value('name') ?>" class="form-control <?= (validation_show_error('name')) ? 'is-invalid' : '' ?>" placeholder="Please Enter Full Name">
                         <?php if (validation_show_error('name')) : ?>
-                            <span style="color: red;"><?= validation_show_error('name') ?></span>
+                            <span class="error-message"><?= validation_show_error('name') ?></span>
                         <?php endif; ?>
                     </div>
-                    <div class="form-group">
+
+                    <div class="form-group <?= (validation_show_error('gender')) ? 'has-error' : '' ?>">
                         <label for="gender">Gender:</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="gender1" value="male">
+                            <input class="form-check-input <?= (validation_show_error('gender')) ? 'is-invalid' : '' ?>" type="radio" name="gender" id="gender1" value="male">
                             <label class="form-check-label" for="gender1">
                                 Male
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="gender2" value="female">
+                            <input class="form-check-input <?= (validation_show_error('gender')) ? 'is-invalid' : '' ?>" type="radio" name="gender" id="gender2" value="female">
                             <label class="form-check-label" for="gender2">
                                 Female
                             </label>
                         </div>
                         <?php if (validation_show_error('gender')) : ?>
-                            <span style="color: red;"><?= validation_show_error('gender') ?></span>
+                            <span class="error-message"><?= validation_show_error('gender') ?></span>
                         <?php endif; ?>
                     </div>
-                    <div class="form-group">
+
+                    <div class="form-group <?= (validation_show_error('ic_no')) ? 'has-error' : '' ?>">
                         <label for="ic_no">IC Number:</label>
-                        <input type="text" name="ic_no" id="ic_no" value="<?= set_value('ic_no') ?>" class="form-control" placeholder="Please Enter IC Number">
+                        <input type="text" name="ic_no" id="ic_no" value="<?= set_value('ic_no') ?>" class="form-control <?= (validation_show_error('ic_no')) ? 'is-invalid' : '' ?>" placeholder="Please Enter IC Number">
                         <?php if (validation_show_error('ic_no')) : ?>
-                            <span style="color: red;"><?= validation_show_error('ic_no') ?></span>
+                            <span class="error-message"><?= validation_show_error('ic_no') ?></span>
                         <?php endif; ?>
                     </div>
-                    <div class="form-group">
+
+                    <div class="form-group <?= (validation_show_error('phone_number')) ? 'has-error' : '' ?>">
                         <label for="phone_number">Phone Number:</label>
-                        <input type="text" name="phone_number" id="phone_number" value="<?= set_value('phone_number') ?>" class="form-control" placeholder="Please Enter Phone Number">
+                        <input type="text" name="phone_number" id="phone_number" value="<?= set_value('phone_number') ?>" class="form-control <?= (validation_show_error('phone_number')) ? 'is-invalid' : '' ?>" placeholder="Please Enter Phone Number">
                         <?php if (validation_show_error('phone_number')) : ?>
-                            <span style="color: red;"><?= validation_show_error('phone_number') ?></span>
+                            <span class="error-message"><?= validation_show_error('phone_number') ?></span>
                         <?php endif; ?>
                     </div>
-                    <div class="form-group">
+
+                    <div class="form-group <?= (validation_show_error('address')) ? 'has-error' : '' ?>">
                         <label for="address">Address:</label>
-                        <textarea name="address" id="address" rows="3" class="form-control" placeholder="Please Enter Address"></textarea>
+                        <textarea name="address" id="address" rows="3" class="form-control <?= (validation_show_error('address')) ? 'is-invalid' : '' ?>" placeholder="Please Enter Address"><?= set_value('address') ?></textarea>
                         <?php if (validation_show_error('address')) : ?>
-                            <span style="color: red;"><?= validation_show_error('address') ?></span>
+                            <span class="error-message"><?= validation_show_error('address') ?></span>
                         <?php endif; ?>
                     </div>
+
                 </div>
             </div>
         </div>

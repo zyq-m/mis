@@ -10,25 +10,27 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="form-group">
+                            <div class="form-group <?= (validation_show_error('memoimg')) ? 'has-error' : '' ?>">
                                 <label for="memoimg">Upload Image:</label>
-                                <div class="input-group mb-3">
+                                <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="memoimg" name="memoimg">
+                                        <input type="file" class="custom-file-input <?= (validation_show_error('memoimg')) ? 'is-invalid' : '' ?>" id="memoimg" name="memoimg">
                                         <label class="custom-file-label" for="memoimg"><?= empty(set_value('memoimg')) ? 'Choose file' : set_value('memoimg') ?></label>
                                     </div>
                                 </div>
                                 <?php if (validation_show_error('memoimg')) : ?>
-                                    <span style="color: red;"><?= validation_show_error('memoimg') ?></span>
+                                    <span class="error-message"><?= validation_show_error('memoimg') ?></span>
                                 <?php endif; ?>
                             </div>
-                            <div class="form-group">
+
+                            <div class="form-group <?= (validation_show_error('descriptions')) ? 'has-error' : '' ?>">
                                 <label for="descriptions">Comment:</label>
-                                <textarea rows="3" name="descriptions" id="descriptions" class="form-control" placeholder="Please Describe The Image"><?= set_value('descriptions') ?></textarea>
+                                <textarea rows="3" name="descriptions" id="descriptions" class="form-control <?= (validation_show_error('descriptions')) ? 'is-invalid' : '' ?>" placeholder="Please Describe The Image"><?= set_value('descriptions') ?></textarea>
                                 <?php if (validation_show_error('descriptions')) : ?>
-                                    <span style="color: red;"><?= validation_show_error('descriptions') ?></span>
+                                    <span class="error-message"><?= validation_show_error('descriptions') ?></span>
                                 <?php endif; ?>
                             </div>
+
                         </div>
                     </div>
                 </div>
