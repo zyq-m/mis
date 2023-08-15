@@ -62,6 +62,8 @@ $routes->get('hospital', 'HospitalController::index');
 $routes->get('registration', 'RegisterController::index');
 $routes->get('registration/add', 'RegisterController::add');
 
+// $routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']);
+
 $routes->get('/urine_test', 'UrineTest::index');
 $routes->post('/urine_test', 'UrineTest::submitForm');
 
