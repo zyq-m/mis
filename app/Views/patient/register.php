@@ -1,6 +1,5 @@
 <?= $this->extend("template/layout"); ?>
 <?= $this->section("content"); ?>
-<?= validation_list_errors() ?>
 
 <!-- buat template utk error message -->
 <!-- jgn ubah field -->
@@ -19,15 +18,21 @@
                                 <label class="custom-file-label" for="avatar">Choose file</label>
                             </div>
                         </div>
+                        <?php if (validation_show_error('avatar')) : ?>
+                            <span style="color: red;"><?= validation_show_error('avatar') ?></span>
+                        <?php endif; ?>
                     </div>
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" name="name" id="name" value="<?= set_value('name') ?>" class="form-control" placeholder="Please Enter Full Name" required>
+                        <input type="text" name="name" id="name" value="<?= set_value('name') ?>" class="form-control" placeholder="Please Enter Full Name">
+                        <?php if (validation_show_error('name')) : ?>
+                            <span style="color: red;"><?= validation_show_error('name') ?></span>
+                        <?php endif; ?>
                     </div>
                     <div class="form-group">
                         <label for="gender">Gender:</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="gender1" value="male" checked>
+                            <input class="form-check-input" type="radio" name="gender" id="gender1" value="male">
                             <label class="form-check-label" for="gender1">
                                 Male
                             </label>
@@ -38,18 +43,30 @@
                                 Female
                             </label>
                         </div>
+                        <?php if (validation_show_error('gender')) : ?>
+                            <span style="color: red;"><?= validation_show_error('gender') ?></span>
+                        <?php endif; ?>
                     </div>
                     <div class="form-group">
                         <label for="ic_no">IC Number:</label>
-                        <input type="text" name="ic_no" id="ic_no" value="<?= set_value('ic_no') ?>" class="form-control" placeholder="Please Enter IC Number" required>
+                        <input type="text" name="ic_no" id="ic_no" value="<?= set_value('ic_no') ?>" class="form-control" placeholder="Please Enter IC Number">
+                        <?php if (validation_show_error('ic_no')) : ?>
+                            <span style="color: red;"><?= validation_show_error('ic_no') ?></span>
+                        <?php endif; ?>
                     </div>
                     <div class="form-group">
                         <label for="phone_number">Phone Number:</label>
-                        <input type="text" name="phone_number" id="phone_number" value="<?= set_value('phone_number') ?>" class="form-control" placeholder="Please Enter Phone Number" required>
+                        <input type="text" name="phone_number" id="phone_number" value="<?= set_value('phone_number') ?>" class="form-control" placeholder="Please Enter Phone Number">
+                        <?php if (validation_show_error('phone_number')) : ?>
+                            <span style="color: red;"><?= validation_show_error('phone_number') ?></span>
+                        <?php endif; ?>
                     </div>
                     <div class="form-group">
                         <label for="address">Address:</label>
-                        <textarea name="address" id="address" rows="3" class="form-control" placeholder="Please Enter Address" required></textarea>
+                        <textarea name="address" id="address" rows="3" class="form-control" placeholder="Please Enter Address"></textarea>
+                        <?php if (validation_show_error('address')) : ?>
+                            <span style="color: red;"><?= validation_show_error('address') ?></span>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

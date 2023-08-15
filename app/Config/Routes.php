@@ -68,7 +68,7 @@ $routes->get('/urine_test', 'UrineTest::index');
 $routes->post('/urine_test', 'UrineTest::submitForm');
 
 $routes->get('/image_repo', 'ImageRepo::index');
-$routes->post('/image_repo', 'ImageRepo::upload');
+$routes->post('/image_repo/upload', 'ImageRepo::upload');
 
 $routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']);
 
