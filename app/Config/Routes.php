@@ -48,7 +48,7 @@ $routes->post('/image_repo/upload', 'ImageRepo::upload');
 
 // $routes->get('/', 'Login::index');
 
-$routes->get('dashboard', 'Home::index');
+$routes->get('dashboard', 'Dashboard::index');
 
 $routes->get('user', 'UserController::index');
 $routes->get('user/edit/(:segment)', 'UserController::edit/$1');

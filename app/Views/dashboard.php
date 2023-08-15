@@ -8,15 +8,15 @@
         <div class="small-box bg-info">
             <div class="inner">
                 <h3>
-
+                    <?= esc($totalPatient) ?>
                 </h3>
 
-                <p>Bilangan Penduduk</p>
+                <p>Total of Patients</p>
             </div>
             <div class="icon">
                 <i class="fa fa-users"></i>
             </div>
-            <a href="#" class="small-box-footer">Maklumat lanjut <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?= base_url('patient') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -25,15 +25,15 @@
         <div class="small-box bg-green">
             <div class="inner">
                 <h3>
-
+                    <?= esc($totalMalePatient) ?>
                 </h3>
 
-                <p>Bilangan Penduduk Islam</p>
+                <p>Male Patients</p>
             </div>
             <div class="icon">
                 <i class="fa fa-users"></i>
             </div>
-            <a href="#" class="small-box-footer">Maklumat lanjut <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?= base_url('patient') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -41,14 +41,16 @@
         <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3></h3>
+                <h3>
+                    <?= esc($totalFemalePatient) ?>
+                </h3>
 
-                <p>Bilangan Penerima Sumbangan</p>
+                <p>Female Patients</p>
             </div>
             <div class="icon">
                 <i class="fa fa-users"></i>
             </div>
-            <a href="#" class="small-box-footer">Maklumat lanjut <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?= base_url('patient') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -56,14 +58,16 @@
         <!-- small box -->
         <div class="small-box bg-red">
             <div class="inner">
-                <h3></h3>
+                <h3>
+                    <?= esc($totalStaff) ?>
+                </h3>
 
-                <p>Bilangan Suku Kaum</p>
+                <p>Total of Staffs</p>
             </div>
             <div class="icon">
                 <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer">Maklumat lanjut <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
