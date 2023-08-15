@@ -11,24 +11,24 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Upload Image:</label>
+                                <label for="memoimg">Upload Image:</label>
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                        <input type="file" class="custom-file-input" id="memoimg" name="memoimg">
+                                        <label class="custom-file-label" for="memoimg">Choose file</label>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Comment:</label>
-                                    <textarea rows="3" name="descriptions" id="descriptions" class="form-control" placeholder="Please Enter Current Symptoms or Concerns" required></textarea>
-                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="descriptions">Comment:</label>
+                                <textarea rows="3" name="descriptions" id="descriptions" class="form-control" placeholder="Please Describe The Image"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
                     <div>
-                        <button type="reset" class="btn btn-danger btn-reset" id="reset">Reset</button>
+                        <button type="reset" class="btn btn-default" id="reset">Cancel</button>
                         <button type="submit" class="btn btn-primary btn-submit" id="submit">Submit Form</button>
                     </div>
                 </div>
