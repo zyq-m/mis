@@ -99,9 +99,9 @@ function getMenuHref($itemId)
                     </li>
                 <?php endforeach; ?>
 
-                <li class="nav-header">ACCOUNT</li>
+                <li class="nav-header text-bold text-lg">Account</li>
                 <li class="nav-item ">
-                    <a href="<?= base_url("profile") ?> class=" nav-link<?= ($uri->getSegment(1) == "profile" && $uri->getSegment(2) == "") ? " active" : "" ?>">
+                    <a href="<?= base_url("profile") ?>" class=" nav-link<?= ($uri->getSegment(1) == "profile" && $uri->getSegment(2) == "") ? " active" : "" ?>">
                         <i class="nav-icon far fa-circle text-info"></i>
                         <p class="text">Profile</p>
                     </a>
