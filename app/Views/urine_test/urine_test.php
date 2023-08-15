@@ -17,7 +17,7 @@
                                 <input type="text" id="full_name" class="form-control" name="full_name" placeholder="Enter Full Name" value="<?= set_value('full_name') ?>">
 
                                 <?php if (validation_show_error('full_name')) : ?>
-                                    <span><?= validation_show_error('full_name') ?></span>
+                                    <span style="color: red;"><?= validation_show_error('full_name') ?></span>
                                 <?php endif; ?>
                             </div>
 
@@ -26,13 +26,18 @@
                                 <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="<?= set_value('date_of_birth') ?>">
 
                                 <?php if (validation_show_error('date_of_birth')) : ?>
-                                    <span><?= validation_show_error('date_of_birth') ?></span>
+                                    <span style="color: red;"><?= validation_show_error('date_of_birth') ?></span>
                                 <?php endif; ?>
                             </div>
 
                             <div class="form-group">
                                 <label for="descriptions">Current Symptoms or Concerns:</label>
-                                <textarea rows="3" class="form-control" placeholder="Enter Current Symptoms or Concerns" name="descriptions"><?= set_value('descriptions') ?></textarea>
+                                <textarea class="form-control" id="descriptions" name="descriptions" rows="3" placeholder="Enter Current Symptoms or Concerns"><?= set_value('descriptions') ?></textarea>
+
+                                <?php if (validation_show_error('descriptions')) : ?>
+                                    <span style="color: red;"><?= validation_show_error('descriptions') ?></span>
+                                <?php endif; ?>
+
                             </div>
                         </div>
                     </div>

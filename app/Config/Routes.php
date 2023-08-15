@@ -38,12 +38,6 @@ $routes->set404Override();
 
 // $routes->get('/login', 'Login::index');
 
-$routes->get('/urine_test', 'UrineTest::index');
-$routes->post('/urine_test', 'UrineTest::submitForm');
-
-$routes->get('/image_repo', 'ImageRepo::index');
-$routes->post('/image_repo/upload', 'ImageRepo::upload');
-
 // $routes->get('/dashboard', 'Dashboard::index');
 
 // $routes->get('/', 'Login::index');
@@ -68,8 +62,13 @@ $routes->get('hospital', 'HospitalController::index');
 $routes->get('registration', 'RegisterController::index');
 $routes->get('registration/add', 'RegisterController::add');
 
-// $routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']);
+$routes->get('/urine_test', 'UrineTest::index');
+$routes->post('/urine_test', 'UrineTest::submitForm');
 
+$routes->get('/image_repo', 'ImageRepo::index');
+$routes->post('/image_repo', 'ImageRepo::upload');
+
+$routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']);
 
 // $routes->get('login', 'Login::index', ['as' => 'admin.login.form']);
 // $routes->post('login', 'AuthController::loginhandler');

@@ -45,6 +45,15 @@ class UrineTest extends BaseController
                     'required' => 'Please enter your date of birth',
                     'date' => 'Please enter a valid date of birth'
                 ]
+            ],
+            'descriptions' => [
+                'label' => 'Current Symptoms or Concerns',
+                'rules' => 'required|min_length[5]|alpha_numeric',
+                'errors' => [
+                    'required' => 'Please enter your current symptoms or concerns',
+                    'min_length' => 'Your current symptoms or concerns must be more than 5 characters',
+                    'alpha_numeric' => 'Your current symptoms or concerns can only contain letters and numbers'
+                ]
             ]
         ];
 
