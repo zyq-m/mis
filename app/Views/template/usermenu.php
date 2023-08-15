@@ -18,7 +18,10 @@ $menuItems = [
         'id' => 2,
         'name' => 'Patients',
         'icon' => 'fa-user', // You can choose the appropriate icon class
-        'subItems' => []
+        'subItems' => [
+            ['id' => 21, 'name' => 'Patients List', 'icon' => ''],
+            ['id' => 22, 'name' => 'Register Patient', 'icon' => ''],
+        ]
     ],
     [
         'id' => 5,
@@ -37,8 +40,10 @@ function getMenuHref($itemId)
     switch ($itemId) {
         case 1:
             return 'dashboard';
-        case 2:
+        case 21:
             return 'patient';
+        case 22:
+            return 'patient/register';
         case 51:
             return 'urine_test';
         case 52:

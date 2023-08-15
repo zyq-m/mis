@@ -8,45 +8,87 @@
 
     <?php foreach ($patient as $patient_details) : ?>
 
-        <img src="<?= esc($patient_details['avatar']) ?>" alt="avatar">
-
-        <!-- terpulang nk buat pakai table ke x, better rujuk bootstrap -->
-        <table>
-            <tr>
-                <td>Name</td>
-                <td><?= esc($patient_details['name']) ?></td>
-            </tr>
-
-            <tr>
-                <td>Gender</td>
-                <td><?= esc($patient_details['gender']) ?></td>
-            </tr>
-
-            <tr>
-                <td>IC No.</td>
-                <td><?= esc($patient_details['ic_no']) ?></td>
-            </tr>
-
-            <tr>
-                <td>Date of Birth</td>
-                <td>12/12/2001</td>
-            </tr>
-
-            <tr>
-                <td>Age</td>
-                <td>22 years-old</td>
-            </tr>
-
-            <tr>
-                <td>Phone No.</td>
-                <td><?= esc($patient_details['phone_number']) ?></td>
-            </tr>
-
-            <tr>
-                <td>Address</td>
-                <td><?= esc($patient_details['address']) ?></td>
-            </tr>
-        </table>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ui raised segment">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="card-body">
+                                    <div class="card-body text-center">
+                                        <img src="<?= esc($patient_details['avatar']) ?>" alt="avatar" class="rounded-circle img-fluid" style="width: 170px; height: 170px;">
+                                        <br>
+                                        <br>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Full Name</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0"><?= esc($patient_details['name']) ?></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Gender</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0"><?= esc($patient_details['gender']) ?></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">IC No.</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0"><?= esc($patient_details['ic_no']) ?></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Date of Birth</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">12/12/2001</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Age</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">22 years-old</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Phone No.</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0"><?= esc($patient_details['phone_number']) ?></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Address</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0"><?= esc($patient_details['address']) ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <?php endforeach ?>
 
