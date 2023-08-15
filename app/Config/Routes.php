@@ -40,10 +40,9 @@ $routes->set404Override();
 
 // $routes->get('/dashboard', 'Dashboard::index');
 
-$routes->get('/', 'Login::index');
+// $routes->get('/', 'Login::index');
 
-$routes->get('dashboard', 'Home::index', ['as' => 'admin.home']);
-$routes->get('dashboard/test', 'Home::test');
+$routes->get('dashboard', 'Dashboard::index');
 
 $routes->get('user', 'UserController::index');
 $routes->get('user/edit/(:segment)', 'UserController::edit/$1');
@@ -63,6 +62,8 @@ $routes->get('hospital', 'HospitalController::index');
 $routes->get('registration', 'RegisterController::index');
 $routes->get('registration/add', 'RegisterController::add');
 
+// $routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']);
+
 $routes->get('/urine_test', 'UrineTest::index');
 $routes->post('/urine_test', 'UrineTest::submitForm');
 
@@ -71,8 +72,8 @@ $routes->post('/image_repo', 'ImageRepo::upload');
 
 $routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']);
 
-$routes->get('login', 'Login::index', ['as' => 'admin.login.form']);
-$routes->post('login', 'AuthController::loginhandler');
+// $routes->get('login', 'Login::index', ['as' => 'admin.login.form']);
+// $routes->post('login', 'AuthController::loginhandler');
 
 $routes->get('patient/(:num)', [PatientController::class, 'viewPatient']);
 $routes->get('patient', 'PatientController::index');
