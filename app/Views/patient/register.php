@@ -27,14 +27,14 @@
                     <div class="form-group">
                         <label>Gender:</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="gender" value="male" checked>
-                            <label class="form-check-label" for="gender">
+                            <input class="form-check-input" type="radio" name="gender" id="gender1" value="male" checked>
+                            <label class="form-check-label" for="gender1">
                                 Male
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="gender" value="female">
-                            <label class="form-check-label" for="gender">
+                            <input class="form-check-input" type="radio" name="gender" id="gender2" value="female">
+                            <label class="form-check-label" for="gender2">
                                 Female
                             </label>
                         </div>
