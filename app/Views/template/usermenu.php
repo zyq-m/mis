@@ -1,11 +1,6 @@
 <?php
-$db = \Config\Database::connect();
+
 $uri = service('uri');
-
-$session = \Config\Services::session();
-
-// $u_fullname = $session->get('userdata')['u_fullname'];
-// $role = $session->get('userdata')['u_role'];
 
 $menuItems = [
     [
@@ -106,21 +101,21 @@ function getMenuHref($itemId)
 
                 <li class="nav-header">ACCOUNT</li>
                 <li class="nav-item ">
-                    <a href="<?php echo base_url() ?>profile" class="nav-link<?= ($uri->getSegment(1) == "profile" && $uri->getSegment(2) == "") ? " active" : "" ?>">
+                    <a href="<?= base_url("profile") ?> class=" nav-link<?= ($uri->getSegment(1) == "profile" && $uri->getSegment(2) == "") ? " active" : "" ?>">
                         <i class="nav-icon far fa-circle text-info"></i>
                         <p class="text">Profile</p>
                     </a>
                 </li>
 
                 <li class="nav-item ">
-                    <a href="<?php echo base_url() ?>profile/password" class="nav-link<?= ($uri->getSegment(1) == "profile" && $uri->getSegment(2) == "password") ? " active" : "" ?>">
+                    <a href="<?= base_url("profile/password") ?>" class="nav-link<?= ($uri->getSegment(1) == "profile" && $uri->getSegment(2) == "password") ? " active" : "" ?>">
                         <i class="nav-icon far fa-circle text-warning"></i>
                         <p class="text">Change Password</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?php echo base_url(); ?>logout" class="nav-link">
+                    <a href="<?= base_url('logout'); ?>" class="nav-link">
                         <i class="nav-icon far fa-circle text-danger"></i>
                         <p class="text">Log Out</p>
                     </a>
