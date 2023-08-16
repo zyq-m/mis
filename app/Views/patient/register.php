@@ -1,9 +1,29 @@
 <?= $this->extend("template/layout"); ?>
 <?= $this->section("content"); ?>
-<?= validation_list_errors() ?>
 
+<?= validation_list_errors() ?>
+<?php $session = session(); ?>
 <!-- buat template utk error message -->
 <!-- jgn ubah field -->
+
+<?php if ($session->getFlashdata('register_error')) : ?>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <?= $session->getFlashdata('register_error'); ?>
+    </div>
+<?php endif; ?>
+<?php if ($session->getFlashdata('upload_error')) : ?>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <?= $session->getFlashdata('upload_error'); ?>
+    </div>
+<?php endif; ?>
+<?php if ($session->getFlashdata('register_success')) : ?>
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <?= $session->getFlashdata('register_success'); ?>
+    </div>
+<?php endif; ?>
 <form action="<?= url_to('patient/register') ?>" method="post" enctype="multipart/form-data">
     <?= csrf_field() ?>
 
@@ -27,7 +47,7 @@
                     <div class="form-group">
                         <label>Gender:</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="gender1" value="Male" checked>
+                            <input class="form-check-input" type="radio" name="gender" id="gender1" value="Male">
                             <label class="form-check-label" for="gender1">
                                 Male
                             </label>
