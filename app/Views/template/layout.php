@@ -26,15 +26,6 @@
 
     <?= $this->renderSection("stylesheet"); ?>
 
-    <style>
-        .error-message {
-            color: red;
-            font-size: 13px;
-            margin-top: 4px;
-            display: block;
-        }
-    </style>
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
