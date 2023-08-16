@@ -44,7 +44,7 @@ $routes->get('urine_test', 'UrineTest::index');
 $routes->post('urine_test', 'UrineTest::submitForm');
 
 $routes->get('image_repo', 'ImageRepo::index');
-$routes->get('image_repo/view', 'ImageRepo::view');
+$routes->get('image_repo/form', 'ImageRepo::form');
 $routes->post('image_repo/upload', 'ImageRepo::upload');
 
 // $routes->get('/dashboard', 'Dashboard::index');
@@ -94,8 +94,8 @@ $routes->get('image/(:segment)/(:segment)', [ImageController::class, 'index']);
 $routes->cli('patient/fake', 'PatientController::fakePatient');
 $routes->cli('patient/fake/generate/(:num)', [PatientController::class, 'onFakePatient']);
 
-$routes->cli('image_repo/fake', [ImageRepo::class, 'fakeImageRepository']);
-$routes->cli('image_repo/fake/(:num)', [ImageRepo::class, 'onFakeImageRepository']);
+$routes->cli('image_repo/fake', [ImageRepo::class, 'fakeImageRepo']);
+$routes->cli('image_repo/fake/(:num)', [ImageRepo::class, 'onFakeImageRepo']);
 
 service('auth')->routes($routes);
 /*
