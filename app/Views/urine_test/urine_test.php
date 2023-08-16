@@ -12,33 +12,28 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="form-group <?= (validation_show_error('date_of_birth')) ? 'has-error' : '' ?>">
+                            <div class="form-group">
                                 <label for="full_name">Full Name:</label>
-                                <input type="text" id="full_name" class="form-control <?= (validation_show_error('full_name')) ? 'is-invalid' : '' ?>" name="full_name" placeholder="Enter Full Name" value="<?= set_value('full_name') ?>">
+                                <input type="text" id="full_name" class="form-control" name="full_name" placeholder="Enter Full Name" value="<?= set_value('full_name') ?>">
 
                                 <?php if (validation_show_error('full_name')) : ?>
-                                    <span class="error-message"><?= validation_show_error('full_name') ?></span>
+                                    <span><?= validation_show_error('full_name') ?></span>
                                 <?php endif; ?>
                             </div>
 
-                            <div class="form-group <?= (validation_show_error('date_of_birth')) ? 'has-error' : '' ?>">
+                            <div class="form-group">
                                 <label for="date_of_birth">Date of Birth:</label>
-                                <input type="date" class="form-control <?= (validation_show_error('date_of_birth')) ? 'is-invalid' : '' ?>" id="date_of_birth" name="date_of_birth" value="<?= set_value('date_of_birth') ?>">
+                                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="<?= set_value('date_of_birth') ?>">
 
                                 <?php if (validation_show_error('date_of_birth')) : ?>
-                                    <span class="error-message"><?= validation_show_error('date_of_birth') ?></span>
+                                    <span><?= validation_show_error('date_of_birth') ?></span>
                                 <?php endif; ?>
                             </div>
 
-                            <div class="form-group <?= (validation_show_error('descriptions')) ? 'has-error' : '' ?>">
+                            <div class="form-group">
                                 <label for="descriptions">Current Symptoms or Concerns:</label>
-                                <textarea class="form-control <?= (validation_show_error('descriptions')) ? 'is-invalid' : '' ?>" id="descriptions" name="descriptions" rows="3" placeholder="Enter Current Symptoms or Concerns"><?= set_value('descriptions') ?></textarea>
-
-                                <?php if (validation_show_error('descriptions')) : ?>
-                                    <span class="error-message"><?= validation_show_error('descriptions') ?></span>
-                                <?php endif; ?>
+                                <textarea rows="3" class="form-control" placeholder="Enter Current Symptoms or Concerns" name="descriptions"><?= set_value('descriptions') ?></textarea>
                             </div>
-
                         </div>
                     </div>
                 </div>
