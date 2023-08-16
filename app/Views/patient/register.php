@@ -49,7 +49,7 @@
                     </div>
                     <div class="form-group">
                         <label>Address:</label>
-                        <textarea name="address" id="address" rows="3" class="form-control" placeholder="Please Enter Address" required></textarea>
+                        <textarea name="address" id="address" rows="3" class="form-control" placeholder="Please Enter Address" required><?= set_value('address') ?></textarea>
                     </div>
                 </div>
             </div>
