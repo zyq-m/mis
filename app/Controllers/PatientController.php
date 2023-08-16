@@ -108,12 +108,18 @@ class PatientController extends BaseController
             // save data
             $patient = model(PatientModel::class);
 
-            if ($patient->save($data)) {
-                return redirect()->to('patient');
-            }
+            try {
+                $patient->save($data);
 
-            return redirect()->back()->with('error', 'Patient already been registered');
+                return redirect()->back()->with('register_success', 'Patient successfully registered');
+            } catch (\Throwable $th) {
+
+                //TODO: Remove image in fold
+                return redirect()->back()->with('register_error', 'Registration failed. Patient already been registered');
+            }
         }
+
+        return redirect()->back()->with('upload_error', 'File exists');
     }
 
     public function viewPatient($id = 0)
