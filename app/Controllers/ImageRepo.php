@@ -38,15 +38,6 @@ class ImageRepo extends BaseController
                     'max_size' => 'Your image size exceeds 1000kb',
                 ]
             ],
-            'descriptions' => [
-                'label' => 'Comment',
-                'rules' => 'required|min_length[5]', // Add more rules if needed
-                'errors' => [
-                    'required' => 'Please enter a comment.',
-                    'min_length' => 'The comment must be at least 5 characters long.',
-                    // Add more error messages for other rules if needed
-                ],
-            ],
             'file_name' => [
                 'label' => 'File Name',
                 'rules' => 'required',

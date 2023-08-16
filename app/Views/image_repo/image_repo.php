@@ -10,37 +10,32 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="form-group <?= (validation_show_error('memoimg')) ? 'has-error' : '' ?>">
-                                <label for="memoimg">Upload Image:</label>
-                                <div class="input-group">
+                            <div class="form-group">
+                                <label>Upload Image:</label>
+                                <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input <?= (validation_show_error('memo_img')) ? 'is-invalid' : '' ?>" id="memo_img" name="memo_img" value="<?= set_value('memo_img') ?>">
-                                        <label class="custom-file-label" for="memo_img"><?= empty(set_value('memo_img')) ? 'Choose file' : set_value('memo_img') ?></label>
+                                        <input type="file" name="memo_img" class="custom-file-input" id="inputGroupFile01" value="<?= set_value('memo_img') ?>">
+                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                     </div>
                                 </div>
-                                <?php if (validation_show_error('memoimg')) : ?>
-                                    <span class="error-message"><?= validation_show_error('memoimg') ?></span>
-                                <?php endif; ?>
+                                <div class="form-group">
+                                    <label for="file_name">Name:</label>
+                                    <input type="text" class="form-control" placeholder="Your file name" name="file_name" id="file_name" value="<?= set_value('file_name') ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label>Comment:</label>
+                                    <textarea rows="3" name="descriptions" id="descriptions" class="form-control" placeholder="Please Enter Current Symptoms or Concerns"><?= set_value('descriptions') ?></textarea>
+                                </div>
                             </div>
-
-                            <div class="form-group <?= (validation_show_error('descriptions')) ? 'has-error' : '' ?>">
-                                <label for="descriptions">Comment:</label>
-                                <textarea rows="3" name="descriptions" id="descriptions" class="form-control <?= (validation_show_error('descriptions')) ? 'is-invalid' : '' ?>" placeholder="Please Describe The Image"><?= set_value('descriptions') ?></textarea>
-                                <?php if (validation_show_error('descriptions')) : ?>
-                                    <span class="error-message"><?= validation_show_error('descriptions') ?></span>
-                                <?php endif; ?>
-                            </div>
-
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
                     <div>
-                        <button type="reset" class="btn btn-default" id="reset">Cancel</button>
+                        <button type="reset" class="btn btn-danger btn-reset" id="reset">Reset</button>
                         <button type="submit" class="btn btn-primary btn-submit" id="submit">Submit Form</button>
                     </div>
                 </div>
-            </div>
         </form>
     </div>
 </div>
