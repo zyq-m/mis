@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Controllers\PatientController;
+use App\Controllers\ImageController;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
@@ -38,11 +39,11 @@ $routes->set404Override();
 
 // $routes->get('/login', 'Login::index');
 
-$routes->get('/urine_test', 'UrineTest::index');
-$routes->post('/urine_test', 'UrineTest::submitForm');
+$routes->get('urine_test', 'UrineTest::index');
+$routes->post('urine_test', 'UrineTest::submitForm');
 
-$routes->get('/image_repo', 'ImageRepo::index');
-$routes->post('/image_repo/upload', 'ImageRepo::upload');
+$routes->get('image_repo', 'ImageRepo::index');
+$routes->post('image_repo/upload', 'ImageRepo::upload');
 
 // $routes->get('/dashboard', 'Dashboard::index');
 
@@ -78,6 +79,11 @@ $routes->get('patient/(:num)', [PatientController::class, 'viewPatient']);
 $routes->get('patient', 'PatientController::index');
 $routes->get('patient/register', 'PatientController::addPatient');
 $routes->post('patient/register', 'PatientController::addPatient');
+
+/**
+ * REST API
+ */
+$routes->get('image/(:segment)/(:segment)', [ImageController::class, 'index']);
 
 /**
  * this route is used for testing & development purposes
