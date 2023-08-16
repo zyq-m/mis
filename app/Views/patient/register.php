@@ -1,8 +1,23 @@
 <?= $this->extend("template/layout"); ?>
 <?= $this->section("content"); ?>
 
+<?php $session = session(); ?>
 <!-- buat template utk error message -->
 <!-- jgn ubah field -->
+
+<?php if ($session->getFlashdata('register_error')) : ?>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <?= $session->getFlashdata('register_error'); ?>
+    </div>
+<?php endif; ?>
+<?php if ($session->getFlashdata('register_success')) : ?>
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <?= $session->getFlashdata('register_success'); ?>
+    </div>
+<?php endif; ?>
+
 <form action="<?= url_to('patient/register') ?>" method="post" enctype="multipart/form-data">
     <?= csrf_field() ?>
 
@@ -14,8 +29,8 @@
                         <label for="avatar">Avatar:</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input <?= (validation_show_error('avatar')) ? 'is-invalid' : '' ?>" name="avatar" id="avatar">
-                                <label class="custom-file-label" for="avatar">Choose file</label>
+                                <input type="file" class="custom-file-input <?= (validation_show_error('avatar')) ? 'is-invalid' : '' ?>" name="avatar" id="avatar" onchange="updateFileName(this)">
+                                <label class="custom-file-label" data-placeholder="Choose file" for="avatar">Choose file</label>
                             </div>
                         </div>
                         <?php if (validation_show_error('avatar')) : ?>
@@ -86,4 +101,13 @@
     </div>
 
 </form>
+
+<script>
+    function updateFileName(input) {
+        const label = input.nextElementSibling;
+        label.textContent = input.files[0] ? input.files[0].name : label.getAttribute("data-placeholder");
+    }
+</script>
+
+
 <?= $this->endSection(); ?>

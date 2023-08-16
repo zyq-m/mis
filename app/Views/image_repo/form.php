@@ -10,16 +10,16 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="form-group <?= (validation_show_error('memoimg')) ? 'has-error' : '' ?>">
-                                <label for="memoimg">Upload Image:</label>
+                            <div class="form-group <?= (validation_show_error('memo_img')) ? 'has-error' : '' ?>">
+                                <label for="memo_img">Upload Image:</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input <?= (validation_show_error('memoimg')) ? 'is-invalid' : '' ?>" id="memoimg" name="memoimg">
-                                        <label class="custom-file-label" for="memoimg"><?= empty(set_value('memoimg')) ? 'Choose file' : set_value('memoimg') ?></label>
+                                        <input type="file" class="custom-file-input <?= (validation_show_error('memo_img')) ? 'is-invalid' : '' ?>" id="memo_img" name="memo_img" onchange="updateFileName(this)">
+                                        <label class="custom-file-label" for="memo_img"><?= empty(set_value('memo_img')) ? 'Choose file' : set_value('memo_img') ?></label>
                                     </div>
                                 </div>
-                                <?php if (validation_show_error('memoimg')) : ?>
-                                    <span class="error-message"><?= validation_show_error('memoimg') ?></span>
+                                <?php if (validation_show_error('memo_img')) : ?>
+                                    <span class="error-message"><?= validation_show_error('memo_img') ?></span>
                                 <?php endif; ?>
                             </div>
 
@@ -44,5 +44,13 @@
         </form>
     </div>
 </div>
+
+<script>
+    function updateFileName(input) {
+        const fileName = input.files[0] ? input.files[0].name : 'Choose file';
+        const label = input.nextElementSibling;
+        label.textContent = fileName;
+    }
+</script>
 
 <?= $this->endSection() ?>

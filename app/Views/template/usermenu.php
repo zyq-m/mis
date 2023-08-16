@@ -58,6 +58,34 @@ function getMenuHref($itemId)
     }
 }
 
+function isMenuItemActive($itemId)
+{
+    $uri = service('uri');
+    $currentSegment = $uri->getSegment(1); // Assuming the segment for your menu item is at index 1
+    $menuItemSegment = getMenuHref($itemId);
+
+    // Check if the current URL segment matches the menu item segment
+    if ($currentSegment === $menuItemSegment) {
+        return ' active';
+    }
+
+    return '';
+}
+
+function isSubMenuItemActive($subItemId)
+{
+    $uri = service('uri');
+    $currentUrl = current_url(); // Get the current full URL
+    $subMenuItemUrl = base_url(getMenuHref($subItemId)); // Generate sub-menu URL
+
+    // Check if the current URL matches the sub-menu URL
+    if ($currentUrl === $subMenuItemUrl) {
+        return ' active';
+    }
+
+    return '';
+}
+
 ?>
 <aside class="main-sidebar elevation-4 sidebar-dark-pink">
     <!-- Brand Logo -->
@@ -83,7 +111,7 @@ function getMenuHref($itemId)
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <?php foreach ($menuItems as $menuItem) : ?>
                     <li class="nav-item">
-                        <a href="<?= base_url(getMenuHref($menuItem['id'])) ?>" class="nav-link">
+                        <a href="<?= base_url(getMenuHref($menuItem['id'])) ?>" class="nav-link<?= isMenuItemActive($menuItem['id']) ?>">
                             <i class="nav-icon fas <?= $menuItem['icon'] ?>"></i>
                             <p class="text">
                                 <?= $menuItem['name'] ?>
@@ -96,7 +124,7 @@ function getMenuHref($itemId)
                             <ul class="nav nav-treeview">
                                 <?php foreach ($menuItem['subItems'] as $subItem) : ?>
                                     <li class="nav-item">
-                                        <a href="<?= base_url(getMenuHref($subItem['id'])) ?>" class="nav-link">
+                                        <a href="<?= base_url(getMenuHref($subItem['id'])) ?>" class="nav-link<?= isSubMenuItemActive($subItem['id']) ?>">
                                             <div class="d-flex align-items-center">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p class="text ml-2"><?= $subItem['name'] ?></p>
