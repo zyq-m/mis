@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\Files\File;
 use App\Models\ImageRepoModel;
 
 use App\Controllers\BaseController;
-use CodeIgniter\Files\File;
 
 class ImageRepo extends BaseController
 {
@@ -22,54 +22,52 @@ class ImageRepo extends BaseController
     {
         // Get validation for memo image
         $validationRule = [
-            'memo_img' => [
+            'memoimg' => [
                 'label' => 'Image File',
                 'rules' => [
-                    'uploaded[memo_img]',
-                    'is_image[memo_img]',
-                    'mime_in[memo_img,image/jpg,image/jpeg,image/png]',
-                    'max_size[memo_img,1000]',
-                    // 'max_dims[memo_img,1024,768]',
+                    'uploaded[memoimg]',
+                    'is_image[memoimg]',
+                    'mime_in[memoimg,image/jpg,image/jpeg,image/gif,image/png,image/webp]',
+                    'max_size[memoimg,1000]',
+                    // 'max_dims[memoimg,1024,768]',
                 ],
-                'errors' => [
-                    'uploaded' => 'Please upload an image',
-                    'is_image' => 'Please upload an image',
-                    'mime_in' => 'Only JPG, JPEG and PNG images are allowed',
-                    'max_size' => 'Your image size exceeds 1000kb',
-                ]
             ],
-            'file_name' => [
-                'label' => 'File Name',
-                'rules' => 'required',
+            'descriptions' => [
+                'label' => 'Comment',
+                'rules' => 'required|min_length[5]', // Add more rules if needed
                 'errors' => [
-                    'required' => '{field} is required.',
+                    'required' => 'Please enter a comment.',
+                    'min_length' => 'The comment must be at least 5 characters long.',
+                    // Add more error messages for other rules if needed
                 ],
-            ]
+            ],
         ];
-
-        $name = $this->request->getPost('file_name');
 
         if (!$this->validate($validationRule)) {
             return redirect()->back()->withInput();
         }
 
-        $img = $this->request->getFile('memo_img');
+        $img = $this->request->getFile('memoimg');
 
         if (!$img->hasMoved()) {
-            // store image in upload folder
-            $fileName = $name . "." . $img->getExtension();
-            $fileInfo = new File($img->store('memo-img', $fileName));
+            $filepath = WRITEPATH . 'uploads/' . $img->store();
+
+            $uploadInfo = new File($filepath);
 
             // Store path in database
             $imageRepo = model(ImageRepoModel::class);
             $imageRepo->save([
-                'path' => $fileInfo->getPathname(),
+                'path' => $uploadInfo->getPathname(),
                 'descriptions' => $this->request->getPost(['descriptions'])
             ]);
+            // $data = ['uploaded_fileinfo' => new File($filepath)];
 
-            return redirect()->to('image_repo');
+            // return 'Success';
+            return view('imagerepo/image_repo', ['title' => 'Image Repository Form', 'error' => [], 'success' => 'Your file successfully uploaded']);
         }
 
-        return redirect()->back()->withInput();
+        $data = ['errors' => 'The file has already been moved.', 'title' => $this->title];
+
+        return view('image_repo/image_repo', $data);
     }
 }

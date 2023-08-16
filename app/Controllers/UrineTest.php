@@ -32,18 +32,27 @@ class UrineTest extends BaseController
                 'label' => 'Full Name',
                 'rules' => 'required|max_length[200]|min_length[10]|alpha_numeric',
                 'errors' => [
-                    'required' => 'Please enter your full name',
-                    'max_length' => 'Your full name must be less than 200 characters',
-                    'min_length' => 'Your full name must be more than 10 characters',
-                    'alpha_numeric' => 'Your full name can only contain letters and numbers'
+                    'required' => 'Please enter your full name.',
+                    'max_length' => 'Your full name must be less than 200 characters.',
+                    'min_length' => 'Your full name must be more than 10 characters.',
+                    'alpha_numeric' => 'Your full name can only contain letters and numbers.'
                 ]
             ],
             'date_of_birth' => [
                 'label' => 'Date of Birth',
                 'rules' => 'required|date',
                 'errors' => [
-                    'required' => 'Please enter your date of birth',
-                    'date' => 'Please enter a valid date of birth'
+                    'required' => 'Please enter your date of birth.',
+                    'date' => 'Please enter a valid date of birth.'
+                ]
+            ],
+            'descriptions' => [
+                'label' => 'Current Symptoms or Concerns',
+                'rules' => 'required|min_length[5]|alpha_numeric',
+                'errors' => [
+                    'required' => 'Please enter your current symptoms or concerns.',
+                    'min_length' => 'Your current symptoms or concerns must be more than 5 characters.',
+                    'alpha_numeric' => 'Your current symptoms or concerns can only contain letters and numbers.'
                 ]
             ]
         ];
