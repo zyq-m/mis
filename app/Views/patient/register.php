@@ -14,8 +14,8 @@
                         <label for="avatar">Avatar:</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input <?= (validation_show_error('avatar')) ? 'is-invalid' : '' ?>" name="avatar" id="avatar">
-                                <label class="custom-file-label" for="avatar">Choose file</label>
+                                <input type="file" class="custom-file-input <?= (validation_show_error('avatar')) ? 'is-invalid' : '' ?>" name="avatar" id="avatar" onchange="updateFileName(this)">
+                                <label class="custom-file-label" data-placeholder="Choose file" for="avatar">Choose file</label>
                             </div>
                         </div>
                         <?php if (validation_show_error('avatar')) : ?>
@@ -86,4 +86,13 @@
     </div>
 
 </form>
+
+<script>
+    function updateFileName(input) {
+        const label = input.nextElementSibling;
+        label.textContent = input.files[0] ? input.files[0].name : label.getAttribute("data-placeholder");
+    }
+</script>
+
+
 <?= $this->endSection(); ?>

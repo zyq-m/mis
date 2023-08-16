@@ -14,7 +14,7 @@
                                 <label for="memoimg">Upload Image:</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input <?= (validation_show_error('memoimg')) ? 'is-invalid' : '' ?>" id="memoimg" name="memoimg">
+                                        <input type="file" class="custom-file-input <?= (validation_show_error('memoimg')) ? 'is-invalid' : '' ?>" id="memoimg" name="memoimg" onchange="updateFileName(this)">
                                         <label class="custom-file-label" for="memoimg"><?= empty(set_value('memoimg')) ? 'Choose file' : set_value('memoimg') ?></label>
                                     </div>
                                 </div>
@@ -44,5 +44,13 @@
         </form>
     </div>
 </div>
+
+<script>
+    function updateFileName(input) {
+        const fileName = input.files[0] ? input.files[0].name : 'Choose file';
+        const label = input.nextElementSibling;
+        label.textContent = fileName;
+    }
+</script>
 
 <?= $this->endSection() ?>
