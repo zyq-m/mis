@@ -7,6 +7,8 @@ use App\Models\ImageRepoModel;
 use App\Controllers\BaseController;
 use CodeIgniter\Files\File;
 
+use function PHPSTORM_META\map;
+
 class ImageRepo extends BaseController
 {
     protected $helpers = ['form'];
@@ -71,5 +73,30 @@ class ImageRepo extends BaseController
         }
 
         return redirect()->back()->withInput();
+    }
+
+    public function view()
+    {
+        $imageRepo = model(ImageRepoModel::class);
+        $images = $imageRepo->findAll();
+
+        $data = ['title' => 'Image Repository', 'images' => $images];
+
+        return view('image_repo/index', $data);
+    }
+
+    public function fakeImageRepository()
+    {
+        $imageRepo = model(ImageRepoModel::class);
+
+        return var_dump($imageRepo->fake());
+    }
+
+    public function onfakeImageRepository($total)
+    {
+        $imageRepo = model(ImageRepoModel::class);
+        $imageRepo->generateFakeImage($total);
+
+        return var_dump($total . ' images created');
     }
 }

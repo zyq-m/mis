@@ -4,6 +4,7 @@ namespace Config;
 
 use App\Controllers\PatientController;
 use App\Controllers\ImageController;
+use App\Controllers\ImageRepo;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
@@ -43,6 +44,7 @@ $routes->get('urine_test', 'UrineTest::index');
 $routes->post('urine_test', 'UrineTest::submitForm');
 
 $routes->get('image_repo', 'ImageRepo::index');
+$routes->get('image_repo/view', 'ImageRepo::view');
 $routes->post('image_repo/upload', 'ImageRepo::upload');
 
 // $routes->get('/dashboard', 'Dashboard::index');
@@ -89,8 +91,11 @@ $routes->get('image/(:segment)/(:segment)', [ImageController::class, 'index']);
  * this route is used for testing & development purposes
  * plesase remove later
  */
-$routes->get('patient/fake', 'PatientController::fakePatient');
-$routes->get('patient/fake/generate/(:num)', [PatientController::class, 'onFakePatient']);
+$routes->cli('patient/fake', 'PatientController::fakePatient');
+$routes->cli('patient/fake/generate/(:num)', [PatientController::class, 'onFakePatient']);
+
+$routes->cli('image_repo/fake', [ImageRepo::class, 'fakeImageRepository']);
+$routes->cli('image_repo/fake/(:num)', [ImageRepo::class, 'onFakeImageRepository']);
 
 service('auth')->routes($routes);
 /*

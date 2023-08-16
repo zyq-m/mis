@@ -10,4 +10,21 @@ class ImageRepoModel extends Model
     protected $primaryKey = "id";
 
     protected $allowedFields = ['path', 'descriptions'];
+
+    public function fake()
+    {
+        $faker = \Faker\Factory::create();
+
+        return [
+            'path' => $faker->imageUrl(),
+            'descriptions' => $faker->paragraph
+        ];
+    }
+
+    public function generateFakeImage($total)
+    {
+        for ($i = 0; $i < $total; $i++) {
+            $this->insert($this->fake());
+        }
+    }
 }
