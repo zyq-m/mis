@@ -19,12 +19,20 @@ $menuItems = [
         ]
     ],
     [
+        'id' => 3,
+        'name' => 'Image Repository',
+        'icon' => 'fa-image', // You can choose the appropriate icon class
+        'subItems' => [
+            ['id' => 52, 'name' => 'Images', 'icon' => ''],
+            ['id' => 53, 'name' => 'Form', 'icon' => ''],
+        ]
+    ],
+    [
         'id' => 5,
         'name' => 'Form',
         'icon' => 'fa-file-alt', // You can choose the appropriate icon class
         'subItems' => [
             ['id' => 51, 'name' => 'Urine Test', 'icon' => ''],
-            ['id' => 52, 'name' => 'Image Repository', 'icon' => ''],
         ]
     ],
 ];
@@ -43,6 +51,8 @@ function getMenuHref($itemId)
             return 'urine_test';
         case 52:
             return 'image_repo';
+        case 53:
+            return 'image_repo/form';
         default:
             return '#'; // Default case if no match found
     }
