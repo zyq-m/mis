@@ -7,17 +7,25 @@ use App\Models\ImageRepoModel;
 use App\Controllers\BaseController;
 use CodeIgniter\Files\File;
 
-use function PHPSTORM_META\map;
-
 class ImageRepo extends BaseController
 {
     protected $helpers = ['form'];
 
     public function index()
     {
+        $imageRepo = model(ImageRepoModel::class);
+        $images = $imageRepo->findAll();
+
+        $data = ['title' => 'Image Repository', 'images' => $images];
+
+        return view('image_repo/index', $data);
+    }
+
+    public function form()
+    {
         $data['title'] = "Image Repository";
 
-        return view('image_repo/image_repo', $data);
+        return view('image_repo/form', $data);
     }
 
     public function upload()
@@ -75,24 +83,14 @@ class ImageRepo extends BaseController
         return redirect()->back()->withInput();
     }
 
-    public function view()
-    {
-        $imageRepo = model(ImageRepoModel::class);
-        $images = $imageRepo->findAll();
-
-        $data = ['title' => 'Image Repository', 'images' => $images];
-
-        return view('image_repo/index', $data);
-    }
-
-    public function fakeImageRepository()
+    public function fakeImageRepo()
     {
         $imageRepo = model(ImageRepoModel::class);
 
         return var_dump($imageRepo->fake());
     }
 
-    public function onfakeImageRepository($total)
+    public function onFakeImageRepo($total)
     {
         $imageRepo = model(ImageRepoModel::class);
         $imageRepo->generateFakeImage($total);
