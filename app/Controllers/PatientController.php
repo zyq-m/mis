@@ -107,9 +107,12 @@ class PatientController extends BaseController
 
             // save data
             $patient = model(PatientModel::class);
-            $patient->save($data);
 
-            return redirect()->to('patient');
+            if ($patient->save($data)) {
+                return redirect()->to('patient');
+            }
+
+            return redirect()->back()->with('error', 'Patient already been registered');
         }
     }
 
