@@ -11,12 +11,6 @@
         <?= $session->getFlashdata('register_error'); ?>
     </div>
 <?php endif; ?>
-<?php if ($session->getFlashdata('upload_error')) : ?>
-    <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <?= $session->getFlashdata('upload_error'); ?>
-    </div>
-<?php endif; ?>
 <?php if ($session->getFlashdata('register_success')) : ?>
     <div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
