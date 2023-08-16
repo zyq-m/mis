@@ -36,20 +36,57 @@ class PatientController extends BaseController
 
         // data validation
         $rules = [
-            'name' => 'required|max_length[200]|min_length[5]',
+            'name' => [
+                'label' => 'Name',
+                'rules' => 'required|max_length[200]|min_length[5]',
+                'errors' => [
+                    'required' => 'Please enter a {field}',
+                    'max_length' => 'Your {field} must not exceed 200 characters',
+                    'min_length' => 'Your {field} must at least 5 characters'
+                ]
+            ],
             'gender' => 'required',
-            'ic_no' => 'required|max_length[12]|min_length[12]|numeric',
-            'phone_number' => 'required|max_length[15]|min_length[10]|numeric',
-            'address' => 'required',
+            'ic_no' => [
+                'label' => 'IC Number',
+                'rules' => 'required|max_length[12]|min_length[12]|numeric',
+                'errors' => [
+                    'required' => 'Please enter a {field}',
+                    'max_length' => 'Your {field} must be 12 characters',
+                    'min_length' => 'Your {field} must be 12 characters',
+                    'numeric' => 'Please enter a valid {field}'
+                ]
+            ],
+            'phone_number' => [
+                'label' => 'Phone Number',
+                'rules' => 'required|max_length[15]|min_length[10]|numeric',
+                'errors' => [
+                    'required' => 'Please enter a {field}',
+                    'max_length' => 'Your {field} must not exceed 15 characters',
+                    'min_length' => 'Your {field} must be at least 10 characters',
+                    'numeric' => 'Please enter a valid {field}'
+                ]
+            ],
+            'address' => [
+                'label' => 'Address',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Please enter a {field}',
+                ]
+            ],
             'avatar' => [
-                'label' => 'avatar',
+                'label' => 'Avatar',
                 'rules' => [
                     'uploaded[avatar]',
                     'is_image[avatar]',
                     'mime_in[avatar,image/jpg,image/jpeg,image/png]',
                     'max_size[avatar,200]',
-                    // 'max_dims[avatar,1024,768]',
                 ],
+                'errors' => [
+                    'uploaded' => 'Please upload a {field}',
+                    'is_image' => 'Please upload a valid {field}',
+                    'mime_in' => 'Only {field} with JPG, JPEG and PNG are allowed',
+                    'max_size' => 'Your {field} exceeds 200kb',
+                ]
             ]
         ];
 
@@ -62,7 +99,7 @@ class PatientController extends BaseController
 
         if (!$img->hasMoved()) {
             // store img
-            $filepath = WRITEPATH . 'uploads/' . $img->store('avatar/');
+            $filepath = $img->store('avatar');
             $fileInfo = new File($filepath);
 
             $data = $this->request->getPost();
@@ -70,9 +107,12 @@ class PatientController extends BaseController
 
             // save data
             $patient = model(PatientModel::class);
-            $patient->save($data);
 
-            return redirect()->to('patient');
+            if ($patient->save($data)) {
+                return redirect()->to('patient');
+            }
+
+            return redirect()->back()->with('error', 'Patient already been registered');
         }
     }
 

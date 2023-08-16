@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Controllers\PatientController;
+use App\Controllers\ImageController;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
@@ -79,6 +80,11 @@ $routes->get('patient/(:num)', [PatientController::class, 'viewPatient']);
 $routes->get('patient', 'PatientController::index');
 $routes->get('patient/register', 'PatientController::addPatient');
 $routes->post('patient/register', 'PatientController::addPatient');
+
+/**
+ * REST API
+ */
+$routes->get('image/(:segment)/(:segment)', [ImageController::class, 'index']);
 
 /**
  * this route is used for testing & development purposes

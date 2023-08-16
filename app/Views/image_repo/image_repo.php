@@ -14,8 +14,8 @@
                                 <label for="memoimg">Upload Image:</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input <?= (validation_show_error('memoimg')) ? 'is-invalid' : '' ?>" id="memoimg" name="memoimg">
-                                        <label class="custom-file-label" for="memoimg"><?= empty(set_value('memoimg')) ? 'Choose file' : set_value('memoimg') ?></label>
+                                        <input type="file" class="custom-file-input <?= (validation_show_error('memo_img')) ? 'is-invalid' : '' ?>" id="memo_img" name="memo_img" value="<?= set_value('memo_img') ?>">
+                                        <label class="custom-file-label" for="memo_img"><?= empty(set_value('memo_img')) ? 'Choose file' : set_value('memo_img') ?></label>
                                     </div>
                                 </div>
                                 <?php if (validation_show_error('memoimg')) : ?>

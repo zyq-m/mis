@@ -34,13 +34,13 @@
                     <div class="form-group <?= (validation_show_error('gender')) ? 'has-error' : '' ?>">
                         <label for="gender">Gender:</label>
                         <div class="form-check">
-                            <input class="form-check-input <?= (validation_show_error('gender')) ? 'is-invalid' : '' ?>" type="radio" name="gender" id="gender1" value="male">
+                            <input class="form-check-input <?= (validation_show_error('gender')) ? 'is-invalid' : '' ?>" type="radio" name="gender" id="gender1" value="Male">
                             <label class="form-check-label" for="gender1">
                                 Male
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input <?= (validation_show_error('gender')) ? 'is-invalid' : '' ?>" type="radio" name="gender" id="gender2" value="female">
+                            <input class="form-check-input <?= (validation_show_error('gender')) ? 'is-invalid' : '' ?>" type="radio" name="gender" id="gender2" value="Female">
                             <label class="form-check-label" for="gender2">
                                 Female
                             </label>
