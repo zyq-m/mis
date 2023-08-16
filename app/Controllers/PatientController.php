@@ -97,29 +97,25 @@ class PatientController extends BaseController
         // get img
         $img = $this->request->getFile('avatar');
 
-        if (!$img->hasMoved()) {
-            // store img
-            $filepath = $img->store('avatar');
-            $fileInfo = new File($filepath);
+        // store img
+        $filepath = $img->store('avatar');
+        $fileInfo = new File($filepath);
 
-            $data = $this->request->getPost();
-            $data['avatar'] = $fileInfo->getPathname();
+        $data = $this->request->getPost();
+        $data['avatar'] = $fileInfo->getPathname();
 
-            // save data
-            $patient = model(PatientModel::class);
+        // save data
+        $patient = model(PatientModel::class);
 
-            try {
-                $patient->save($data);
+        try {
+            $patient->save($data);
 
-                return redirect()->back()->with('register_success', 'Patient successfully registered');
-            } catch (\Throwable $th) {
+            return redirect()->back()->with('register_success', 'Patient successfully registered');
+        } catch (\Throwable $th) {
 
-                //TODO: Remove image in fold
-                return redirect()->back()->with('register_error', 'Registration failed. Patient already been registered');
-            }
+            //TODO: Remove image in fold
+            return redirect()->back()->with('register_error', 'Registration failed. Patient already been registered');
         }
-
-        return redirect()->back()->with('upload_error', 'File exists');
     }
 
     public function viewPatient($id = 0)
