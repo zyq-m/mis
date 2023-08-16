@@ -47,7 +47,7 @@
                     <div class="form-group">
                         <label>Gender:</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="gender1" value="Male" checked>
+                            <input class="form-check-input" type="radio" name="gender" id="gender1" value="Male">
                             <label class="form-check-label" for="gender1">
                                 Male
                             </label>
