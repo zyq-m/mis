@@ -23,6 +23,14 @@
                                 <?php endif; ?>
                             </div>
 
+                            <div class="form-group <?= (validation_show_error('file_name')) ? 'has-error' : '' ?>">
+                                <label for="memo_img">Name:</label>
+                                <input type="text" class="form-control <?= (validation_show_error('file_name')) ? 'is-invalid' : '' ?>" id="file_name" name="file_name">
+                                <?php if (validation_show_error('file_name')) : ?>
+                                    <span class="error-message"><?= validation_show_error('file_name') ?></span>
+                                <?php endif; ?>
+                            </div>
+
                             <div class="form-group <?= (validation_show_error('descriptions')) ? 'has-error' : '' ?>">
                                 <label for="descriptions">Comment:</label>
                                 <textarea rows="3" name="descriptions" id="descriptions" class="form-control <?= (validation_show_error('descriptions')) ? 'is-invalid' : '' ?>" placeholder="Please Describe The Image"><?= set_value('descriptions') ?></textarea>
