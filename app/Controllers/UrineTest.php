@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\PatientModel;
 
 class UrineTest extends BaseController
 {
@@ -11,6 +12,42 @@ class UrineTest extends BaseController
     public function index()
     {
         $data['title'] = "Urine Test";
+        $data['patient'] = [];
+        $data['patient_id'] = null;
+
+        return view('urine_test/urine_test', $data);
+    }
+
+    public function viewPatient()
+    {
+        $rules = [
+            'patient' => [
+                'rules' => 'required|numeric',
+                'errors' => [
+                    'required' => 'Search your patient first.',
+                    'numeric' => 'Search a valid IC No. '
+                ]
+            ]
+        ];
+
+        $id = $this->request->getGet('patient');
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput();
+        }
+
+
+        $patient = model(PatientModel::class);
+        $patient_details = $patient->getPatient($id);
+
+        $data['patient'] = $patient_details;
+        $data['title'] = "Urine Test";
+
+        if (empty($data['patient'])) {
+            return redirect()->back()->with('error', 'Patient not found');
+        }
+
+        $data['patient_id'] = $patient_details[0]['id'];
 
         return view('urine_test/urine_test', $data);
     }

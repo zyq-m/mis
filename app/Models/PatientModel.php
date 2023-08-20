@@ -40,6 +40,16 @@ class PatientModel extends Model
             return $this->findAll();
         }
 
-        return $this->where(['id' => $id])->find();
+        $data = $this->where(['id' => $id])->find();
+
+        if (!empty($data)) {
+            return $data;
+        }
+
+        $data = $this->where(['ic_no' => $id])->find();
+
+        if (!empty($data)) {
+            return $data;
+        }
     }
 }

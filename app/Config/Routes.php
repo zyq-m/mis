@@ -5,6 +5,7 @@ namespace Config;
 use App\Controllers\PatientController;
 use App\Controllers\ImageController;
 use App\Controllers\ImageRepo;
+use App\Controllers\UrineTest;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
@@ -42,6 +43,7 @@ $routes->set404Override();
 
 $routes->get('urine_test', 'UrineTest::index');
 $routes->post('urine_test', 'UrineTest::submitForm');
+$routes->get('urine_test/patient', [UrineTest::class, 'viewPatient']);
 
 $routes->get('image_repo', 'ImageRepo::index');
 $routes->get('image_repo/form', 'ImageRepo::form');
@@ -77,8 +79,8 @@ $routes->get('registration/add', 'RegisterController::add');
 // $routes->get('login', 'Login::index', ['as' => 'admin.login.form']);
 // $routes->post('login', 'AuthController::loginhandler');
 
-$routes->get('patient/(:num)', [PatientController::class, 'viewPatient']);
 $routes->get('patient', 'PatientController::index');
+$routes->get('patient/(:num)', [PatientController::class, 'viewPatient']);
 $routes->get('patient/register', 'PatientController::addPatient');
 $routes->post('patient/register', 'PatientController::addPatient');
 
