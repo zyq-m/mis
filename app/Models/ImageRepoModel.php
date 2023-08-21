@@ -9,7 +9,7 @@ class ImageRepoModel extends Model
     protected $table = "image_repo";
     protected $primaryKey = "id";
 
-    protected $allowedFields = ['path', 'descriptions'];
+    protected $allowedFields = ['path', 'descriptions', 'screening_date', 'screening_time', 'patient_id'];
 
     public function fake()
     {
@@ -17,7 +17,9 @@ class ImageRepoModel extends Model
 
         return [
             'path' => $faker->imageUrl(),
-            'descriptions' => $faker->paragraph
+            'descriptions' => $faker->paragraph,
+            'screening_date' => $faker->date,
+            'screening_time' => $faker->time
         ];
     }
 
