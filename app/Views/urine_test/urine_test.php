@@ -17,7 +17,7 @@
                             <!-- Test Information -->
                             <h3 class="mb-3">Test Details</h3>
                             <!-- Patient Id -->
-                            <input type="hidden" name="id" value="<?= $patient_id ?>">
+                            <input type="hidden" name="patient_id" value="<?= $patient_id ?>">
 
                             <div class="row">
                                 <div class="col-md-4 form-group">
