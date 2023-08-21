@@ -42,11 +42,12 @@ $routes->set404Override();
 // $routes->get('/login', 'Login::index');
 
 $routes->get('urine_test', 'UrineTest::index');
+$routes->get('urine_test/patient', [UrineTest::class, 'searchPatient']);
 $routes->post('urine_test', 'UrineTest::submitForm');
-$routes->get('urine_test/patient', [UrineTest::class, 'viewPatient']);
 
 $routes->get('image_repo', 'ImageRepo::index');
 $routes->get('image_repo/form', 'ImageRepo::form');
+$routes->get('image_repo/patient', 'ImageRepo::searchpatient');
 $routes->post('image_repo/upload', 'ImageRepo::upload');
 
 // $routes->get('/dashboard', 'Dashboard::index');

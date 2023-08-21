@@ -24,6 +24,7 @@ class ImageRepo extends BaseController
     public function form()
     {
         $data['title'] = "Image Repository";
+        $data['patient_id'] = null;
 
         return view('image_repo/form', $data);
     }
@@ -74,6 +75,40 @@ class ImageRepo extends BaseController
         }
 
         return redirect()->back()->withInput();
+    }
+
+    public function searchPatient()
+    {
+        $rules = [
+            'patient' => [
+                'rules' => 'required|numeric',
+                'errors' => [
+                    'required' => 'Search your patient first.',
+                    'numeric' => 'Search a valid IC No. '
+                ]
+            ]
+        ];
+
+        $id = $this->request->getGet('patient');
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput();
+        }
+
+
+        $patient = model(PatientModel::class);
+        $patient_details = $patient->getPatient($id);
+
+        $data['patient'] = $patient_details;
+        $data['title'] = "Image Repository";
+
+        if (empty($data['patient'])) {
+            return redirect()->back()->with('error', 'Patient not found');
+        }
+
+        $data['patient_id'] = $patient_details[0]['id'];
+
+        return view('image_repo/form', $data);
     }
 
     public function fakeImageRepo()

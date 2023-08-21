@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\PatientModel;
 
 class UrineTest extends BaseController
 {
@@ -18,7 +17,7 @@ class UrineTest extends BaseController
         return view('urine_test/urine_test', $data);
     }
 
-    public function viewPatient()
+    public function searchPatient()
     {
         $rules = [
             'patient' => [
