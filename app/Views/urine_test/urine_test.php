@@ -7,7 +7,7 @@
         <!-- Search patient -->
         <?= view('patient/search', ['route' => 'urine_test/patient']) ?>
 
-        <form action="<?= base_url('urine_test/urine_test') ?>" method="post" class="form-horizontal ui raised segment" id="urineTestForm">
+        <form action="<?= base_url('urine_test') ?>" method="post" class="form-horizontal ui raised segment" id="urineTestForm">
             <?= csrf_field() ?>
 
             <div class="card">
