@@ -58,16 +58,6 @@ class UrineTest extends BaseController
         }
 
         $rules = [
-            'full_name' => [
-                'label' => 'Full Name',
-                'rules' => 'required|max_length[200]|min_length[10]|alpha_numeric',
-                'errors' => [
-                    'required' => 'Please enter your full name',
-                    'max_length' => 'Your full name must be less than 200 characters',
-                    'min_length' => 'Your full name must be more than 10 characters',
-                    'alpha_numeric' => 'Your full name can only contain letters and numbers'
-                ]
-            ],
             'blood' => [
                 'label' => 'Blood',
                 'rules' => 'required',
@@ -164,5 +154,7 @@ class UrineTest extends BaseController
 
         $urineTest = model(UrineTestModel::class);
         $urineTest->save($data);
+
+        return redirect()->to('urine_test');
     }
 }
