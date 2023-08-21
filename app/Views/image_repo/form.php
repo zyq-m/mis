@@ -1,5 +1,41 @@
 <?= $this->extend("template/layout") ?>
 
+<?= $this->section('stylesheet') ?>
+<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
+
+<style>
+    /**
+ * FilePond Custom Styles
+ */
+    .filepond--drop-label {
+        color: #4c4e53;
+    }
+
+    .filepond--label-action {
+        text-decoration-color: #babdc0;
+    }
+
+    .filepond--panel-root {
+        border-radius: .25rem;
+        background-color: #edf0f4;
+        height: 1em;
+    }
+
+    .filepond--item-panel {
+        background-color: #595e68;
+    }
+
+    .filepond--drip-blob {
+        background-color: #7f8a9a;
+    }
+
+    .filepond--credits {
+        display: none;
+    }
+</style>
+<?= $this->endSection() ?>
+
 <?= $this->section("content") ?>
 
 <div class="row">
@@ -9,21 +45,16 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group <?= (validation_show_error('memo_img')) ? 'has-error' : '' ?>">
-                                <label for="memo_img">Upload Image:</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input <?= (validation_show_error('memo_img')) ? 'is-invalid' : '' ?>" id="memo_img" name="memo_img" onchange="updateFileName(this)">
-                                        <label class="custom-file-label" for="memo_img"><?= empty(set_value('memo_img')) ? 'Choose file' : set_value('memo_img') ?></label>
-                                    </div>
-                                </div>
-                                <?php if (validation_show_error('memo_img')) : ?>
-                                    <span class="error-message"><?= validation_show_error('memo_img') ?></span>
-                                <?php endif; ?>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <input type="file" name="filepond" id="memo_img" multiple data-max-file-size="100kb">
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
 
-                            <div class="form-group <?= (validation_show_error('descriptions')) ? 'has-error' : '' ?>">
+                        <div class="col">
+                            <div class="form-group">
                                 <label for="descriptions">Comment:</label>
                                 <textarea rows="3" name="descriptions" id="descriptions" class="form-control <?= (validation_show_error('descriptions')) ? 'is-invalid' : '' ?>" placeholder="Please Describe The Image"><?= set_value('descriptions') ?></textarea>
                                 <?php if (validation_show_error('descriptions')) : ?>
@@ -37,7 +68,7 @@
                 <div class="card-footer">
                     <div>
                         <button type="reset" class="btn btn-default" id="reset">Cancel</button>
-                        <button type="submit" class="btn btn-primary btn-submit" id="submit">Submit Form</button>
+                        <button type="submit" class="btn btn-primary btn-submit" id="submit">Submit</button>
                     </div>
                 </div>
             </div>
@@ -45,12 +76,21 @@
     </div>
 </div>
 
-<script>
-    function updateFileName(input) {
-        const fileName = input.files[0] ? input.files[0].name : 'Choose file';
-        const label = input.nextElementSibling;
-        label.textContent = fileName;
-    }
-</script>
+<?= $this->endSection() ?>
 
+<?= $this->section('scripts') ?>
+<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.js"></script>
+<script type="module">
+    const inputElement = document.querySelector('#memo_img');
+
+    FilePond.registerPlugin(
+        FilePondPluginImagePreview,
+        FilePondPluginImageValidateSize
+    );
+
+    // Create a FilePond instance
+    const pond = FilePond.create(inputElement);
+</script>
 <?= $this->endSection() ?>
