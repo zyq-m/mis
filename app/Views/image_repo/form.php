@@ -53,7 +53,7 @@
 
                     <h3 class="mb-3">Image Details</h3>
 
-                    <div class="col-sm-6 col-md-4">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <input type="file" name="memo_img[]" id="memo_img" multiple>
                         </div>
@@ -62,7 +62,7 @@
                         <?php endif; ?>
                     </div>
 
-                    <div class="col-sm-6 col-md-4">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="screening_date">Date of Screening</label>
                             <input type="date" name="screening_date" id="screening_date" class="form-control" value="<?= set_value('screening_date') ?>">
