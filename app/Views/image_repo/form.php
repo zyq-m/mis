@@ -62,15 +62,19 @@
                         <?php endif; ?>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4 form-group">
                             <label for="screening_date">Date of Screening</label>
                             <input type="date" name="screening_date" id="screening_date" class="form-control" value="<?= set_value('screening_date') ?>">
                         </div>
-                        <div class="form-group">
+                        <div class="col-md-4 form-group">
                             <label for="screening_time">Time of Screening</label>
                             <input type="time" name="screening_time" id="screening_time" class="form-control" value="<?= set_value('screening_time') ?>">
                         </div>
+                    </div>
+                    <div class="col-md-8">
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description" class="form-control" placeholder="Any comments or recomendation" rows="3"><?= set_value('description') ?></textarea>
                     </div>
                 </div>
 

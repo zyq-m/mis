@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col">
                             <!-- Test Information -->
-                            <h3 class="mb-3 mt-4">Test Details</h3>
+                            <h3 class="mb-3">Test Details</h3>
                             <!-- Patient Id -->
                             <input type="hidden" name="id" value="<?= $patient_id ?>">
 
