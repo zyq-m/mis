@@ -18,7 +18,7 @@
 
     .filepond--panel-root {
         border-radius: .25rem;
-        background-color: #edf0f4;
+        background-color: #e9ecef;
         height: 1em;
     }
 
@@ -51,25 +51,25 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h2 class="mb-3 mt-4">Image Details</h2>
+                    <h3 class="mb-3">Image Details</h3>
 
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <input type="file" name="memo_img[]" id="memo_img" multiple>
-                            </div>
-                            <?php if (validation_show_error('memo_img')) : ?>
-                                <span class="error-message"><?= validation_show_error('memo_img') ?></span>
-                            <?php endif; ?>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="form-group">
+                            <input type="file" name="memo_img[]" id="memo_img" multiple>
                         </div>
+                        <?php if (validation_show_error('memo_img')) : ?>
+                            <span class="error-message"><?= validation_show_error('memo_img') ?></span>
+                        <?php endif; ?>
                     </div>
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="descriptions">Comment:</label>
-                                <textarea rows="3" name="descriptions" id="descriptions" class="form-control <?= (validation_show_error('descriptions')) ? 'is-invalid' : '' ?>" placeholder="Please Describe The Image"><?= set_value('descriptions') ?></textarea>
-                            </div>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="form-group">
+                            <label for="screening_date">Date of Screening</label>
+                            <input type="date" name="screening_date" id="screening_date" class="form-control" value="<?= set_value('screening_date') ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="screening_time">Time of Screening</label>
+                            <input type="time" name="screening_time" id="screening_time" class="form-control" value="<?= set_value('screening_time') ?>">
                         </div>
                     </div>
                 </div>

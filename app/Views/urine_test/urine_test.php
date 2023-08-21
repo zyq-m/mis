@@ -15,12 +15,12 @@
                     <div class="row">
                         <div class="col">
                             <!-- Test Information -->
-                            <h2 class="mb-3 mt-4">Test Details</h2>
+                            <h3 class="mb-3 mt-4">Test Details</h3>
                             <!-- Patient Id -->
                             <input type="hidden" name="id" value="<?= $patient_id ?>">
 
                             <div class="row">
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="blood">Blood</label>
                                     <input type="text" class="form-control <?= (validation_show_error('blood')) ? 'is-invalid' : '' ?>" id="blood" name="blood" value="<?= set_value('blood') ?>">
 
@@ -29,7 +29,7 @@
                                     <?php endif; ?>
                                 </div>
 
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="bilirubin">Bilirubin</label>
                                     <input type="text" class="form-control <?= (validation_show_error('bilirubin')) ? 'is-invalid' : '' ?>" id="bilirubin" name="bilirubin" value="<?= set_value('bilirubin') ?>">
 
@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="urobilinogen">Urobilinogen</label>
                                     <input type="text" class="form-control <?= (validation_show_error('urobilinogen')) ? 'is-invalid' : '' ?>" id="urobilinogen" name="urobilinogen" value="<?= set_value('urobilinogen') ?>">
 
@@ -49,7 +49,7 @@
                                     <?php endif; ?>
                                 </div>
 
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="keton">Keton</label>
                                     <input type="text" class="form-control <?= (validation_show_error('keton')) ? 'is-invalid' : '' ?>" id="keton" name="keton" value="<?= set_value('keton') ?>">
 
@@ -60,7 +60,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="protein">Protein</label>
                                     <input type="text" class="form-control <?= (validation_show_error('protein')) ? 'is-invalid' : '' ?>" id="protein" name="protein" value="<?= set_value('protein') ?>">
 
@@ -69,7 +69,7 @@
                                     <?php endif; ?>
                                 </div>
 
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="pH">Nitrit</label>
                                     <input type="text" class="form-control <?= (validation_show_error('nitrit')) ? 'is-invalid' : '' ?>" id="nitrit" name="nitrit" value="<?= set_value('nitrit') ?>">
 
@@ -80,7 +80,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="glucose">Glucose</label>
                                     <input type="text" class="form-control <?= (validation_show_error('glucose')) ? 'is-invalid' : '' ?>" id="glucose" name="glucose" value="<?= set_value('glucose') ?>">
 
@@ -89,7 +89,7 @@
                                     <?php endif; ?>
                                 </div>
 
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="pH">pH</label>
                                     <input type="text" class="form-control <?= (validation_show_error('pH')) ? 'is-invalid' : '' ?>" id="pH" name="pH" value="<?= set_value('pH') ?>">
 
@@ -100,7 +100,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="s_gravity">Specific Gravity</label>
                                     <input type="text" class="form-control <?= (validation_show_error('s_gravity')) ? 'is-invalid' : '' ?>" id="s_gravity" name="s_gravity" value="<?= set_value('s_gravity') ?>">
 
@@ -109,7 +109,7 @@
                                     <?php endif; ?>
                                 </div>
 
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="leukocytes">Leukocytes</label>
                                     <input type="text" class="form-control <?= (validation_show_error('leukocytes')) ? 'is-invalid' : '' ?>" id="leukocytes" name="leukocytes" value="<?= set_value('leukocytes') ?>">
 
@@ -121,7 +121,7 @@
 
                             <div class="row">
                                 <!-- Date of test taken -->
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="test_taken">Test Taken At</label>
                                     <input type="date" class="form-control <?= (validation_show_error('test_taken')) ? 'is-invalid' : '' ?>" id="test_taken" name="test_taken" value="<?= set_value('test_taken') ?>">
 
@@ -131,7 +131,7 @@
                                 </div>
 
                                 <!-- Result -->
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="test_result">Result</label>
                                     <input type="date" class="form-control <?= (validation_show_error('test_result')) ? 'is-invalid' : '' ?>" id="test_result" name="test_result" value="<?= set_value('test_result') ?>">
 
@@ -142,13 +142,16 @@
                             </div>
 
                             <!-- Others -->
-                            <div class="form-group">
-                                <label for="descriptions">Description</label>
-                                <textarea class="form-control <?= (validation_show_error('descriptions')) ? 'is-invalid' : '' ?>" id="descriptions" name="descriptions" rows="3" placeholder="Any comments or recomendation"><?= set_value('descriptions') ?></textarea>
+                            <div class="row">
 
-                                <?php if (validation_show_error('descriptions')) : ?>
-                                    <span class="error-message"><?= validation_show_error('descriptions') ?></span>
-                                <?php endif; ?>
+                                <div class="col-md-8 form-group">
+                                    <label for="descriptions">Description</label>
+                                    <textarea class="form-control <?= (validation_show_error('descriptions')) ? 'is-invalid' : '' ?>" id="descriptions" name="descriptions" rows="3" placeholder="Any comments or recomendation"><?= set_value('descriptions') ?></textarea>
+
+                                    <?php if (validation_show_error('descriptions')) : ?>
+                                        <span class="error-message"><?= validation_show_error('descriptions') ?></span>
+                                    <?php endif; ?>
+                                </div>
                             </div>
 
                         </div>
