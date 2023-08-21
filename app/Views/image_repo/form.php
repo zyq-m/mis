@@ -53,8 +53,8 @@
 
                     <h3 class="mb-3">Image Details</h3>
 
-                    <div class="col-md-4">
-                        <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4 form-group">
                             <input type="file" name="memo_img[]" id="memo_img" multiple>
                         </div>
                         <?php if (validation_show_error('memo_img')) : ?>
@@ -72,9 +72,12 @@
                             <input type="time" name="screening_time" id="screening_time" class="form-control" value="<?= set_value('screening_time') ?>">
                         </div>
                     </div>
-                    <div class="col-md-8">
-                        <label for="description">Description</label>
-                        <textarea name="description" id="description" class="form-control" placeholder="Any comments or recomendation" rows="3"><?= set_value('description') ?></textarea>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="description">Description</label>
+                            <textarea name="description" id="description" class="form-control" placeholder="Any comments or recomendation" rows="3"><?= set_value('description') ?></textarea>
+                        </div>
                     </div>
                 </div>
 
