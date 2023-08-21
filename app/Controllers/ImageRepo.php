@@ -48,36 +48,29 @@ class ImageRepo extends BaseController
                     'max_size' => 'Your image size exceeds 1000kb',
                 ]
             ],
-            'file_name' => [
-                'label' => 'File Name',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} is required.',
-                ],
-            ]
         ];
-
-        $name = $this->request->getPost('file_name');
 
         if (!$this->validate($validationRule)) {
             return redirect()->back()->withInput();
         }
 
-        $img = $this->request->getFile('memo_img');
+        // Handle upload multiple files
+        if ($imagefile = $this->request->getFiles()) {
+            foreach ($imagefile['memo_img'] as $img) {
+                if ($img->isValid() && !$img->hasMoved()) {
+                    $fileName = $img->getName();
+                    $fileInfo = new File($img->store('memo-img', $fileName));
 
-        if (!$img->hasMoved()) {
-            // store image in upload folder
-            $fileName = $name . "." . $img->getExtension();
-            $fileInfo = new File($img->store('memo-img', $fileName));
+                    // Store path in database
+                    $imageRepo = model(ImageRepoModel::class);
+                    $imageRepo->save([
+                        'path' => $fileInfo->getPathname(),
+                        'descriptions' => $this->request->getPost(['descriptions'])
+                    ]);
 
-            // Store path in database
-            $imageRepo = model(ImageRepoModel::class);
-            $imageRepo->save([
-                'path' => $fileInfo->getPathname(),
-                'descriptions' => $this->request->getPost(['descriptions'])
-            ]);
-
-            return redirect()->to('image_repo');
+                    return redirect()->to('image_repo');
+                }
+            }
         }
 
         return redirect()->back()->withInput();
