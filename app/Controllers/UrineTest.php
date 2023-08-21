@@ -53,12 +53,6 @@ class UrineTest extends BaseController
 
     public function submitForm()
     {
-        /**
-         * Urine Test Form contains
-         * - full name
-         * - date of birth
-         * - current symptoms
-         */
         if (!$this->request->is('post')) {
             return redirect()->back()->withInput();
         }
@@ -74,12 +68,90 @@ class UrineTest extends BaseController
                     'alpha_numeric' => 'Your full name can only contain letters and numbers'
                 ]
             ],
-            'date_of_birth' => [
-                'label' => 'Date of Birth',
+            'blood' => [
+                'label' => 'Blood',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Please enter {field}',
+                ]
+            ],
+            'bilirubin' => [
+                'label' => 'Bilirubin',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Please enter {field}',
+                ]
+            ],
+            'urobilinogen' => [
+                'label' => 'Urobilinogen',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Please enter {field}',
+                ]
+            ],
+            'keton' => [
+                'label' => 'Keton',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Please enter {field}',
+                ]
+            ],
+            'nitrit' => [
+                'label' => 'Nitrit',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Please enter {field}',
+                ]
+            ],
+            'protein' => [
+                'label' => 'Protein',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Please enter {field}',
+                ]
+            ],
+            'glucose' => [
+                'label' => 'Glucose',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Please enter {field}',
+                ]
+            ],
+            'pH' => [
+                'label' => 'pH',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Please enter {field}',
+                ]
+            ],
+            's_gravity' => [
+                'label' => 'Specific gravity',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Please enter {field}',
+                ]
+            ],
+            'leukocytes' => [
+                'label' => 'Leukocytes',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Please enter {field}',
+                ]
+            ],
+            'test_taken' => [
+                'label' => 'Test taken',
                 'rules' => 'required|date',
                 'errors' => [
-                    'required' => 'Please enter your date of birth',
-                    'date' => 'Please enter a valid date of birth'
+                    'required' => 'Please enter {field}',
+                    'date' => 'Please enter a valid {field}'
+                ]
+            ],
+            'test_result' => [
+                'label' => 'Result',
+                'rules' => 'required|date',
+                'errors' => [
+                    'required' => 'Please enter {field}',
+                    'date' => 'Please enter a valid {field}'
                 ]
             ]
         ];
