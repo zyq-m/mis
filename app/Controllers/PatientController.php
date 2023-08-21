@@ -128,46 +128,6 @@ class PatientController extends BaseController
         return view('patient/view', $data);
     }
 
-    /**
-     * This function acts as component to get small details 
-     * of a patient
-     * 
-     * It use in Urine Test & Image Repository form
-     * 
-     **/
-    public function search()
-    {
-        $rules = [
-            'patient' => [
-                'rules' => 'required|numeric',
-                'errors' => [
-                    'required' => 'Search your patient first.',
-                    'numeric' => 'Search a valid IC No. '
-                ]
-            ]
-        ];
-
-        $id = $this->request->getGet('patient');
-
-        if (!$this->validate($rules)) {
-            return redirect()->back()->withInput();
-        }
-
-
-        $patient = model(PatientModel::class);
-        $patient_details = $patient->getPatient($id);
-
-        $data['patient'] = $patient_details;
-
-        if (empty($data['patient'])) {
-            return redirect()->back()->with('error', 'Patient not found');
-        }
-
-        $data['patient_id'] = $patient_details[0]['id'];
-
-        return view(previous_url(), $data);
-    }
-
     public function fakePatient()
     {
         $patient = model(PatientModel::class);
