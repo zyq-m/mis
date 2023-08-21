@@ -70,6 +70,9 @@ class ImageRepo extends BaseController
             return redirect()->back()->withInput();
         }
 
+        // Grab submitted form data
+        $formData = $this->request->getPost();
+
         // Handle upload multiple files
         if ($imagefile = $this->request->getFiles()) {
             foreach ($imagefile['memo_img'] as $img) {
@@ -79,14 +82,12 @@ class ImageRepo extends BaseController
 
                     // Store path in database
                     $imageRepo = model(ImageRepoModel::class);
-                    $imageRepo->save([
-                        'path' => $fileInfo->getPathname(),
-                        'descriptions' => $this->request->getPost(['descriptions'])
-                    ]);
-
-                    return redirect()->to('image_repo');
+                    $formData['path'] = $fileInfo->getPathname();
+                    $imageRepo->save($formData);
                 }
             }
+
+            return redirect()->to('image_repo');
         }
 
         return redirect()->back()->withInput();
