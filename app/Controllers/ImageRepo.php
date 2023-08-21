@@ -49,6 +49,21 @@ class ImageRepo extends BaseController
                     'max_size' => 'Your image size exceeds 1000kb',
                 ]
             ],
+            "screening_date" => [
+                'label' => 'Date of Screening',
+                'rules' => 'required|valid_date',
+                'errors' => [
+                    'required' => 'Please select a {field}',
+                    'valid_date' => 'Please input a valid date format',
+                ]
+            ],
+            "screening_time" => [
+                'label' => 'Time of Screening',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Please select a {field}',
+                ]
+            ]
         ];
 
         if (!$this->validate($validationRule)) {
