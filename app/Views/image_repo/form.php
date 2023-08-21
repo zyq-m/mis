@@ -46,7 +46,7 @@
         <form action="<?= url_to('image_repo/upload') ?>" method="post" class="form-horizontal ui raised segment" enctype="multipart/form-data" id="imageUploadForm">
             <?= csrf_field() ?>
 
-            <input type="hidden" name="id" value="<?= $patient_id ?>">
+            <input type="hidden" name="patient_id" value="<?= $patient_id ?>">
 
             <div class="card">
                 <div class="card-body">
