@@ -40,10 +40,19 @@
 
 <div class="row">
     <div class="col-md-12">
+
+        <?= view('patient/search', ['route' => 'image_repo/patient']) ?>
+
         <form action="<?= url_to('image_repo/upload') ?>" method="post" class="form-horizontal ui raised segment" enctype="multipart/form-data" id="imageUploadForm">
             <?= csrf_field() ?>
+
+            <input type="hidden" name="id" value="<?= $patient_id ?>">
+
             <div class="card">
                 <div class="card-body">
+
+                    <h2 class="mb-3 mt-4">Image Details</h2>
+
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group">
@@ -68,7 +77,7 @@
                 <div class="card-footer">
                     <div>
                         <button type="reset" class="btn btn-default" id="reset">Cancel</button>
-                        <button type="submit" class="btn btn-primary btn-submit" id="submit">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-submit" id="submit" <?= $patient_id ? '' : 'disabled' ?>>Submit</button>
                     </div>
                 </div>
             </div>

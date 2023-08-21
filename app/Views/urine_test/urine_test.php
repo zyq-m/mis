@@ -2,63 +2,20 @@
 
 <?= $this->section("content") ?>
 
-<?php $session = session(); ?>
-
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
+        <!-- Search patient -->
+        <?= view('patient/search', ['route' => 'urine_test/patient']) ?>
 
-                        <!-- Search Patient -->
-                        <?php if (empty($patient)) : ?>
-                            <form action="<?= base_url('urine_test/patient') ?>" method="get" class="form-group">
-                                <label for="patient">Patient</label>
-                                <div class="input-group">
-                                    <input type="search" id="patient" name="patient" class="form-control <?= validation_show_error('patient') || $session->getFlashdata('error') ? 'is-invalid' : '' ?>" placeholder="Search for IC No..." value="<?= set_value("patient") ?>">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit">Search</button>
-                                    </span>
-                                </div>
-                                <?php if (validation_show_error('patient') or $session->getFlashdata('error')) : ?>
-                                    <span class="error-message"><?= validation_show_error('patient') ?><?= $session->getFlashdata('error') ?></span>
-                                <?php endif; ?>
-                            </form>
-                        <?php else : ?>
-                            <h2 class="mb-3">Patient Information</h2>
-                            <?php foreach ($patient as $patient_details) : ?>
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" id="name" class="form-control" value="<?= $patient_details['name'] ?>" readonly>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <label for="ic_no">IC No.</label>
-                                        <input type="text" id="ic_no" class="form-control" value="<?= $patient_details['ic_no'] ?>" readonly>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label for="gender">Gender</label>
-                                        <input type="text" id="gender" class="form-control" value="<?= $patient_details['gender'] ?>" readonly>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <label for="age">Age</label>
-                                        <input type="text" id="age" class="form-control" value="<?= '34 years old' ?>" readonly>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label for="phone_number">Phone No.</label>
-                                        <input type="text" id="phone_number" class="form-control" value="<?= $patient_details['phone_number'] ?>" readonly>
-                                    </div>
-                                </div>
-                            <?php endforeach ?>
-                        <?php endif; ?>
+        <form action="<?= base_url('urine_test/urine_test') ?>" method="post" class="form-horizontal ui raised segment" id="urineTestForm">
+            <?= csrf_field() ?>
 
-                        <!-- Test Information -->
-                        <h2 class="mb-3 mt-4">Test Information</h2>
-                        <form action="<?= base_url('urine_test') ?>" method="post" class="form-horizontal ui raised segment" id="urineTestForm">
-                            <?= csrf_field() ?>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <!-- Test Information -->
+                            <h2 class="mb-3 mt-4">Test Details</h2>
                             <!-- Patient Id -->
                             <input type="hidden" name="id" value="<?= $patient_id ?>">
 
@@ -194,18 +151,18 @@
                                 <?php endif; ?>
                             </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="card-footer">
-                <div>
-                    <button type="reset" class="btn btn-default" id="reset">Cancel</button>
-                    <button type="submit" class="btn btn-primary" id="submit" <?= $patient_id ? '' : 'disabled' ?>>Submit</button>
+                <div class="card-footer">
+                    <div>
+                        <button type="reset" class="btn btn-default" id="reset">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="submit" <?= $patient_id ? '' : 'disabled' ?>>Submit</button>
+                    </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
         </form>
     </div>
 </div>
