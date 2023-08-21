@@ -47,24 +47,24 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <input type="file" name="filepond" id="memo_img" multiple data-max-file-size="100kb">
+                                <input type="file" name="memo_img[]" id="memo_img" multiple>
                             </div>
+                            <?php if (validation_show_error('memo_img')) : ?>
+                                <span class="error-message"><?= validation_show_error('memo_img') ?></span>
+                            <?php endif; ?>
                         </div>
                     </div>
-                    <div class="row">
 
+                    <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="descriptions">Comment:</label>
                                 <textarea rows="3" name="descriptions" id="descriptions" class="form-control <?= (validation_show_error('descriptions')) ? 'is-invalid' : '' ?>" placeholder="Please Describe The Image"><?= set_value('descriptions') ?></textarea>
-                                <?php if (validation_show_error('descriptions')) : ?>
-                                    <span class="error-message"><?= validation_show_error('descriptions') ?></span>
-                                <?php endif; ?>
                             </div>
-
                         </div>
                     </div>
                 </div>
+
                 <div class="card-footer">
                     <div>
                         <button type="reset" class="btn btn-default" id="reset">Cancel</button>
@@ -91,6 +91,8 @@
     );
 
     // Create a FilePond instance
-    const pond = FilePond.create(inputElement);
+    const pond = FilePond.create(inputElement, {
+        storeAsFile: true,
+    });
 </script>
 <?= $this->endSection() ?>
