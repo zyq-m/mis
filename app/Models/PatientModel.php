@@ -52,4 +52,21 @@ class PatientModel extends Model
             return $data;
         }
     }
+
+    // Get all records related to patient
+    public function getPatientDetails($id = 0)
+    {
+
+        $profile = $this->getPatient($id);
+        $urine_test = model(UrineTestModel::class)->where(['patient_id' => $id])->find();
+        $img_repo = model(ImageRepoModel::class)->where(['patient_id' => $id])->find();
+
+        $data = [
+            'profile' => $profile,
+            'urine_test' => $urine_test,
+            'img_repo' => $img_repo
+        ];
+
+        return $data;
+    }
 }
