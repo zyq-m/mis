@@ -26,6 +26,4 @@
             </div>
         </div>
     </div>
-    <div class="col">
-    </div>
 <?php endforeach ?>
