@@ -122,7 +122,7 @@ class PatientController extends BaseController
     {
         $patient = model(PatientModel::class);
 
-        $patient_data = $patient->getPatient($id);
+        $patient_data = $patient->getPatientDetails($id);
         $data = ['title' => 'Patient Details', 'patient' => $patient_data, 'id' => $id];
 
         return view('patient/view', $data);
