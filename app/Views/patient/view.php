@@ -1,15 +1,15 @@
 <?= $this->extend("template/layout"); ?>
 
 <?= $this->section("stylesheet"); ?>
-
 <style>
     .gap-4 {
         gap: 1.5rem;
     }
 </style>
-
 <?= $this->endSection(); ?>
 
+<?php $session = session() ?>
+<?php $is_img = $session->getFlashdata('img') ?>
 <?= $this->section("content"); ?>
 
 <!-- utk view specific patient -->
@@ -21,13 +21,13 @@
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                         <li role="presentation">
-                            <button class="btn nav-link" id="profile-tab" data-toggle="tab" data-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
+                            <button class="btn nav-link <?= $session->getFlashdata('img') ? '' : 'active' ?>" id="profile-tab" data-toggle="tab" data-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
                         </li>
                         <li role="presentation">
                             <button class="btn nav-link" id="urine-tab" data-toggle="tab" data-target="#urine" type="button" role="tab" aria-controls="urine" aria-selected="false">Urine Test</button>
                         </li>
                         <li role="presentation">
-                            <button class="btn nav-link active" id="repo-tab" data-toggle="tab" data-target="#repo" type="button" role="tab" aria-controls="repo" aria-selected="false">Image Repository</button>
+                            <button class="btn nav-link <?= $session->getFlashdata('img') ? 'active' : '' ?>" id="repo-tab" data-toggle="tab" data-target="#repo" type="button" role="tab" aria-controls="repo" aria-selected="false">Image Repository</button>
                         </li>
                     </ul>
                 </div>
@@ -36,7 +36,7 @@
 
                         <div class="tab-content" id="myTabContent">
                             <!-- Profile -->
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="tab-pane fade <?= $session->getFlashdata('img') ? '' : 'show active' ?>" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <?= view('patient/details/profile', ['patient' => $patient]) ?>
                             </div>
 
@@ -46,8 +46,8 @@
                             </div>
 
                             <!-- Image Repository -->
-                            <div class="tab-pane fade show active" id="repo" role="tabpanel" aria-labelledby="repo-tab">
-                                <pre><?= json_encode($patient['img_repo'], JSON_PRETTY_PRINT) ?></pre>
+                            <div class="tab-pane fade <?= $session->getFlashdata('img') ? 'show active' : '' ?>" id="repo" role="tabpanel" aria-labelledby="repo-tab">
+                                <?= view('patient/details/image_repo', ['patient' => $patient]) ?>
                             </div>
                         </div>
 
