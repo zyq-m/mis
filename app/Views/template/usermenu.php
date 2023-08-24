@@ -12,7 +12,7 @@ $menuItems = [
     [
         'id' => 2,
         'name' => 'Patients',
-        'icon' => 'fa-user', // You can choose the appropriate icon class
+        'icon' => 'fa-bed-pulse', // You can choose the appropriate icon class
         'subItems' => [
             ['id' => 21, 'name' => 'Patients List', 'icon' => ''],
             ['id' => 22, 'name' => 'Register Patient', 'icon' => ''],
@@ -21,7 +21,7 @@ $menuItems = [
     [
         'id' => 3,
         'name' => 'Image Repository',
-        'icon' => 'fa-image', // You can choose the appropriate icon class
+        'icon' => 'fa-images', // You can choose the appropriate icon class
         'subItems' => [
             ['id' => 52, 'name' => 'Images', 'icon' => ''],
             ['id' => 53, 'name' => 'Form', 'icon' => ''],
@@ -29,10 +29,10 @@ $menuItems = [
     ],
     [
         'id' => 5,
-        'name' => 'Form',
-        'icon' => 'fa-file-alt', // You can choose the appropriate icon class
+        'name' => 'Urine Test',
+        'icon' => 'fa-flask', // You can choose the appropriate icon class
         'subItems' => [
-            ['id' => 51, 'name' => 'Urine Test', 'icon' => ''],
+            ['id' => 51, 'name' => 'Form', 'icon' => ''],
         ]
     ],
 ];
@@ -126,8 +126,8 @@ function isSubMenuItemActive($subItemId)
                                     <li class="nav-item">
                                         <a href="<?= base_url(getMenuHref($subItem['id'])) ?>" class="nav-link<?= isSubMenuItemActive($subItem['id']) ?>">
                                             <div class="d-flex align-items-center">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p class="text ml-2"><?= $subItem['name'] ?></p>
+                                                <!-- <i class="far fa-circle nav-icon"></i> -->
+                                                <p class="text" style="margin-left: 2rem;"><?= $subItem['name'] ?></p>
                                             </div>
                                         </a>
                                     </li>
@@ -140,21 +140,22 @@ function isSubMenuItemActive($subItemId)
                 <li class="nav-header text-bold text-lg">Account</li>
                 <li class="nav-item ">
                     <a href="<?= base_url("profile") ?>" class=" nav-link<?= ($uri->getSegment(1) == "profile" && $uri->getSegment(2) == "") ? " active" : "" ?>">
-                        <i class="nav-icon far fa-circle text-info"></i>
+                        <i class="nav-icon fa fa-user"></i>
                         <p class="text">Profile</p>
                     </a>
                 </li>
 
                 <li class="nav-item ">
                     <a href="<?= base_url("profile/password") ?>" class="nav-link<?= ($uri->getSegment(1) == "profile" && $uri->getSegment(2) == "password") ? " active" : "" ?>">
-                        <i class="nav-icon far fa-circle text-warning"></i>
+                        <i class="nav-icon fa fa-key"></i>
                         <p class="text">Change Password</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="<?= base_url('logout'); ?>" class="nav-link">
-                        <i class="nav-icon far fa-circle text-danger"></i>
+                        <!-- <i class="nav-icon far fa-circle text-danger"></i> -->
+                        <i class="nav-icon fa fa-right-from-bracket"></i>
                         <p class="text">Log Out</p>
                     </a>
                 </li>
