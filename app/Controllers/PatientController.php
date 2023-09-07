@@ -120,10 +120,22 @@ class PatientController extends BaseController
 
     public function viewPatient($id = 0)
     {
-        $patient = model(PatientModel::class);
+        /**
+         * @param string $is_img
+         * Need to be refactored
+         * This line of code will pass image path to
+         * 
+         */
+        $is_img = $this->request->getGet('img');
 
+        if ($is_img) {
+            $session = session();
+            $session->setFlashdata('img', $is_img);
+        }
+
+        $patient = model(PatientModel::class);
         $patient_data = $patient->getPatientDetails($id);
-        $data = ['title' => 'Patient Details', 'patient' => $patient_data, 'id' => $id];
+        $data = ['title' => 'Patient Details', 'patient' => $patient_data, 'id' => $id, 'is_img' => null];
 
         return view('patient/view', $data);
     }
