@@ -10,7 +10,7 @@ class PatientModel extends Model
     protected $table = "patients";
     protected $primaryKey = "id";
 
-    protected $allowedFields = ['name', 'gender', 'phone_number', 'address', 'avatar', 'ic_no'];
+    protected $allowedFields = ['name', 'phone_number', 'address', 'avatar', 'myKad', 'email'];
 
     public function fake()
     {
@@ -19,11 +19,11 @@ class PatientModel extends Model
 
         return [
             'name' => $faker->name,
-            'gender' => $faker->randomElement(['Male', 'Female']),
-            'ic_no' => $faker->unique()->dateTimeBetween('-30 years', '-5 years')->format('ymd') . $faker->unique()->numerify('######'),
+            'myKad' => $faker->unique()->dateTimeBetween('-30 years', '-5 years')->format('ymd') . $faker->unique()->numerify('######'),
             'phone_number' => $faker->phoneNumber,
             'address' => $faker->address,
-            'avatar' => $faker->imageUrl
+            'avatar' => $faker->imageUrl,
+            'email' => $faker->email
         ];
     }
 
