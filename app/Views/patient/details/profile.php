@@ -10,11 +10,11 @@
             </div>
             <div class="row mb-3">
                 <div class="col-md-2 font-weight-bold">IC No.</div>
-                <div class="col-md-6"><?= $patient_details['ic_no'] ?></div>
+                <div class="col-md-6"><?= $patient_details['myKad'] ?></div>
             </div>
             <div class="row mb-3">
-                <div class="col-md-2 font-weight-bold">Gender</div>
-                <div class="col-md-6"><?= $patient_details['gender'] ?></div>
+                <div class="col-md-2 font-weight-bold">Email</div>
+                <div class="col-md-6"><?= $patient_details['email'] ?></div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-2 font-weight-bold">Phone No.</div>

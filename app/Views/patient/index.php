@@ -29,13 +29,13 @@
 
                     <div class="text-right"><a href="<?= url_to('patient/register') ?>"><span class="btn btn-primary"> <i class="fa fa-plus"></i> Add New</span></a><br><br></div>
 
-                    <table class="table table-striped table-bordered table-hover" id="tblist">
+                    <table class="table table-borderless table-hover" id="tblist">
                         <thead>
                             <tr role="row">
                                 <th width="3%">No</th>
                                 <th>Name</th>
-                                <th width="10%">Gender</th>
-                                <th width="10%">IC No.</th>
+                                <th width="10%">My Kad</th>
+                                <th width="15%">Email</th>
                                 <th width="15%">Phone No.</th>
                                 <th width="40%">Address</th>
                             </tr>
@@ -58,8 +58,8 @@
                                                 <?= esc($patient['name']) ?>
                                             </a>
                                         </td>
-                                        <td><?= esc($patient['gender']) ?></td>
-                                        <td><?= esc($patient['ic_no']) ?></td>
+                                        <td><?= esc($patient['myKad']) ?></td>
+                                        <td><?= esc($patient['email']) ?></td>
                                         <td><?= esc($patient['phone_number']) ?></td>
                                         <td><?= esc($patient['address']) ?></td>
                                     </tr>

@@ -11,14 +11,12 @@ class Dashboard extends BaseController
         $patient = model(PatientModel::class);
 
         $totalPatient = $patient->countAllResults();
-        $totalMalePatient = $patient->where('gender', 'Male')->countAllResults();
-        $totalFemalePatient = $patient->where('gender', 'Female')->countAllResults();
 
         $data = [
             "title" => "Dashboard",
             "totalPatient" => $totalPatient,
-            "totalMalePatient" => $totalMalePatient,
-            "totalFemalePatient" => $totalFemalePatient,
+            "totalMalePatient" => 2,
+            "totalFemalePatient" => 2,
             "totalStaff" => 200
         ];
 
