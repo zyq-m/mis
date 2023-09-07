@@ -24,15 +24,15 @@
     <div class="card">
         <div class="card-body px-4">
             <!-- Indetity -->
-            <?= view('patient/register_details/identity') ?>
+            <?= $this->include('patient/register_details/identity') ?>
             <!-- End indentity -->
 
             <!-- Demographic -->
-            <?= view('patient/register_details/demographic') ?>
+            <?= $this->include('patient/register_details/demographic') ?>
             <!-- End Demographic -->
 
             <!-- Clinical History -->
-            <?= view('patient/register_details/clinical_history') ?>
+            <?= $this->include('patient/register_details/clinical_history') ?>
             <!-- End Clinical History -->
         </div>
         <div class="card-footer">
@@ -52,7 +52,13 @@
         label.textContent = input.files[0] ? input.files[0].name : label.getAttribute("data-placeholder");
     }
 
-    function checkValue(val, target, val2) {
+    function checkValue(val, target, custom) {
+        if (custom && val === custom) {
+            document.getElementById(custom).style.display = 'block';
+        } else {
+            document.getElementById(custom).style.display = 'none';
+        }
+
         if (val === "Others") {
             document.getElementById(target).style.display = 'block';
         } else {
