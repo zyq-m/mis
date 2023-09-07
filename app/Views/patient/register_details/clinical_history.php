@@ -51,15 +51,9 @@
                 <option value="Diabetes mellitus">Diabetes mellitus</option>
                 <option value="Hyperlipidaemia">Hyperlipidaemia</option>
                 <optgroup label="Chronic kidney disease">
-                    <option value="Stage">Stage</option>
+                    <option value="stage">Stage</option>
                 </optgroup>
                 <option value="Others">Others (specify)</option>
-                <option value="Students">Students</option>
-                <optgroup label="Government">
-                    <option value="Police">Police</option>
-                    <option value="Teacher">Teacher</option>
-                    <option value="Others">Others (specify)</option>
-                </optgroup>
             </select>
             <input type="text" name="med_history" id="med_history" style='display:none;' />
             <input type="text" name="med_history" id="stage" style='display:none;' />
