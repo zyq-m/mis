@@ -5,7 +5,7 @@
         <!-- Sex -->
         <div class="form-group col-md-6 <?= (validation_show_error('sex')) ? 'has-error' : '' ?>">
             <label for="sex">Sex</label>
-            <select name="sex" id="sex" class="form-control <?= (validation_show_error('sex')) ? 'is-invalid' : '' ?>">
+            <select name="sex" id="sex" class="custom-select <?= (validation_show_error('sex')) ? 'is-invalid' : '' ?>">
                 <option>Choose...</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -19,7 +19,7 @@
         <!-- Race -->
         <div class="form-group col-md-6 <?= (validation_show_error('race')) ? 'has-error' : '' ?>">
             <label for="race">Race</label>
-            <select name="race" class="form-control <?= (validation_show_error('race')) ? 'is-invalid' : '' ?>" onchange="checkValue(this.value, 'race')">
+            <select name="race" class="custom-select <?= (validation_show_error('race')) ? 'is-invalid' : '' ?>" onchange="checkValue(this.value, 'race')">
                 <option>Choose...</option>
                 <option value="Malay">Malay</option>
                 <option value="Chinese">Chinese</option>
@@ -39,7 +39,7 @@
         <!-- Educational Status -->
         <div class="form-group col-md-4 <?= (validation_show_error('educational_status')) ? 'has-error' : '' ?>">
             <label for="educational_status">Educational Status</label>
-            <select name="educational_status" class="form-control <?= (validation_show_error('educational_status')) ? 'is-invalid' : '' ?>">
+            <select name="educational_status" class="custom-select <?= (validation_show_error('educational_status')) ? 'is-invalid' : '' ?>">
                 <option>Choose...</option>
                 <option value="None">None</option>
                 <option value="Non-formal">Non-formal</option>
@@ -64,7 +64,7 @@
         <!-- Marital Status -->
         <div class="form-group col-md-4 <?= (validation_show_error('maritial_status')) ? 'has-error' : '' ?>">
             <label for="maritial_status">Marital Status</label>
-            <select name="maritial_status" class="form-control <?= (validation_show_error('maritial_status')) ? 'is-invalid' : '' ?>">
+            <select name="maritial_status" class="custom-select <?= (validation_show_error('maritial_status')) ? 'is-invalid' : '' ?>">
                 <option>Choose...</option>
                 <option value="Single">Single</option>
                 <option value="Married">Married</option>
@@ -80,7 +80,7 @@
         <!-- Occupation -->
         <div class="form-group col-md-4 <?= (validation_show_error('occupation')) ? 'has-error' : '' ?>">
             <label for="occupation">Occupation</label>
-            <select name="occupation" class="form-control <?= (validation_show_error('occupation')) ? 'is-invalid' : '' ?>" onchange="checkValue(this.value, 'occupation')">
+            <select name="occupation" class="custom-select <?= (validation_show_error('occupation')) ? 'is-invalid' : '' ?>" onchange="checkValue(this.value, 'occupation')">
                 <option>Choose...</option>
                 <option value="Not working">Not working</option>
                 <option value="Students">Students</option>

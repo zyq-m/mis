@@ -5,7 +5,7 @@
         <!-- Presenting Illness -->
         <div class="form-group col-md-4 <?= (validation_show_error('illness_present')) ? 'has-error' : '' ?>">
             <label for="illness_present">Presenting Illness</label>
-            <select name="illness_present" class="form-control <?= (validation_show_error('illness_present')) ? 'is-invalid' : '' ?>">
+            <select name="illness_present" class="custom-select <?= (validation_show_error('illness_present')) ? 'is-invalid' : '' ?>">
                 <option>Choose...</option>
                 <option value="Lump">Lump</option>
                 <option value="Pain">Pain</option>
@@ -23,7 +23,7 @@
         <!-- Symptoms of Metastases -->
         <div class="form-group col-md-4 <?= (validation_show_error('metastases_symptom')) ? 'has-error' : '' ?>">
             <label for="metastases_symptom">Symptoms of Metastases</label>
-            <select name="metastases_symptom" class="form-control <?= (validation_show_error('metastases_symptom')) ? 'is-invalid' : '' ?>" onchange="checkValue(this.value, 'mestastases', 'weight')">
+            <select name="metastases_symptom" class="custom-select <?= (validation_show_error('metastases_symptom')) ? 'is-invalid' : '' ?>" onchange="checkValue(this.value, 'mestastases', 'weight')">
                 <option>Choose...</option>
                 <option value="Shortness of breath">Shortness of breath</option>
                 <optgroup label="Lost of weight">
@@ -45,7 +45,7 @@
         <!-- Medical History -->
         <div class="form-group col-md-4 <?= (validation_show_error('med_history')) ? 'has-error' : '' ?>">
             <label for="med_history">Medical History</label>
-            <select name="med_history" class="form-control <?= (validation_show_error('med_history')) ? 'is-invalid' : '' ?>" onchange="checkValue(this.value, 'med_history', 'stage')">
+            <select name="med_history" class="custom-select <?= (validation_show_error('med_history')) ? 'is-invalid' : '' ?>" onchange="checkValue(this.value, 'med_history', 'stage')">
                 <option>Choose...</option>
                 <option value="Hypertension">Hypertension</option>
                 <option value="Diabetes mellitus">Diabetes mellitus</option>
