@@ -35,11 +35,11 @@
             <?php endif; ?>
         </div>
         <!-- My Kad -->
-        <div class="form-group col-md-4 <?= (validation_show_error('ic_no')) ? 'has-error' : '' ?>">
-            <label for="ic_no">My Kad</label>
-            <input type="text" name="ic_no" id="ic_no" value="<?= set_value('ic_no') ?>" class="form-control <?= (validation_show_error('ic_no')) ? 'is-invalid' : '' ?>" placeholder="1234567890">
-            <?php if (validation_show_error('ic_no')) : ?>
-                <span class="error-message"><?= validation_show_error('ic_no') ?></span>
+        <div class="form-group col-md-4 <?= (validation_show_error('myKad')) ? 'has-error' : '' ?>">
+            <label for="myKad">My Kad</label>
+            <input type="text" name="myKad" id="myKad" value="<?= set_value('myKad') ?>" class="form-control <?= (validation_show_error('myKad')) ? 'is-invalid' : '' ?>" placeholder="1234567890">
+            <?php if (validation_show_error('myKad')) : ?>
+                <span class="error-message"><?= validation_show_error('myKad') ?></span>
             <?php endif; ?>
         </div>
         <!-- Phone number -->
