@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\PatientModel;
+use App\Models\DemographicModel;
+use App\Models\ClinicalHistroyModel;
 use CodeIgniter\Files\File;
 
 class PatientController extends BaseController
@@ -35,84 +37,84 @@ class PatientController extends BaseController
         }
 
         // data validation
-        $rules = [
-            'name' => [
-                'label' => 'Name',
-                'rules' => 'required|max_length[200]|min_length[5]',
-                'errors' => [
-                    'required' => 'Please enter a {field}',
-                    'max_length' => 'Your {field} must not exceed 200 characters',
-                    'min_length' => 'Your {field} must at least 5 characters'
-                ]
-            ],
-            'gender' => 'required',
-            'ic_no' => [
-                'label' => 'IC Number',
-                'rules' => 'required|max_length[12]|min_length[12]|numeric',
-                'errors' => [
-                    'required' => 'Please enter a {field}',
-                    'max_length' => 'Your {field} must be 12 characters',
-                    'min_length' => 'Your {field} must be 12 characters',
-                    'numeric' => 'Please enter a valid {field}'
-                ]
-            ],
-            'phone_number' => [
-                'label' => 'Phone Number',
-                'rules' => 'required|max_length[15]|min_length[10]|numeric',
-                'errors' => [
-                    'required' => 'Please enter a {field}',
-                    'max_length' => 'Your {field} must not exceed 15 characters',
-                    'min_length' => 'Your {field} must be at least 10 characters',
-                    'numeric' => 'Please enter a valid {field}'
-                ]
-            ],
-            'address' => [
-                'label' => 'Address',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Please enter a {field}',
-                ]
-            ],
-            'avatar' => [
-                'label' => 'Avatar',
-                'rules' => [
-                    'uploaded[avatar]',
-                    'is_image[avatar]',
-                    'mime_in[avatar,image/jpg,image/jpeg,image/png]',
-                    'max_size[avatar,200]',
-                ],
-                'errors' => [
-                    'uploaded' => 'Please upload a {field}',
-                    'is_image' => 'Please upload a valid {field}',
-                    'mime_in' => 'Only {field} with JPG, JPEG and PNG are allowed',
-                    'max_size' => 'Your {field} exceeds 200kb',
-                ]
-            ]
-        ];
+        $validation = \Config\Services::validation();
+        $rules = $validation->getRuleGroup('register_patient');
 
         if (!$this->validate($rules)) {
             return redirect()->back()->withInput();
         }
 
+        $post = $this->request->getPost();
+
+        // Identity data
         // get img
         $img = $this->request->getFile('avatar');
 
+        $filePath = null;
         // store img
-        $filepath = $img->store('avatar');
-        $fileInfo = new File($filepath);
+        if ($img->isValid()) {
+            $filepath = $img->store('avatar');
+            $fileInfo = new File($filepath);
+            $filePath = $fileInfo->getPathname();
+        }
 
-        $data = $this->request->getPost();
-        $data['avatar'] = $fileInfo->getPathname();
+        $identity = [
+            'name'          => $post['name'],
+            'email'         => $post['email'],
+            'myKad'         => $post['myKad'],
+            'avatar'        => $filePath,
+            'phone_number'  => $post['phone_number'],
+            'address'       => $post['address'],
+        ];
+
+        // Demographic data
+        $demographic = [
+            'myKad' => $post['myKad'],
+            'sex' => $post['sex'],
+            'race' => $post['other_race'] ? $post['other_race'] : $post['race'],
+            'educational_status' => $post['educational_status'],
+            'marital_status' => $post['marital_status'],
+            'occupation' => $post['other_occupation'] ? $post['other_occupation'] : $post['other_occupation'],
+        ];
+
+        // Clinical data
+        $med_history = $post['med_history'];
+        if (!empty($post['other_med_history'])) {
+            $med_history = $post['other_med_history'];
+        }
+        if (!empty($post['stage'])) {
+            $med_history = 'Kidney disease stage ' . $post['stage'];
+        }
+
+        $metastases = $post['metastases_symptom'];
+        if (!empty($post['other_illness_present'])) {
+            $metastases = $post['other_illness_present'];
+        }
+        if (!empty($post['weight_loss'])) {
+            $metastases =  $post['weight_loss'] . 'kg weight loss';
+        }
+
+        $clinical = [
+            'myKad' => $post['myKad'],
+            'presenting_illness' => $post['other_illness_present'] ? $post['other_illness_present'] : $post['illness_present'],
+            'metastases_symptom' => $metastases,
+            'medical_history' => $med_history
+        ];
 
         // save data
-        $patient = model(PatientModel::class);
+        $identityModel = model(PatientModel::class);
+        $demographicModel = model(DemographicModel::class);
+        $clinicalModel = model(ClinicalHistroyModel::class);
 
+        if ($identityModel->save($identity)) {
+            $demographicModel->save($demographic);
+            $clinicalModel->save($clinical);
+        }
+        return redirect()->back()->with('register_success', 'Patient successfully registered');
         try {
-            $patient->save($data);
-
-            return redirect()->back()->with('register_success', 'Patient successfully registered');
         } catch (\Throwable $th) {
 
+            return var_dump($th);
             //TODO: Remove image in fold
             return redirect()->back()->with('register_error', 'Registration failed. Patient already been registered');
         }
