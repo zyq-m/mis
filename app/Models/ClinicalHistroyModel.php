@@ -10,9 +10,4 @@ class ClinicalHistroyModel extends Model
     protected $primaryKey = "id";
 
     protected $allowedFields = ['myKad', 'presenting_illness', 'metastases_symptom', 'medical_history'];
-
-    public function create($myKad, $illness, $symptom, $med_history): bool
-    {
-        return $this->save([$myKad, $illness, $symptom, $med_history]);
-    }
 }
