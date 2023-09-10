@@ -3,7 +3,7 @@
 
     <div class="form-row">
         <!-- Sex -->
-        <div class="form-group col-md-6 <?= (validation_show_error('sex')) ? 'has-error' : '' ?>">
+        <div class="form-group col-md-4 <?= (validation_show_error('sex')) ? 'has-error' : '' ?>">
             <label for="sex">Sex</label>
             <select name="sex" id="sex" class="custom-select <?= (validation_show_error('sex')) ? 'is-invalid' : '' ?>">
                 <option>Choose...</option>
@@ -17,25 +17,22 @@
         <!-- End Sex -->
 
         <!-- Race -->
-        <div class="form-group col-md-6 <?= (validation_show_error('race')) ? 'has-error' : '' ?>">
+        <div class="form-group col-md-4 <?= (validation_show_error('race')) ? 'has-error' : '' ?>">
             <label for="race">Race</label>
-            <select name="race" class="custom-select <?= (validation_show_error('race')) ? 'is-invalid' : '' ?>" onchange="checkValue(this.value, 'race')">
+            <select name="race" class="custom-select <?= (validation_show_error('race')) ? 'is-invalid' : '' ?>" onchange="checkValue(this.value, 'race', null)">
                 <option>Choose...</option>
                 <option value="Malay">Malay</option>
                 <option value="Chinese">Chinese</option>
                 <option value="Indian">Indian</option>
                 <option value="Others">Others (specify)</option>
             </select>
-            <input type="text" name="race" id="race" style='display:none;' />
+            <input type="text" name="race" id="race" style='display:none;' class="form-control border-top-0 border-left-0 border-right-0" placeholder="Others race" />
             <?php if (validation_show_error('race')) : ?>
                 <span class="error-message"><?= validation_show_error('race') ?></span>
             <?php endif; ?>
         </div>
         <!-- End Race -->
 
-    </div>
-
-    <div class="form-row">
         <!-- Educational Status -->
         <div class="form-group col-md-4 <?= (validation_show_error('educational_status')) ? 'has-error' : '' ?>">
             <label for="educational_status">Educational Status</label>
@@ -60,9 +57,12 @@
             <?php endif; ?>
         </div>
         <!-- End Educational Status -->
+    </div>
+
+    <div class="form-row">
 
         <!-- Marital Status -->
-        <div class="form-group col-md-4 <?= (validation_show_error('maritial_status')) ? 'has-error' : '' ?>">
+        <div class="form-group col-md-6 <?= (validation_show_error('maritial_status')) ? 'has-error' : '' ?>">
             <label for="maritial_status">Marital Status</label>
             <select name="maritial_status" class="custom-select <?= (validation_show_error('maritial_status')) ? 'is-invalid' : '' ?>">
                 <option>Choose...</option>
@@ -78,7 +78,7 @@
         <!-- End Marital Status -->
 
         <!-- Occupation -->
-        <div class="form-group col-md-4 <?= (validation_show_error('occupation')) ? 'has-error' : '' ?>">
+        <div class="form-group col-md-6 <?= (validation_show_error('occupation')) ? 'has-error' : '' ?>">
             <label for="occupation">Occupation</label>
             <select name="occupation" class="custom-select <?= (validation_show_error('occupation')) ? 'is-invalid' : '' ?>" onchange="checkValue(this.value, 'occupation')">
                 <option>Choose...</option>
@@ -98,7 +98,7 @@
                 <option value="Textile">Textile</option>
                 <option value="Others">Others (specify)</option>
             </select>
-            <input type="text" name="occupation" id="occupation" style='display:none;' />
+            <input type="text" name="occupation" id="occupation" class="form-control border-top-0 border-left-0 border-right-0" style="display:none;" placeholder="Others occupation" />
             <?php if (validation_show_error('occupation')) : ?>
                 <span class="error-message"><?= validation_show_error('occupation') ?></span>
             <?php endif; ?>
