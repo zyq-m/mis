@@ -53,17 +53,26 @@
     }
 
     function checkValue(val, target, custom) {
-        if (custom && val === custom) {
-            document.getElementById(custom).style.display = 'block';
+        if (custom) {
+            if (val === custom) {
+                document.getElementById(custom).style.display = 'block';
+            } else {
+                document.getElementById(custom).style.display = 'none';
+            }
+
+            if (val === "Others") {
+                document.getElementById(target).style.display = 'block';
+            } else {
+                document.getElementById(target).style.display = 'none';
+            }
         } else {
-            document.getElementById(custom).style.display = 'none';
+            if (val === "Others") {
+                document.getElementById(target).style.display = 'block';
+            } else {
+                document.getElementById(target).style.display = 'none';
+            }
         }
 
-        if (val === "Others") {
-            document.getElementById(target).style.display = 'block';
-        } else {
-            document.getElementById(target).style.display = 'none';
-        }
     }
 </script>
 <?= $this->endSection() ?>
