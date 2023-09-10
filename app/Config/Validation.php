@@ -64,12 +64,13 @@ class Validation extends BaseConfig
         ],
         'phone_number' => [
             'label' => 'Phone Number',
-            'rules' => 'required|max_length[15]|min_length[10]|numeric',
+            'rules' => 'required|max_length[15]|min_length[10]|numeric|is_unique[patients.phone_number]',
             'errors' => [
                 'required' => 'Please enter a {field}',
                 'max_length' => 'Your {field} must not exceed 15 characters',
                 'min_length' => 'Your {field} must be at least 10 characters',
-                'numeric' => 'Please enter a valid {field}'
+                'numeric' => 'Please enter a valid {field}',
+                'is_unique' => '{field} has already been used',
             ]
         ],
         'address' => [
@@ -96,7 +97,7 @@ class Validation extends BaseConfig
         ],
         'email' => [
             'label' => 'Email',
-            'rules' => 'required|valid_email|is_unique[patient.email]',
+            'rules' => 'required|valid_email|is_unique[patients.email]',
             'errors' => [
                 'required' => 'Please enter {field}',
                 'valid_email' => 'Invalid {field}',
