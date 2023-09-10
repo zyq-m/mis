@@ -9,7 +9,7 @@ class DemographicModel extends Model
     protected $table = "demographic";
     protected $primaryKey = "id";
 
-    protected $allowedFields = ['myKad', 'age', 'sex', 'educational_status', 'maritial_status', 'occupation'];
+    protected $allowedFields = ['myKad', 'sex', 'educational_status', 'marital_status', 'occupation'];
 
     public function create($myKad, $age, $sex, $educational_status, $marital_status, $occupation): bool
     {

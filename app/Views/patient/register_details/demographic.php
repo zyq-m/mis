@@ -62,17 +62,17 @@
     <div class="form-row">
 
         <!-- Marital Status -->
-        <div class="form-group col-md-6 <?= (validation_show_error('maritial_status')) ? 'has-error' : '' ?>">
-            <label for="maritial_status">Marital Status</label>
-            <select name="maritial_status" class="custom-select <?= (validation_show_error('maritial_status')) ? 'is-invalid' : '' ?>">
+        <div class="form-group col-md-6 <?= (validation_show_error('marital_status')) ? 'has-error' : '' ?>">
+            <label for="marital_status">Marital Status</label>
+            <select name="marital_status" class="custom-select <?= (validation_show_error('marital_status')) ? 'is-invalid' : '' ?>">
                 <option value="Not set">Choose...</option>
                 <option value="Single">Single</option>
                 <option value="Married">Married</option>
                 <option value="Divorced/Seperated">Divorced/Seperated</option>
                 <option value="Widowed (Spoused died)">Widowed (Spoused died)</option>
             </select>
-            <?php if (validation_show_error('maritial_status')) : ?>
-                <span class="error-message"><?= validation_show_error('maritial_status') ?></span>
+            <?php if (validation_show_error('marital_status')) : ?>
+                <span class="error-message"><?= validation_show_error('marital_status') ?></span>
             <?php endif; ?>
         </div>
         <!-- End Marital Status -->
