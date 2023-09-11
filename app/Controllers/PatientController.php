@@ -45,61 +45,11 @@ class PatientController extends BaseController
         }
 
         $post = $this->request->getPost();
+        $identity = $this->indentityData($post);
+        $demographic = $this->demographicData($post);
+        $clinical = $this->clinicalData($post);
 
-        // Identity data
-        // get img
-        $img = $this->request->getFile('avatar');
-
-        $filePath = null;
-        // store img
-        if ($img->isValid()) {
-            $filepath = $img->store('avatar');
-            $fileInfo = new File($filepath);
-            $filePath = $fileInfo->getPathname();
-        }
-
-        $identity = [
-            'name'          => $post['name'],
-            'email'         => $post['email'],
-            'myKad'         => $post['myKad'],
-            'avatar'        => $filePath,
-            'phone_number'  => $post['phone_number'],
-            'address'       => $post['address'],
-        ];
-
-        // Demographic data
-        $demographic = [
-            'myKad' => $post['myKad'],
-            'sex' => $post['sex'],
-            'race' => $post['other_race'] ? $post['other_race'] : $post['race'],
-            'educational_status' => $post['educational_status'],
-            'marital_status' => $post['marital_status'],
-            'occupation' => $post['other_occupation'] ? $post['other_occupation'] : $post['other_occupation'],
-        ];
-
-        // Clinical data
-        $med_history = $post['med_history'];
-        if (!empty($post['other_med_history'])) {
-            $med_history = $post['other_med_history'];
-        }
-        if (!empty($post['stage'])) {
-            $med_history = 'Kidney disease stage ' . $post['stage'];
-        }
-
-        $metastases = $post['metastases_symptom'];
-        if (!empty($post['other_illness_present'])) {
-            $metastases = $post['other_illness_present'];
-        }
-        if (!empty($post['weight_loss'])) {
-            $metastases =  $post['weight_loss'] . 'kg weight loss';
-        }
-
-        $clinical = [
-            'myKad' => $post['myKad'],
-            'presenting_illness' => $post['other_illness_present'] ? $post['other_illness_present'] : $post['illness_present'],
-            'metastases_symptom' => $metastases,
-            'medical_history' => $med_history
-        ];
+        return var_dump($identity, $demographic, $clinical);
 
         // save data
         $identityModel = model(PatientModel::class);
@@ -110,14 +60,8 @@ class PatientController extends BaseController
             $demographicModel->save($demographic);
             $clinicalModel->save($clinical);
         }
-        return redirect()->back()->with('register_success', 'Patient successfully registered');
-        try {
-        } catch (\Throwable $th) {
 
-            return var_dump($th);
-            //TODO: Remove image in fold
-            return redirect()->back()->with('register_error', 'Registration failed. Patient already been registered');
-        }
+        return redirect()->back()->with('register_success', 'Patient successfully registered');
     }
 
     public function viewPatient($id = 0)
@@ -155,5 +99,68 @@ class PatientController extends BaseController
         $patient->generateFakePatients($value);
 
         return $value . ' has been created';
+    }
+
+    protected function indentityData($post)
+    {
+        // Identity data
+        // get img
+        $img = $this->request->getFile('avatar');
+
+        $filePath = null;
+        // store img
+        if ($img->isValid()) {
+            $filepath = $img->store('avatar');
+            $fileInfo = new File($filepath);
+            $filePath = $fileInfo->getPathname();
+        }
+
+        return [
+            'name'          => $post['name'],
+            'email'         => $post['email'],
+            'myKad'         => $post['myKad'],
+            'avatar'        => $filePath,
+            'phone_number'  => $post['phone_number'],
+            'address'       => $post['address'],
+        ];
+    }
+
+    protected function demographicData($post)
+    {
+        return [
+            'myKad' => $post['myKad'],
+            'sex' => $post['sex'],
+            'race' => $post['other_race'] ? $post['other_race'] : $post['race'],
+            'educational_status' => $post['educational_status'],
+            'marital_status' => $post['marital_status'],
+            'occupation' => $post['other_occupation'] ? $post['other_occupation'] : $post['occupation'],
+        ];
+    }
+
+    protected function clinicalData($post)
+    {
+        // Clinical data
+        $med_history = $post['med_history'];
+        if (!empty($post['other_med_history'])) {
+            $med_history = $post['other_med_history'];
+        }
+        if (!empty($post['stage'])) {
+            $med_history = 'Kidney disease stage ' . $post['stage'];
+        }
+
+        $metastases = $post['metastases_symptom'];
+        if (!empty($post['other_illness_present'])) {
+            $metastases = $post['other_illness_present'];
+        }
+        if (!empty($post['weight_loss'])) {
+            $metastases =  $post['weight_loss'] . 'kg weight loss';
+        }
+
+        return [
+            'myKad' => $post['myKad'],
+            'presenting_illness' => $post['other_illness_present'] ? $post['other_illness_present'] : $post['illness_present'],
+            'metastases_symptom' => $metastases,
+            'medical_history' => $med_history
+        ];
     }
 }
