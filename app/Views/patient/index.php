@@ -37,7 +37,6 @@
                                 <th width="10%">My Kad</th>
                                 <th width="15%">Email</th>
                                 <th width="15%">Phone No.</th>
-                                <th width="40%">Address</th>
                             </tr>
                         </thead>
 
@@ -61,7 +60,6 @@
                                         <td><?= esc($patient['myKad']) ?></td>
                                         <td><?= esc($patient['email']) ?></td>
                                         <td><?= esc($patient['phone_number']) ?></td>
-                                        <td><?= esc($patient['address']) ?></td>
                                     </tr>
 
                                     <?php $no++ ?>
