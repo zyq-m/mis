@@ -10,7 +10,7 @@ class PatientModel extends Model
     protected $table = "patients";
     protected $primaryKey = "id";
 
-    protected $allowedFields = ['name', 'phone_number', 'address', 'avatar', 'myKad', 'email'];
+    protected $allowedFields = ['name', 'phone_number', 'avatar', 'myKad', 'email'];
 
     public function fake()
     {
