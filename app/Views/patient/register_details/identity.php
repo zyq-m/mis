@@ -51,16 +51,4 @@
             <?php endif; ?>
         </div>
     </div>
-
-    <div class="form-row">
-        <!-- Addresss -->
-        <div class="form-group col <?= (validation_show_error('address')) ? 'has-error' : '' ?>">
-            <label for="address">Address</label>
-            <textarea name="address" id="address" rows="3" class="form-control <?= (validation_show_error('address')) ? 'is-invalid' : '' ?>"><?= set_value('address') ?></textarea>
-            <?php if (validation_show_error('address')) : ?>
-                <span class="error-message"><?= validation_show_error('address') ?></span>
-            <?php endif; ?>
-        </div>
-    </div>
-
 </div>
