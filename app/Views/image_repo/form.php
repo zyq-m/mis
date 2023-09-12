@@ -71,10 +71,14 @@
                             <label for="screening_time">Time of Screening</label>
                             <input type="time" name="screening_time" id="screening_time" class="form-control" value="<?= set_value('screening_time') ?>">
                         </div>
+                        <div class="col-md-4 form-group">
+                            <label for="hospital">Hospital</label>
+                            <input type="text" name="hospital" id="hospital" class="form-control" value="<?= set_value('hospital') ?>">
+                        </div>
                     </div>
 
                     <div class="form-row">
-                        <div class="col-md-8">
+                        <div class="col">
                             <label for="description">Description</label>
                             <textarea name="description" id="description" class="form-control" placeholder="Any comments or recomendation" rows="3"><?= set_value('description') ?></textarea>
                         </div>
@@ -84,7 +88,7 @@
                 <div class="card-footer">
                     <div>
                         <button type="reset" class="btn btn-default" id="reset">Cancel</button>
-                        <button type="submit" class="btn btn-primary btn-submit" id="submit" <?= $patient_id ? '' : 'disabled' ?>>Submit</button>
+                        <button type="submit" class="btn btn-primary btn-submit" id="submit" <?= $patient_id ? '' : 'disabled' ?>>Add</button>
                     </div>
                 </div>
             </div>

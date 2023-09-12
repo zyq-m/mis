@@ -21,23 +21,21 @@
             <h4 class="mb-3">Patient Details</h4>
 
             <?php foreach ($patient as $patient_details) : ?>
-                <div class="row">
-                    <div class="col-md-8 form-group">
+                <div class="form-row">
+                    <div class="col-md-6 form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" class="form-control" value="<?= $patient_details['name'] ?>" readonly>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-6 form-group">
                         <label for="ic_no">My Kad</label>
                         <input type="text" id="ic_no" class="form-control" value="<?= $patient_details['myKad'] ?>" readonly>
                     </div>
+                </div>
+                <div class="form-row">
                     <div class="col-md-4 form-group">
                         <label for="gender">Email</label>
                         <input type="text" id="gender" class="form-control" value="<?= $patient_details['email'] ?>" readonly>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-4 form-group">
                         <label for="age">Age</label>
                         <input type="text" id="age" class="form-control" value="<?= '34 years old' ?>" readonly>
