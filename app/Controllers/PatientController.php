@@ -49,8 +49,6 @@ class PatientController extends BaseController
         $demographic = $this->demographicData($post);
         $clinical = $this->clinicalData($post);
 
-        return var_dump($identity, $demographic, $clinical);
-
         // save data
         $identityModel = model(PatientModel::class);
         $demographicModel = model(DemographicModel::class);
@@ -64,24 +62,16 @@ class PatientController extends BaseController
         return redirect()->back()->with('register_success', 'Patient successfully registered');
     }
 
-    public function viewPatient($id = 0)
+    public function viewPatient($myKad)
     {
-        /**
-         * @param string $is_img
-         * Need to be refactored
-         * This line of code will pass image path to
-         * 
-         */
-        $is_img = $this->request->getGet('img');
+        $patient = model(PatientModel::class);
+        $patient_data = $patient->getPatientDetails($myKad);
 
-        if ($is_img) {
-            $session = session();
-            $session->setFlashdata('img', $is_img);
+        if (empty($patient)) {
+            return redirect()->back();
         }
 
-        $patient = model(PatientModel::class);
-        $patient_data = $patient->getPatientDetails($id);
-        $data = ['title' => 'Patient Details', 'patient' => $patient_data, 'id' => $id, 'is_img' => null];
+        $data = ['title' => 'Patient Details', 'patient' => $patient_data];
 
         return view('patient/view', $data);
     }
@@ -121,7 +111,6 @@ class PatientController extends BaseController
             'myKad'         => $post['myKad'],
             'avatar'        => $filePath,
             'phone_number'  => $post['phone_number'],
-            'address'       => $post['address'],
         ];
     }
 
