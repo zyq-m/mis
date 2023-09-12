@@ -53,7 +53,7 @@
                                             <?= $no ?>
                                         </td>
                                         <td>
-                                            <a href="<?= url_to('patient') . '/' . esc($patient['id']) ?>">
+                                            <a href="<?= url_to('patient') . '/' . esc($patient['myKad']) ?>">
                                                 <?= esc($patient['name']) ?>
                                             </a>
                                         </td>
