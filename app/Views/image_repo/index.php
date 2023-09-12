@@ -22,11 +22,10 @@
                     </thead>
                     <tbody>
                         <?php foreach ($images as $image) : ?>
-                            <tr>
+                            <tr id="table-row">
                                 <td scope="row">
-                                    <img src="<?= base_url('image/' . $image['path']) ?>" alt="..." class="img-fluid mr-1" style="height: 20px; object-fit: cover; width: 20px;">
-                                    <a href="<?= base_url('image/' . $image['path']) ?>" target="_blank">
-                                        <?= $image['path'] ?>
+                                    <a href="#">
+                                        <img src="<?= base_url('image/' . $image['path']) ?>" alt="..." class="img-fluid mr-1" style="height: 25px; object-fit: cover; width: 25px;">
                                     </a>
                                 </td>
                                 <td><?= $image['screening_date'] ?></td>
@@ -39,8 +38,26 @@
             </div>
         <?php endif; ?>
     </div>
-
 </div>
+
+<div class="modal fade" role="dialog" id="imgmodal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img class="img-fluid" src="" id="show-img">
+                <p id="modal-taken"></p>
+                <p id="modal-uploaded"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <?= $this->endSection(); ?>
 
@@ -50,9 +67,16 @@
 <script src="<?= base_url('assets/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js') ?>"></script>
 <script src="<?= base_url('assets/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') ?>"></script>
 <script>
+    $(document).ready(function() {
+        $("img").click(function() {
+            const img = $(this).attr('src');
+
+            $("#show-img").attr('src', img);
+            $("#imgmodal").modal('show');
+        });
+    });
     $(function() {
         $('#tblist').DataTable();
-
     });
 </script>
 <?= $this->endSection() ?>
