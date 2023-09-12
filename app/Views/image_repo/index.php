@@ -27,6 +27,7 @@
                                     <a href="#">
                                         <img src="<?= base_url('image/' . $image['path']) ?>" alt="..." class="img-fluid mr-1" style="height: 25px; object-fit: cover; width: 25px;">
                                     </a>
+                                    <?= $image['path'] ?>
                                 </td>
                                 <td><?= $image['screening_date'] ?></td>
                                 <td><?= $image['screening_time'] ?></td>
@@ -43,17 +44,7 @@
 <div class="modal fade" role="dialog" id="imgmodal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal-title"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img class="img-fluid" src="" id="show-img">
-                <p id="modal-taken"></p>
-                <p id="modal-uploaded"></p>
-            </div>
+            <img class="img-fluid" src="" id="show-img">
         </div>
     </div>
 </div>
