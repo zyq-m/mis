@@ -88,7 +88,7 @@
                 <div class="card-footer">
                     <div>
                         <button type="reset" class="btn btn-default" id="reset">Cancel</button>
-                        <button type="submit" class="btn btn-primary btn-submit" id="submit" <?= $patient_id ? '' : 'disabled' ?>>Add</button>
+                        <button type="submit" class="btn btn-primary btn-submit" id="submit" <?= $patient_id ? '' : 'disabled' ?>>Upload</button>
                     </div>
                 </div>
             </div>
