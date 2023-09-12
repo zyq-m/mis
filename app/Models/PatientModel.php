@@ -46,7 +46,7 @@ class PatientModel extends Model
             return $data;
         }
 
-        $data = $this->where(['ic_no' => $id])->find();
+        $data = $this->where(['myKad' => $id])->find();
 
         if (!empty($data)) {
             return $data;
