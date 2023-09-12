@@ -119,4 +119,49 @@ class Validation extends BaseConfig
             ]
         ],
     ];
+
+    public array $upload_img_repo = [
+        'memo_img' => [
+            'label' => 'Image File',
+            'rules' => [
+                'uploaded[memo_img]',
+                'is_image[memo_img]',
+                'mime_in[memo_img,image/jpg,image/jpeg,image/png]',
+                'max_size[memo_img,1000]',
+                // 'max_dims[memo_img,1024,768]',
+            ],
+            'errors' => [
+                'uploaded' => 'Please upload an image',
+                'is_image' => 'Please upload an image',
+                'mime_in' => 'Only JPG, JPEG and PNG images are allowed',
+                'max_size' => 'Your image size exceeds 1000kb',
+            ]
+        ],
+        "screening_date" => [
+            'label' => 'Date of Screening',
+            'rules' => 'required|valid_date',
+            'errors' => [
+                'required' => 'Please select a {field}',
+                'valid_date' => 'Please input a valid date format',
+            ]
+        ],
+        "screening_time" => [
+            'label' => 'Time of Screening',
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Please select a {field}',
+            ]
+        ]
+    ];
+
+    public array $search_patient = [
+        'patient' => [
+            'label' => 'My Kad',
+            'rules' => 'required|numeric',
+            'errors' => [
+                'required' => 'Search your patient first',
+                'numeric' => 'Search a valid {field} '
+            ]
+        ]
+    ];
 }
