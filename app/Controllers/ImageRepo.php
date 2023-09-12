@@ -11,7 +11,6 @@ use CodeIgniter\Files\File;
 class ImageRepo extends BaseController
 {
     protected $helpers = ['form'];
-    protected $validation = \Config\Services::validation();
 
     public function index()
     {
@@ -34,7 +33,8 @@ class ImageRepo extends BaseController
     public function upload()
     {
         // Get validation for memo image
-        $rules = $this->validation->getRuleGroup('upload_img_repo');
+        $validation = \Config\Services::validation();
+        $rules = $validation->getRuleGroup('upload_img_repo');
 
         if (!$this->validate($rules)) {
             return redirect()->back()->withInput();
@@ -65,7 +65,8 @@ class ImageRepo extends BaseController
 
     public function searchPatient()
     {
-        $rules = $this->validation->getRuleGroup('search_patient');
+        $validation = \Config\Services::validation();
+        $rules = $validation->getRuleGroup('search_patient');
 
         $id = $this->request->getGet('patient');
 
