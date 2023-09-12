@@ -34,19 +34,13 @@ class PatientModel extends Model
         }
     }
 
-    public function getPatient($id = null)
+    public function getPatient($myKad = null)
     {
-        if ($id == null) {
+        if ($myKad == null) {
             return $this->findAll();
         }
 
-        $data = $this->where(['id' => $id])->find();
-
-        if (!empty($data)) {
-            return $data;
-        }
-
-        $data = $this->where(['myKad' => $id])->find();
+        $data = $this->where(['myKad' => $myKad])->find();
 
         if (!empty($data)) {
             return $data;
@@ -54,15 +48,16 @@ class PatientModel extends Model
     }
 
     // Get all records related to patient
-    public function getPatientDetails($id = 0)
+    public function getPatientDetails($myKad)
     {
-
-        $profile = $this->getPatient($id);
-        $urine_test = model(UrineTestModel::class)->where(['patient_id' => $id])->find();
-        $img_repo = model(ImageRepoModel::class)->where(['patient_id' => $id])->find();
+        $profile = $this->getPatient($myKad);
+        $demographic = model(DemographicModel::class)->where(['myKad' => $myKad])->find();
+        $urine_test = model(UrineTestModel::class)->where(['myKad' => $myKad])->find();
+        $img_repo = model(ImageRepoModel::class)->where(['myKad' => $myKad])->find();
 
         $data = [
             'profile' => $profile,
+            'demographic' => $demographic,
             'urine_test' => $urine_test,
             'img_repo' => $img_repo
         ];
