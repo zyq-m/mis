@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ImageRepoModel;
+use App\Models\PatientModel;
 
 use App\Controllers\BaseController;
 use CodeIgniter\Files\File;
@@ -10,6 +11,7 @@ use CodeIgniter\Files\File;
 class ImageRepo extends BaseController
 {
     protected $helpers = ['form'];
+    protected $validation = \Config\Services::validation();
 
     public function index()
     {
@@ -32,41 +34,9 @@ class ImageRepo extends BaseController
     public function upload()
     {
         // Get validation for memo image
-        $validationRule = [
-            'memo_img' => [
-                'label' => 'Image File',
-                'rules' => [
-                    'uploaded[memo_img]',
-                    'is_image[memo_img]',
-                    'mime_in[memo_img,image/jpg,image/jpeg,image/png]',
-                    'max_size[memo_img,1000]',
-                    // 'max_dims[memo_img,1024,768]',
-                ],
-                'errors' => [
-                    'uploaded' => 'Please upload an image',
-                    'is_image' => 'Please upload an image',
-                    'mime_in' => 'Only JPG, JPEG and PNG images are allowed',
-                    'max_size' => 'Your image size exceeds 1000kb',
-                ]
-            ],
-            "screening_date" => [
-                'label' => 'Date of Screening',
-                'rules' => 'required|valid_date',
-                'errors' => [
-                    'required' => 'Please select a {field}',
-                    'valid_date' => 'Please input a valid date format',
-                ]
-            ],
-            "screening_time" => [
-                'label' => 'Time of Screening',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Please select a {field}',
-                ]
-            ]
-        ];
+        $rules = $this->validation->getRuleGroup('upload_img_repo');
 
-        if (!$this->validate($validationRule)) {
+        if (!$this->validate($rules)) {
             return redirect()->back()->withInput();
         }
 
@@ -95,22 +65,13 @@ class ImageRepo extends BaseController
 
     public function searchPatient()
     {
-        $rules = [
-            'patient' => [
-                'rules' => 'required|numeric',
-                'errors' => [
-                    'required' => 'Search your patient first.',
-                    'numeric' => 'Search a valid IC No. '
-                ]
-            ]
-        ];
+        $rules = $this->validation->getRuleGroup('search_patient');
 
         $id = $this->request->getGet('patient');
 
         if (!$this->validate($rules)) {
             return redirect()->back()->withInput();
         }
-
 
         $patient = model(PatientModel::class);
         $patient_details = $patient->getPatient($id);
