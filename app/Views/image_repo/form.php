@@ -51,9 +51,9 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h3 class="mb-3">Image Details</h3>
+                    <h4 class="mb-3">Image Details</h4>
 
-                    <div class="row">
+                    <div class="form-row">
                         <div class="col-md-4 form-group">
                             <input type="file" name="memo_img[]" id="memo_img" multiple>
                         </div>
@@ -62,7 +62,7 @@
                         <?php endif; ?>
                     </div>
 
-                    <div class="row">
+                    <div class="form-row">
                         <div class="col-md-4 form-group">
                             <label for="screening_date">Date of Screening</label>
                             <input type="date" name="screening_date" id="screening_date" class="form-control" value="<?= set_value('screening_date') ?>">
@@ -73,7 +73,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="form-row">
                         <div class="col-md-8">
                             <label for="description">Description</label>
                             <textarea name="description" id="description" class="form-control" placeholder="Any comments or recomendation" rows="3"><?= set_value('description') ?></textarea>

@@ -4,7 +4,7 @@
 <?php if (empty($patient)) : ?>
     <form action="<?= base_url($route) ?>" method="get" class="form-group">
         <div class="input-group">
-            <input type="search" id="patient" name="patient" class="form-control <?= validation_show_error('patient') || $session->getFlashdata('error') ? 'is-invalid' : '' ?>" placeholder="Search patient by IC No." value="<?= set_value("patient") ?>">
+            <input type="search" id="patient" name="patient" class="form-control <?= validation_show_error('patient') || $session->getFlashdata('error') ? 'is-invalid' : '' ?>" placeholder="Search patient by MyKad" value="<?= set_value("patient") ?>">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="submit">Search</button>
             </span>
@@ -18,7 +18,7 @@
     <div class="card">
         <div class="card-body">
 
-            <h3 class="mb-3">Patient Details</h3>
+            <h4 class="mb-3">Patient Details</h4>
 
             <?php foreach ($patient as $patient_details) : ?>
                 <div class="row">
@@ -29,12 +29,12 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4 form-group">
-                        <label for="ic_no">IC No.</label>
-                        <input type="text" id="ic_no" class="form-control" value="<?= $patient_details['ic_no'] ?>" readonly>
+                        <label for="ic_no">My Kad</label>
+                        <input type="text" id="ic_no" class="form-control" value="<?= $patient_details['myKad'] ?>" readonly>
                     </div>
                     <div class="col-md-4 form-group">
-                        <label for="gender">Gender</label>
-                        <input type="text" id="gender" class="form-control" value="<?= $patient_details['gender'] ?>" readonly>
+                        <label for="gender">Email</label>
+                        <input type="text" id="gender" class="form-control" value="<?= $patient_details['email'] ?>" readonly>
                     </div>
                 </div>
                 <div class="row">

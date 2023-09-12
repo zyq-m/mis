@@ -10,13 +10,12 @@
 <div class="card">
     <div class="card-body">
         <?php if (!empty($images)) : ?>
-            <div class="table-responsive">
+            <div class="table-responsive-xl">
                 <table class="table table-borderless table-hover" id="tblist">
                     <thead>
                         <tr>
-                            <th scope="col">Name</th>
+                            <th scope="col" style="padding-left: 44px;">Name</th>
                             <th scope="col">Date taken</th>
-                            <th scope="col">Time</th>
                             <th scope="col">Date uploaded</th>
                         </tr>
                     </thead>
@@ -29,8 +28,7 @@
                                     </a>
                                     <?= $image['path'] ?>
                                 </td>
-                                <td><?= $image['screening_date'] ?></td>
-                                <td><?= $image['screening_time'] ?></td>
+                                <td><?= $image['screening_date'] . $image['screening_time'] ?></td>
                                 <td class="text-muted"><?= $image['time_stamp'] ?></td>
                             </tr>
                         <?php endforeach ?>
