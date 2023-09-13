@@ -68,4 +68,6 @@
     </div>
 </div>
 
+<?= $this->include('components/imageModal') ?>
+
 <?= $this->endSection(); ?>

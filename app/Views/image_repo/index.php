@@ -39,14 +39,7 @@
     </div>
 </div>
 
-<div class="modal fade" role="dialog" id="imgmodal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <img class="img-fluid" src="" id="show-img">
-        </div>
-    </div>
-</div>
-
+<?= $this->include('components/imageModal') ?>
 
 <?= $this->endSection(); ?>
 
@@ -56,14 +49,6 @@
 <script src="<?= base_url('assets/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js') ?>"></script>
 <script src="<?= base_url('assets/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') ?>"></script>
 <script>
-    $(document).ready(function() {
-        $("img").click(function() {
-            const img = $(this).attr('src');
-
-            $("#show-img").attr('src', img);
-            $("#imgmodal").modal('show');
-        });
-    });
     $(function() {
         $('#tblist').DataTable();
     });
