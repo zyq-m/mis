@@ -208,9 +208,4 @@ class PatientController extends BaseController
             'medical_history' => $med_history
         ];
     }
-
-    protected function json($data)
-    {
-        return "<pre>" . json_encode($data, JSON_PRETTY_PRINT) . "</pre>";
-    }
 }
