@@ -37,7 +37,7 @@
         </div>
         <div class="card-footer">
             <div>
-                <button type="reset" class="btn btn-default" id="reset">Cancel</button>
+                <a class="btn btn-default" href="<?= base_url('patient') ?>">Cancel</a>
                 <button type="submit" class="btn btn-primary btn-submit" id="submit">Save</button>
             </div>
         </div>
