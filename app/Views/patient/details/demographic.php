@@ -5,6 +5,10 @@
             <p class="col"><?= $patient_details['sex'] ?></p>
         </div>
         <div class="row">
+            <p class="col-md-2 mb-0 mb-sm-auto">Race</p>
+            <p class="col"><?= $patient_details['race'] ?></p>
+        </div>
+        <div class="row">
             <p class="col-md-2 mb-0 mb-sm-auto">Educational status</p>
             <p class="col"><?= $patient_details['educational_status'] ?></p>
         </div>
