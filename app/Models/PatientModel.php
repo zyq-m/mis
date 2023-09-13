@@ -55,6 +55,15 @@ class PatientModel extends Model
         $urine_test = model(UrineTestModel::class)->where(['myKad' => $myKad])->find();
         $img_repo = model(ImageRepoModel::class)->where(['myKad' => $myKad])->find();
 
+        $patient = $this->select('*')
+            ->join('clinical_history', 'clinical_history.myKad = patients.myKad')
+            ->join('demographic', 'demographic.myKad = patients.myKad')
+            ->join('urine_test', 'urine_test.myKad = patients.myKad')
+            ->join('image_repo', 'image_repo.myKad = patients.myKad')
+            ->where('patients.myKad', $myKad)
+            ->find();
+
+        // return $patient;
         $data = [
             'profile' => $profile,
             'demographic' => $demographic,
