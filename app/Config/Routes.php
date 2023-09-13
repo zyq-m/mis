@@ -84,6 +84,8 @@ $routes->get('patient', 'PatientController::index');
 $routes->get('patient/(:num)', [PatientController::class, 'viewPatient']);
 $routes->get('patient/register', 'PatientController::addPatient');
 $routes->post('patient/register', 'PatientController::addPatient');
+$routes->get('patient/edit/(:num)', [PatientController::class, 'editPatient']);
+$routes->post('patient/edit/(:num)', [PatientController::class, 'editPatient']);
 
 /**
  * REST API
