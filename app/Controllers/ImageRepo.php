@@ -84,7 +84,7 @@ class ImageRepo extends BaseController
             return redirect()->back()->with('error', 'Patient not found');
         }
 
-        $data['patient_id'] = $patient_details[0]['id'];
+        $data['patient_id'] = $patient_details[0]['myKad'];
 
         return view('image_repo/form', $data);
     }
