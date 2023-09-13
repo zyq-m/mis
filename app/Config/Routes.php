@@ -47,7 +47,7 @@ $routes->post('urine_test', 'UrineTest::submitForm');
 
 $routes->get('image_repo', 'ImageRepo::index');
 $routes->get('image_repo/form', 'ImageRepo::form');
-$routes->get('image_repo/patient', 'ImageRepo::searchpatient');
+$routes->get('image_repo/patient', 'ImageRepo::searchPatient');
 $routes->post('image_repo/upload', 'ImageRepo::upload');
 
 // $routes->get('/dashboard', 'Dashboard::index');
