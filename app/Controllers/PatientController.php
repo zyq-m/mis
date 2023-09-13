@@ -76,6 +76,62 @@ class PatientController extends BaseController
         return view('patient/view', $data);
     }
 
+    public function editPatient($myKad = 0)
+    {
+        $patientModel = model(PatientModel::class);
+        $clinicalModel = model(ClinicalHistroyModel::class);
+        $demographicModel = model(DemographicModel::class);
+
+        // Load data from db
+        if ($this->request->is('get')) {
+            $join = $patientModel->select('*')->join('clinical_history', 'clinical_history.myKad = patients.myKad')
+                ->join('demographic', 'demographic.myKad = patients.myKad')
+                ->where('patients.myKad', $myKad)
+                ->find();
+
+            $data = ['title' => 'Edit patient', 'patient' => $join];
+
+            return view('/patient/edit', $data);
+        }
+
+        if ($this->request->is('post')) {
+            // data validation
+            $validation = \Config\Services::validation();
+            $rules = $validation->getRuleGroup('register_patient');
+
+            // if (!$this->validate($rules)) {
+            //     return redirect()->back()->withInput();
+            // }
+
+            $post = $this->request->getPost();
+            $identity = $this->indentityData($post);
+            $demographic = $this->demographicData($post);
+            $clinical = $this->clinicalData($post);
+
+            // return $this->json($demographic);
+
+
+            $patientModel
+                ->set($identity)
+                ->where(['myKad' => $myKad])
+                ->update();
+            $demographicModel
+                ->set($demographic)
+                ->where(['myKad' => $myKad])
+                ->update();
+            $clinicalModel
+                ->set($clinical)
+                ->where(['myKad' => $myKad])
+                ->update();
+
+            return redirect()->back()->with('register_success', 'Patient successfully updated');
+        }
+
+        return redirect()->back();
+    }
+
+
+    // HELPER FUNCTIONS
     public function fakePatient()
     {
         $patient = model(PatientModel::class);
@@ -151,5 +207,10 @@ class PatientController extends BaseController
             'metastases_symptom' => $metastases,
             'medical_history' => $med_history
         ];
+    }
+
+    protected function json($data)
+    {
+        return "<pre>" . json_encode($data, JSON_PRETTY_PRINT) . "</pre>";
     }
 }
