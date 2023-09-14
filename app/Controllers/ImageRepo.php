@@ -52,6 +52,7 @@ class ImageRepo extends BaseController
 
                     // Store path in database
                     $imageRepo = model(ImageRepoModel::class);
+                    $formData['name'] = $fileName;
                     $formData['path'] = $fileInfo->getPathname();
                     $imageRepo->save($formData);
                 }
