@@ -1,9 +1,17 @@
 <?= $this->section("stylesheet"); ?>
 <style>
     .img-file {
-        height: 25rem;
+        height: 20rem;
         object-fit: contain;
-        width: 25rem
+        width: 20rem
+    }
+
+    .file-card {
+        width: 20rem;
+    }
+
+    .file-card:hover {
+        background-color: #e4e4e4;
     }
 </style>
 <?= $this->endSection() ?>
@@ -14,11 +22,11 @@
 <div class="card">
     <div class="card-body">
         <?php if (!empty($images)) : ?>
-            <div class="row">
+            <div class="row px-2 justify-content-center justify-content-md-start" style="gap: 2rem;">
                 <?php foreach ($images as $image) : ?>
-                    <div class="col-sm">
-                        <img src="<?= base_url('image/' . $image['path']) ?>" alt="..." class="img-fluid img-file">
-                        <div><?= $image['name'] ?></div>
+                    <div class="col-auto file-card pl-0 pr-0">
+                        <img src="<?= base_url('image/' . $image['path']) ?>" alt="..." class="img-file">
+                        <div class="text-center text-muted text-sm"><?= $image['name'] ?></div>
                     </div>
                 <?php endforeach ?>
             </div>
@@ -39,10 +47,6 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section("scripts"); ?>
-<script src="<?= base_url('assets/v3/plugins/datatables/jquery.dataTables.min.js') ?>"></script>
-<script src="<?= base_url('assets/v3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
-<script src="<?= base_url('assets/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js') ?>"></script>
-<script src="<?= base_url('assets/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') ?>"></script>
 <script>
     $(document).ready(function() {
         $("img").click(function() {
