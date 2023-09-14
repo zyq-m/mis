@@ -47,7 +47,7 @@ $routes->post('urine_test', 'UrineTest::submitForm');
 
 $routes->get('image_repo', 'ImageRepo::index');
 $routes->get('image_repo/form', 'ImageRepo::form');
-$routes->get('image_repo/patient', 'ImageRepo::searchpatient');
+$routes->get('image_repo/patient', 'ImageRepo::searchPatient');
 $routes->post('image_repo/upload', 'ImageRepo::upload');
 
 // $routes->get('/dashboard', 'Dashboard::index');
@@ -84,6 +84,8 @@ $routes->get('patient', 'PatientController::index');
 $routes->get('patient/(:num)', [PatientController::class, 'viewPatient']);
 $routes->get('patient/register', 'PatientController::addPatient');
 $routes->post('patient/register', 'PatientController::addPatient');
+$routes->get('patient/edit/(:num)', [PatientController::class, 'editPatient']);
+$routes->post('patient/edit/(:num)', [PatientController::class, 'editPatient']);
 
 /**
  * REST API

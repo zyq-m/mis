@@ -27,8 +27,8 @@
                         <input type="text" id="name" class="form-control" value="<?= $patient_details['name'] ?>" readonly>
                     </div>
                     <div class="col-md-6 form-group">
-                        <label for="ic_no">My Kad</label>
-                        <input type="text" id="ic_no" class="form-control" value="<?= $patient_details['myKad'] ?>" readonly>
+                        <label for="myKad">My Kad</label>
+                        <input type="text" id="myKad" class="form-control" value="<?= $patient_details['myKad'] ?>" readonly>
                     </div>
                 </div>
                 <div class="form-row">

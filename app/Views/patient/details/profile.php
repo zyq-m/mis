@@ -1,28 +1,21 @@
 <?php foreach ($patient['profile'] as $patient_details) : ?>
-    <div class="row mt-4">
-        <div class="col-sm-4 col-md-3 pr-md-4 mb-4">
-            <img src="<?= $patient_details['avatar'] ?>" alt="" class="img-fluid rounded">
+    <div class="row mb-4">
+        <div class="px-2">
+            <img src="<?= $patient_details['avatar'] ?>" alt="" class="img-fluid rounded" style="height: 10rem; object-fit: cover; width: 14rem;">
         </div>
-        <div class="col">
-            <div class="row mb-3">
-                <div class="col-md-2 font-weight-bold">Name</div>
-                <div class="col-md-6"><?= $patient_details['name'] ?></div>
+        <div class="col-md">
+            <h3 class="mt-4 mb-3 mt-sm-0"><?= $patient_details['name'] ?></h3>
+            <div class="row">
+                <p class="col-md-2 mb-0 mb-sm-auto">My Kad</p>
+                <p class="col"><?= $patient_details['myKad'] ?></p>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-2 font-weight-bold">IC No.</div>
-                <div class="col-md-6"><?= $patient_details['myKad'] ?></div>
+            <div class="row">
+                <p class="col-md-2 mb-0 mb-sm-auto">Email</p>
+                <p class="col"><?= $patient_details['email'] or "email" ?></p>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-2 font-weight-bold">Email</div>
-                <div class="col-md-6"><?= $patient_details['email'] ?></div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-2 font-weight-bold">Phone No.</div>
-                <div class="col-md-6"><?= $patient_details['phone_number'] ?></div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-2 font-weight-bold">Address</div>
-                <div class="col-md-6"><?= $patient_details['address'] ?></div>
+            <div class="row">
+                <p class="col-md-2 mb-0 mb-sm-auto">Phone Number</p>
+                <p class="col"><?= $patient_details['phone_number'] ?></p>
             </div>
         </div>
     </div>

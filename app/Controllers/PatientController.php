@@ -49,8 +49,6 @@ class PatientController extends BaseController
         $demographic = $this->demographicData($post);
         $clinical = $this->clinicalData($post);
 
-        return var_dump($identity, $demographic, $clinical);
-
         // save data
         $identityModel = model(PatientModel::class);
         $demographicModel = model(DemographicModel::class);
@@ -64,28 +62,73 @@ class PatientController extends BaseController
         return redirect()->back()->with('register_success', 'Patient successfully registered');
     }
 
-    public function viewPatient($id = 0)
+    public function viewPatient($myKad)
     {
-        /**
-         * @param string $is_img
-         * Need to be refactored
-         * This line of code will pass image path to
-         * 
-         */
-        $is_img = $this->request->getGet('img');
+        $patient = model(PatientModel::class);
+        $patient_data = $patient->getPatientDetails($myKad);
 
-        if ($is_img) {
-            $session = session();
-            $session->setFlashdata('img', $is_img);
+        if (empty($patient)) {
+            return redirect()->back();
         }
 
-        $patient = model(PatientModel::class);
-        $patient_data = $patient->getPatientDetails($id);
-        $data = ['title' => 'Patient Details', 'patient' => $patient_data, 'id' => $id, 'is_img' => null];
+        $data = ['title' => 'Patient Details', 'patient' => $patient_data];
 
         return view('patient/view', $data);
     }
 
+    public function editPatient($myKad = 0)
+    {
+        $patientModel = model(PatientModel::class);
+        $clinicalModel = model(ClinicalHistroyModel::class);
+        $demographicModel = model(DemographicModel::class);
+
+        // Load data from db
+        if ($this->request->is('get')) {
+            $join = $patientModel->select('*')->join('clinical_history', 'clinical_history.myKad = patients.myKad')
+                ->join('demographic', 'demographic.myKad = patients.myKad')
+                ->where('patients.myKad', $myKad)
+                ->find();
+
+            $data = ['title' => 'Edit patient', 'patient' => $join];
+
+            return view('/patient/edit', $data);
+        }
+
+        if ($this->request->is('post')) {
+            // data validation
+            $validation = \Config\Services::validation();
+            $rules = $validation->getRuleGroup('register_patient');
+
+            if (!$this->validate($rules)) {
+                return redirect()->back()->withInput();
+            }
+
+            $post = $this->request->getPost();
+            $identity = $this->indentityData($post);
+            $demographic = $this->demographicData($post);
+            $clinical = $this->clinicalData($post);
+
+            $patientModel
+                ->set($identity)
+                ->where(['myKad' => $myKad])
+                ->update();
+            $demographicModel
+                ->set($demographic)
+                ->where(['myKad' => $myKad])
+                ->update();
+            $clinicalModel
+                ->set($clinical)
+                ->where(['myKad' => $myKad])
+                ->update();
+
+            return redirect()->back()->with('register_success', 'Patient successfully updated');
+        }
+
+        return redirect()->back();
+    }
+
+
+    // HELPER FUNCTIONS
     public function fakePatient()
     {
         $patient = model(PatientModel::class);
@@ -121,7 +164,6 @@ class PatientController extends BaseController
             'myKad'         => $post['myKad'],
             'avatar'        => $filePath,
             'phone_number'  => $post['phone_number'],
-            'address'       => $post['address'],
         ];
     }
 

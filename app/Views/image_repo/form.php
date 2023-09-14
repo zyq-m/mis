@@ -1,8 +1,8 @@
 <?= $this->extend("template/layout") ?>
 
 <?= $this->section('stylesheet') ?>
-<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
-<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
+<link href="<?= base_url('node_modules/filepond/dist/filepond.css') ?>" rel="stylesheet" />
+<link href="<?= base_url('node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css') ?>" rel="stylesheet" />
 
 <style>
     /**
@@ -46,7 +46,7 @@
         <form action="<?= url_to('image_repo/upload') ?>" method="post" class="form-horizontal ui raised segment" enctype="multipart/form-data" id="imageUploadForm">
             <?= csrf_field() ?>
 
-            <input type="hidden" name="patient_id" value="<?= $patient_id ?>">
+            <input type="hidden" name="myKad" value="<?= $patient_id ?>">
 
             <div class="card">
                 <div class="card-body">
@@ -99,9 +99,13 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('scripts') ?>
-<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+<!-- <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-<script src="https://unpkg.com/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.js"></script> -->
+
+<script src="<?= base_url('node_modules/filepond/dist/filepond.js') ?>"></script>
+<script src="<?= base_url('node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js') ?>"></script>
+<script src="<?= base_url('node_modules/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js') ?>"></script>
 <script type="module">
     const inputElement = document.querySelector('#memo_img');
 

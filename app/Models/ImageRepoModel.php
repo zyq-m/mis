@@ -9,7 +9,7 @@ class ImageRepoModel extends Model
     protected $table = "image_repo";
     protected $primaryKey = "id";
 
-    protected $allowedFields = ['name', 'path', 'descriptions', 'screening_date', 'screening_time', 'patient_id', 'hospital'];
+    protected $allowedFields = ['name', 'path', 'descriptions', 'screening_date', 'screening_time', 'myKad', 'hospital'];
 
     public function fake()
     {

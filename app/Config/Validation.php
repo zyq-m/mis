@@ -73,13 +73,6 @@ class Validation extends BaseConfig
                 'is_unique' => '{field} has already been used',
             ]
         ],
-        'address' => [
-            'label' => 'Address',
-            'rules' => 'required',
-            'errors' => [
-                'required' => 'Please enter a {field}',
-            ]
-        ],
         'avatar' => [
             'label' => 'Avatar',
             'rules' => [
