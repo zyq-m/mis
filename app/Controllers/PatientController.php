@@ -99,17 +99,14 @@ class PatientController extends BaseController
             $validation = \Config\Services::validation();
             $rules = $validation->getRuleGroup('register_patient');
 
-            // if (!$this->validate($rules)) {
-            //     return redirect()->back()->withInput();
-            // }
+            if (!$this->validate($rules)) {
+                return redirect()->back()->withInput();
+            }
 
             $post = $this->request->getPost();
             $identity = $this->indentityData($post);
             $demographic = $this->demographicData($post);
             $clinical = $this->clinicalData($post);
-
-            // return $this->json($demographic);
-
 
             $patientModel
                 ->set($identity)
