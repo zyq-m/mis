@@ -1,7 +1,11 @@
 <?= $this->section("stylesheet"); ?>
-<link rel="stylesheet" href="<?= base_url('assets/v3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') ?>">
-<link rel="stylesheet" href="<?= base_url('assets/v3/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>">
-<link rel="stylesheet" href="<?= base_url('assets/v3/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') ?>">
+<style>
+    .img-file {
+        height: 25rem;
+        object-fit: contain;
+        width: 25rem
+    }
+</style>
 <?= $this->endSection() ?>
 
 <?= $this->extend("template/layout"); ?>
@@ -10,33 +14,17 @@
 <div class="card">
     <div class="card-body">
         <?php if (!empty($images)) : ?>
-            <div class="table-responsive-xl">
-                <table class="table table-borderless table-hover" id="tblist">
-                    <thead>
-                        <tr>
-                            <th scope="col" style="padding-left: 44px;">Name</th>
-                            <th scope="col">Date taken</th>
-                            <th scope="col">Date uploaded</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($images as $image) : ?>
-                            <tr id="table-row">
-                                <td scope="row">
-                                    <a href="#">
-                                        <img src="<?= base_url('image/' . $image['path']) ?>" alt="..." class="img-fluid mr-1" style="height: 25px; object-fit: cover; width: 25px;">
-                                    </a>
-                                    <?= $image['path'] ?>
-                                </td>
-                                <td><?= $image['screening_date'] . $image['screening_time'] ?></td>
-                                <td class="text-muted"><?= $image['time_stamp'] ?></td>
-                            </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
+            <div class="row">
+                <?php foreach ($images as $image) : ?>
+                    <div class="col-sm">
+                        <img src="<?= base_url('image/' . $image['path']) ?>" alt="..." class="img-fluid img-file">
+                        <div><?= $image['name'] ?></div>
+                    </div>
+                <?php endforeach ?>
             </div>
         <?php endif; ?>
     </div>
+</div>
 </div>
 
 <div class="modal fade" role="dialog" id="imgmodal">
@@ -63,9 +51,6 @@
             $("#show-img").attr('src', img);
             $("#imgmodal").modal('show');
         });
-    });
-    $(function() {
-        $('#tblist').DataTable();
     });
 </script>
 <?= $this->endSection() ?>
