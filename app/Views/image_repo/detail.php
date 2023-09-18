@@ -54,7 +54,7 @@
     </div>
     <div class="card-body">
         <?php if (!empty($images)) : ?>
-            <div class="row justify-content-center justify-content-md-start" style="gap: 2rem;">
+            <div class="row justify-content-center justify-content-md-start" style="gap: 1.5rem;">
                 <?php foreach ($images as $image) : ?>
                     <div class="col-auto file-card pl-0 pr-0">
                         <img loading="lazy" src="<?= base_url('image/' . $image['path']) ?>" alt="..." class="img-file">
