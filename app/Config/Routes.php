@@ -49,6 +49,7 @@ $routes->get('image_repo', 'ImageRepo::index');
 $routes->get('image_repo/form', 'ImageRepo::form');
 $routes->get('image_repo/patient', 'ImageRepo::searchPatient');
 $routes->post('image_repo/upload', 'ImageRepo::upload');
+$routes->get('image_repo/patient/(:segment)', [ImageRepo::class, 'searchFile']);
 
 // $routes->get('/dashboard', 'Dashboard::index');
 

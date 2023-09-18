@@ -15,7 +15,10 @@ class ImageRepo extends BaseController
     public function index()
     {
         $imageRepo = model(ImageRepoModel::class);
-        $images = $imageRepo->findAll();
+        $images = $imageRepo->select('patients.name, patients.myKad')
+            ->join('patients', 'patients.myKad = image_repo.myKad')
+            ->groupBy('patients.name,patients.myKad')
+            ->findAll();
 
         $data = ['title' => 'Image Repository', 'images' => $images];
 
@@ -52,6 +55,7 @@ class ImageRepo extends BaseController
 
                     // Store path in database
                     $imageRepo = model(ImageRepoModel::class);
+                    $formData['file_name'] = $fileName;
                     $formData['path'] = $fileInfo->getPathname();
                     $imageRepo->save($formData);
                 }
@@ -87,6 +91,25 @@ class ImageRepo extends BaseController
         $data['patient_id'] = $patient_details[0]['myKad'];
 
         return view('image_repo/form', $data);
+    }
+
+    public function searchFile($mykad = null)
+    {
+        $imgModel = model(ImageRepoModel::class);
+
+        // Get all image & user detail
+        $data['images'] = $imgModel
+            ->select('*')
+            ->join('patients', 'patients.myKad = image_repo.myKad')
+            ->where(['patients.myKad' => $mykad])
+            ->find();
+
+        if (empty($data)) {
+            return redirect()->back()->withInput();
+        }
+
+        $data['title'] = "Image Repository";
+        return view('image_repo/detail', $data);
     }
 
     public function fakeImageRepo()

@@ -55,15 +55,6 @@
 
                     <div class="form-row">
                         <div class="col-md-4 form-group">
-                            <input type="file" name="memo_img[]" id="memo_img" multiple>
-                        </div>
-                        <?php if (validation_show_error('memo_img')) : ?>
-                            <span class="error-message"><?= validation_show_error('memo_img') ?></span>
-                        <?php endif; ?>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="col-md-4 form-group">
                             <label for="screening_date">Date of Screening</label>
                             <input type="date" name="screening_date" id="screening_date" class="form-control" value="<?= set_value('screening_date') ?>">
                         </div>
@@ -78,10 +69,20 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="col">
+                        <div class="col form-group">
                             <label for="description">Description</label>
                             <textarea name="description" id="description" class="form-control" placeholder="Any comments or recomendation" rows="3"><?= set_value('description') ?></textarea>
                         </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 form-group">
+                            <label for="memo_img">Upload memogram</label>
+                            <input type="file" name="memo_img[]" id="memo_img" multiple>
+                        </div>
+                        <?php if (validation_show_error('memo_img')) : ?>
+                            <span class="error-message"><?= validation_show_error('memo_img') ?></span>
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -99,14 +100,10 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('scripts') ?>
-<!-- <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
-<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-<script src="https://unpkg.com/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.js"></script> -->
-
 <script src="<?= base_url('node_modules/filepond/dist/filepond.js') ?>"></script>
 <script src="<?= base_url('node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js') ?>"></script>
-<script src="<?= base_url('node_modules/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js') ?>"></script>
-<script type="module">
+<script src="<?= base_url('node_modules/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.js') ?>"></script>
+<script>
     const inputElement = document.querySelector('#memo_img');
 
     FilePond.registerPlugin(

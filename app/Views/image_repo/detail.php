@@ -24,20 +24,25 @@
         <div class="row justify-content-between align-items-center">
             <nav aria-label="breadcrumb" class="col-3">
                 <ol class="breadcrumb p-0 m-0 bg-white">
-                    <li class="breadcrumb-item active" aria-current="page"> All </li>
+                    <li class="breadcrumb-item" aria-current="page">
+                        <a href="<?= base_url('image_repo') ?>">
+                            All
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"><?= !empty($images) ? $images[0]['name'] : 'Not found' ?></li>
                 </ol>
             </nav>
             <div class="row">
-                <div>
+                <form action="" method="get">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </span>
                         </div>
-                        <input type="search" name="input" id="input" onkeyup="onSearch()" class="form-control" placeholder="Search for file..">
+                        <input type="search" name="" id="" class="form-control" placeholder="Search for file..">
                     </div>
-                </div>
+                </form>
                 <div class="col-auto">
                     <a href="<?= base_url('image_repo/form') ?>" class="btn btn-primary">
                         <i class="fa fa-plus"></i>
@@ -51,12 +56,10 @@
         <?php if (!empty($images)) : ?>
             <div class="row justify-content-center justify-content-md-start" style="gap: 1.5rem;">
                 <?php foreach ($images as $image) : ?>
-                    <a href="<?= base_url('image_repo/patient/' . $image['myKad']) ?>" id="output">
-                        <div class="col-auto file-card pl-0 pr-0 row justify-content-center">
-                            <i class="col-auto fa-solid fa-folder" style="font-size: 14rem;"></i>
-                            <div class="col-auto text-center text-muted text-sm mt-2" id="target"><?= $image['name'] ?></div>
-                        </div>
-                    </a>
+                    <div class="col-auto file-card pl-0 pr-0">
+                        <img loading="lazy" src="<?= base_url('image/' . $image['path']) ?>" alt="..." class="img-file">
+                        <div class="text-center text-muted text-sm mt-2"><?= $image['file_name'] ?></div>
+                    </div>
                 <?php endforeach ?>
             </div>
         <?php endif; ?>
@@ -84,22 +87,5 @@
             $("#imgmodal").modal('show');
         });
     });
-
-    function onSearch() {
-        const input = document.getElementById('input');
-        const filter = input.value.toUpperCase();
-        const target = document.querySelectorAll("#target");
-        const output = document.querySelectorAll("#output");
-
-        // Loop through all list items, and hide those who don't match the search query
-        for (i = 0; i < target.length; i++) {
-            let targetTxt = target[i].textContent || target[i].innerHTML;
-            if (targetTxt.toUpperCase().indexOf(filter) > -1) {
-                output[i].style.display = "";
-            } else {
-                output[i].style.display = "none";
-            }
-        }
-    }
 </script>
 <?= $this->endSection() ?>
