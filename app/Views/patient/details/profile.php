@@ -1,7 +1,7 @@
 <?php foreach ($patient['profile'] as $patient_details) : ?>
     <div class="row mb-4">
         <div class="px-2">
-            <img src="<?= $patient_details['avatar'] ?>" alt="" class="img-fluid rounded" style="height: 10rem; object-fit: cover; width: 14rem;">
+            <img src="<?= !empty($patient_details['avatar']) ? base_url($patient_details['avatar']) : base_url('assets/images/default-profile.jpg') ?>" alt="" class="img-fluid rounded" style="height: 10rem; object-fit: cover; width: 14rem;">
         </div>
         <div class="col-md">
             <h3 class="mt-4 mb-3 mt-sm-0"><?= $patient_details['name'] ?></h3>
