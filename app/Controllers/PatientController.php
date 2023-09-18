@@ -97,7 +97,7 @@ class PatientController extends BaseController
         if ($this->request->is('post')) {
             // data validation
             $validation = \Config\Services::validation();
-            $rules = $validation->getRuleGroup('register_patient');
+            $rules = $validation->getRuleGroup('edit_patient');
 
             if (!$this->validate($rules)) {
                 return redirect()->back()->withInput();
@@ -149,6 +149,15 @@ class PatientController extends BaseController
         // Identity data
         // get img
         $img = $this->request->getFile('avatar');
+
+        if (!$img) {
+            return [
+                'name'          => $post['name'],
+                'email'         => $post['email'],
+                'myKad'         => $post['myKad'],
+                'phone_number'  => $post['phone_number'],
+            ];
+        }
 
         $filePath = null;
         // store img
