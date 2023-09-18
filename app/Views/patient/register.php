@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="card-footer px-4">
-            <div class="row justify-content-end">
+            <div class="row">
                 <div class="col-auto">
                     <button type="reset" class="btn btn-default" id="reset">Cancel</button>
                     <button type="submit" class="btn btn-primary btn-submit" id="submit">Add</button>
