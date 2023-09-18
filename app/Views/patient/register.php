@@ -1,17 +1,5 @@
 <?= $this->extend("template/layout"); ?>
 
-<?= $this->section("stylesheet"); ?>
-<link href="<?= base_url('node_modules/filepond/dist/filepond.css') ?>" rel="stylesheet" />
-<link href="<?= base_url('node_modules/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css') ?>" rel="stylesheet" />
-<link href="<?= base_url('node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css') ?>" rel="stylesheet" />
-
-<style>
-    .filepond--root {
-        width: 170px;
-    }
-</style>
-<?= $this->endSection(); ?>
-
 <?= $this->section("content"); ?>
 
 <?php $session = session(); ?>
@@ -36,9 +24,6 @@
 
     <div class="card">
         <div class="card-body px-4 row">
-            <div class="ml-2 mr-3">
-                <input type="file" id="img" name="filepond" accept="image/png, image/jpeg, image/gif" />
-            </div>
             <div class="col">
                 <!-- Indetity -->
                 <?= $this->include('patient/register_details/identity') ?>
@@ -93,37 +78,5 @@
             }
         }
     }
-</script>
-<script src="<?= base_url('node_modules/filepond/dist/filepond.js') ?>"></script>
-<script src="<?= base_url('node_modules/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js') ?>"></script>
-<script src="<?= base_url('node_modules/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js') ?>"></script>
-<script src="<?= base_url('node_modules/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.js') ?>"></script>
-<script src="<?= base_url('node_modules/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.js') ?>"></script>
-<script src="<?= base_url('node_modules/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.js') ?>"></script>
-<script src="<?= base_url('node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js') ?>"></script>
-<script src="<?= base_url('node_modules/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js') ?>"></script>
-<script src="<?= base_url('node_modules/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.js') ?>"></script>
-<script type="module">
-    FilePond.registerPlugin(
-        FilePondPluginFileValidateType,
-        FilePondPluginImageExifOrientation,
-        FilePondPluginImagePreview,
-        FilePondPluginImageCrop,
-        FilePondPluginImageResize,
-        FilePondPluginImageTransform,
-        FilePondPluginImageEdit
-    );
-    const pond = FilePond.create(document.querySelector('#img'), {
-        labelIdle: `Drag & Drop profile picture or <span class="filepond--label-action">Browse</span>`,
-        imagePreviewHeight: 170,
-        imageCropAspectRatio: '1:1',
-        imageResizeTargetWidth: 200,
-        imageResizeTargetHeight: 200,
-        stylePanelLayout: 'compact circle',
-        styleLoadIndicatorPosition: 'center bottom',
-        styleProgressIndicatorPosition: 'right bottom',
-        styleButtonRemoveItemPosition: 'left bottom',
-        styleButtonProcessItemPosition: 'right bottom',
-    });
 </script>
 <?= $this->endSection() ?>
