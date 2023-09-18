@@ -11,7 +11,7 @@
             </div>
             <div class="row">
                 <p class="col-md-2 mb-0 mb-sm-auto">Email</p>
-                <p class="col"><?= $patient_details['email'] or "email" ?></p>
+                <p class="col"><?= $patient_details['email'] ?></p>
             </div>
             <div class="row">
                 <p class="col-md-2 mb-0 mb-sm-auto">Phone Number</p>
