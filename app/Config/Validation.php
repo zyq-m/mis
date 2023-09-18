@@ -73,21 +73,6 @@ class Validation extends BaseConfig
                 'is_unique' => '{field} has already been used',
             ]
         ],
-        'avatar' => [
-            'label' => 'Avatar',
-            'rules' => [
-                // 'uploaded[avatar]',
-                'is_image[avatar]',
-                'mime_in[avatar,image/jpg,image/jpeg,image/png]',
-                'max_size[avatar,200]',
-            ],
-            'errors' => [
-                // 'uploaded' => 'Please upload a {field}',
-                'is_image' => 'Please upload a valid {field}',
-                'mime_in' => 'Only {field} with JPG, JPEG and PNG are allowed',
-                'max_size' => 'Your {field} exceeds 200kb',
-            ]
-        ],
         'email' => [
             'label' => 'Email',
             'rules' => 'required|valid_email|is_unique[patients.email]',
@@ -140,21 +125,6 @@ class Validation extends BaseConfig
                 'max_length' => 'Your {field} must not exceed 15 characters',
                 'min_length' => 'Your {field} must be at least 10 characters',
                 'numeric' => 'Please enter a valid {field}',
-            ]
-        ],
-        'avatar' => [
-            'label' => 'Avatar',
-            'rules' => [
-                // 'uploaded[avatar]',
-                'is_image[avatar]',
-                'mime_in[avatar,image/jpg,image/jpeg,image/png]',
-                'max_size[avatar,200]',
-            ],
-            'errors' => [
-                // 'uploaded' => 'Please upload a {field}',
-                'is_image' => 'Please upload a valid {field}',
-                'mime_in' => 'Only {field} with JPG, JPEG and PNG are allowed',
-                'max_size' => 'Your {field} exceeds 200kb',
             ]
         ],
         'email' => [
@@ -224,5 +194,23 @@ class Validation extends BaseConfig
                 'numeric' => 'Search a valid {field} '
             ]
         ]
+    ];
+
+    public array $avatar = [
+        'avatar' => [
+            'label' => 'Avatar',
+            'rules' => [
+                // 'uploaded[avatar]',
+                'is_image[avatar]',
+                'mime_in[avatar,image/jpg,image/jpeg,image/png]',
+                'max_size[avatar,200]',
+            ],
+            'errors' => [
+                // 'uploaded' => 'Please upload a {field}',
+                'is_image' => 'Please upload a valid {field}',
+                'mime_in' => 'Only {field} with JPG, JPEG and PNG are allowed',
+                'max_size' => 'Your {field} exceeds 200kb',
+            ]
+        ],
     ];
 }
