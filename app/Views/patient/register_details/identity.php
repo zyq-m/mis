@@ -5,7 +5,7 @@
         <!-- Name -->
         <div class="form-group col-md-6 <?= (validation_show_error('name')) ? 'has-error' : '' ?>">
             <label for="name">Name</label>
-            <input type="text" name="name" id="name" value="<?= set_value('name') ?>" class="form-control <?= (validation_show_error('name')) ? 'is-invalid' : '' ?>" placeholder="Please Enter Full Name">
+            <input type="text" name="name" id="name" value="<?= set_value('name') ?>" class="form-control <?= (validation_show_error('name')) ? 'is-invalid' : '' ?>" placeholder="Alisa binti Ahmad">
             <?php if (validation_show_error('name')) : ?>
                 <span class="error-message"><?= validation_show_error('name') ?></span>
             <?php endif; ?>
