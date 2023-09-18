@@ -33,7 +33,7 @@
                 </ol>
             </nav>
             <div class="row">
-                <form action="" method="get">
+                <form class="col-auto pl-0 pr-4" action="" method="get">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
@@ -43,7 +43,13 @@
                         <input type="search" name="" id="" class="form-control" placeholder="Search for file..">
                     </div>
                 </form>
-                <div class="col-auto">
+                <div class="col-auto pl-0">
+                    <a href="<?= base_url('image_repo/form') ?>" class="btn btn-default">
+                        <i class="fa-solid fa-download"></i>
+                        Download
+                    </a>
+                </div>
+                <div class="col-auto pl-0">
                     <a href="<?= base_url('image_repo/form') ?>" class="btn btn-primary">
                         <i class="fa fa-plus"></i>
                         Upload
