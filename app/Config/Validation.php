@@ -113,6 +113,74 @@ class Validation extends BaseConfig
         ],
     ];
 
+    public array $edit_patient = [
+        'name' => [
+            'label' => 'Name',
+            'rules' => 'required|max_length[200]|min_length[5]',
+            'errors' => [
+                'required' => 'Please enter a {field}',
+                'max_length' => 'Your {field} must not exceed 200 characters',
+                'min_length' => 'Your {field} must at least 5 characters'
+            ]
+        ],
+        'myKad' => [
+            'label' => 'My Kad',
+            'rules' => 'required|max_length[12]|min_length[12]',
+            'errors' => [
+                'required' => 'Please enter a {field}',
+                'max_length' => 'Your {field} must be 12 characters',
+                'min_length' => 'Your {field} must be 12 characters',
+            ]
+        ],
+        'phone_number' => [
+            'label' => 'Phone Number',
+            'rules' => 'required|max_length[15]|min_length[10]|numeric',
+            'errors' => [
+                'required' => 'Please enter a {field}',
+                'max_length' => 'Your {field} must not exceed 15 characters',
+                'min_length' => 'Your {field} must be at least 10 characters',
+                'numeric' => 'Please enter a valid {field}',
+            ]
+        ],
+        'avatar' => [
+            'label' => 'Avatar',
+            'rules' => [
+                // 'uploaded[avatar]',
+                'is_image[avatar]',
+                'mime_in[avatar,image/jpg,image/jpeg,image/png]',
+                'max_size[avatar,200]',
+            ],
+            'errors' => [
+                // 'uploaded' => 'Please upload a {field}',
+                'is_image' => 'Please upload a valid {field}',
+                'mime_in' => 'Only {field} with JPG, JPEG and PNG are allowed',
+                'max_size' => 'Your {field} exceeds 200kb',
+            ]
+        ],
+        'email' => [
+            'label' => 'Email',
+            'rules' => 'required|valid_email',
+            'errors' => [
+                'required' => 'Please enter {field}',
+                'valid_email' => 'Invalid {field}',
+            ]
+        ],
+        'sex' => [
+            'label' => 'Sex',
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Please choose a {field}'
+            ]
+        ],
+        'race' => [
+            'label' => 'Race',
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Please choose a {field}'
+            ]
+        ],
+    ];
+
     public array $upload_img_repo = [
         'memo_img' => [
             'label' => 'Image File',
