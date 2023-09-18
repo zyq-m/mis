@@ -148,30 +148,21 @@ class PatientController extends BaseController
     {
         // Identity data
         // get img
-        $img = $this->request->getFile('avatar');
+        // $img = $this->request->getFile('avatar');
 
-        if (!$img) {
-            return [
-                'name'          => $post['name'],
-                'email'         => $post['email'],
-                'myKad'         => $post['myKad'],
-                'phone_number'  => $post['phone_number'],
-            ];
-        }
-
-        $filePath = null;
-        // store img
-        if ($img->isValid()) {
-            $filepath = $img->store('avatar');
-            $fileInfo = new File($filepath);
-            $filePath = $fileInfo->getPathname();
-        }
+        // $filePath = null;
+        // // store img
+        // if ($img->isValid()) {
+        //     $filepath = $img->store('avatar');
+        //     $fileInfo = new File($filepath);
+        //     $filePath = $fileInfo->getPathname();
+        // }
 
         return [
             'name'          => $post['name'],
             'email'         => $post['email'],
             'myKad'         => $post['myKad'],
-            'avatar'        => $filePath,
+            // 'avatar'        => $filePath,
             'phone_number'  => $post['phone_number'],
         ];
     }
