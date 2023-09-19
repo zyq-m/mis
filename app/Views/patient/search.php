@@ -1,10 +1,19 @@
-<?php $session = session() ?>
+<?php
+$session = session();
+$searchInput = [
+    'name' => 'patient',
+    'id' => 'patient',
+    'class' => validation_show_error('patient') || $session->getFlashdata('error') ? 'form-control is-invalid' : 'form-control',
+    'placeholder' => 'Search patient by MyKad',
+    'type' => 'search'
+];
+?>
 <!-- Search Patient -->
 
 <?php if (empty($patient)) : ?>
     <form action="<?= base_url($route) ?>" method="get" class="form-group">
         <div class="input-group">
-            <input type="search" id="patient" name="patient" class="form-control <?= validation_show_error('patient') || $session->getFlashdata('error') ? 'is-invalid' : '' ?>" placeholder="Search patient by MyKad" value="<?= set_value("patient") ?>">
+            <?= form_input($searchInput) ?>
             <span class="input-group-btn">
                 <button class="btn btn-default" type="submit">Search</button>
             </span>
@@ -13,7 +22,6 @@
             <span class="error-message"><?= validation_show_error('patient') ?><?= $session->getFlashdata('error') ?></span>
         <?php endif; ?>
     </form>
-
 <?php else : ?>
     <div class="card">
         <div class="card-body">
@@ -45,7 +53,7 @@
                         <input type="text" id="phone_number" class="form-control" value="<?= $patient_details['phone_number'] ?>" readonly>
                     </div>
                 </div>
+            <?php endforeach ?>
         </div>
     </div>
-<?php endforeach ?>
 <?php endif; ?>
