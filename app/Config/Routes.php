@@ -57,23 +57,23 @@ $routes->get('image_repo/patient/(:segment)', [ImageRepo::class, 'searchFile']);
 
 $routes->get('dashboard', 'Dashboard::index');
 
-$routes->get('user', 'UserController::index');
-$routes->get('user/edit/(:segment)', 'UserController::edit/$1');
-$routes->post('user/update', 'UserController::update');
-$routes->get('user/add', 'UserController::add');
-$routes->post('user/add', 'UserController::store');
+// $routes->get('user', 'UserController::index');
+// $routes->get('user/edit/(:segment)', 'UserController::edit/$1');
+// $routes->post('user/update', 'UserController::update');
+// $routes->get('user/add', 'UserController::add');
+// $routes->post('user/add', 'UserController::store');
 
-$routes->get('profile', 'UserController::profile');
-$routes->post('profile', 'UserController::updateprofile');
-$routes->get('profile/password', 'UserController::password');
-$routes->post('profile/password', 'UserController::updatepassword');
+// $routes->get('profile', 'UserController::profile');
+// $routes->post('profile', 'UserController::updateprofile');
+// $routes->get('profile/password', 'UserController::password');
+// $routes->post('profile/password', 'UserController::updatepassword');
 
-$routes->get('community', 'CommunityController::index');
+// $routes->get('community', 'CommunityController::index');
 
-$routes->get('hospital', 'HospitalController::index');
+// $routes->get('hospital', 'HospitalController::index');
 
-$routes->get('registration', 'RegisterController::index');
-$routes->get('registration/add', 'RegisterController::add');
+// $routes->get('registration', 'RegisterController::index');
+// $routes->get('registration/add', 'RegisterController::add');
 
 // $routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']);
 
