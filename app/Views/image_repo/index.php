@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-auto">
                     <a href="<?= base_url('image_repo/form') ?>" class="btn btn-primary">
-                        <i class="fa fa-plus"></i>
+                        <i class="fa-solid fa-arrow-up"></i>
                         Upload
                     </a>
                 </div>
