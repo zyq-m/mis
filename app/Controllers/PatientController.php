@@ -12,6 +12,20 @@ class PatientController extends BaseController
 {
     protected $helpers = ['form'];
 
+    protected function loadOptions($data)
+    {
+        $data['sex_option'] = $this->sexOption();
+        $data['race_option'] = $this->raceOption();
+        $data['educational_option'] = $this->educationalOption();
+        $data['marital_option'] = $this->maritalOption();
+        $data['occupation_option'] = $this->occupationOption();
+        $data['illness_option'] = $this->illnessOption();
+        $data['symptom_option'] = $this->symptomOption();
+        $data['medical_option'] = $this->medicalOption();
+
+        return $data;
+    }
+
     public function index()
     {
         $data['title'] = "Patients";
@@ -28,6 +42,7 @@ class PatientController extends BaseController
         // request validation
         if ($this->request->is('get')) {
             $data['title'] = 'Add Patient';
+            $data = $this->loadOptions($data);
 
             return view('patient/register', $data);
         }
@@ -90,6 +105,7 @@ class PatientController extends BaseController
                 ->find();
 
             $data = ['title' => 'Edit patient', 'patient' => $join];
+            $data = $this->loadOptions($data);
 
             return view('/patient/edit', $data);
         }
@@ -203,6 +219,175 @@ class PatientController extends BaseController
             'presenting_illness' => $post['other_illness_present'] ? $post['other_illness_present'] : $post['illness_present'],
             'metastases_symptom' => $metastases,
             'medical_history' => $med_history
+        ];
+    }
+
+    // FORM HELPER SELECT OPTIONS
+    protected function sexOption()
+    {
+        return [
+            'name' => 'sex',
+            'options' => [
+                '' => 'Choose...',
+                'Male' => 'Male',
+                'Female' => 'Female',
+            ],
+            'selected' => '',
+            'extra' => [
+                'class' => validation_show_error('race') ? 'custom-select is-invalid' : 'custom-select',
+            ]
+        ];
+    }
+    protected function raceOption()
+    {
+        return [
+            'name' => 'race',
+            'options' => [
+                '' => 'Choose...',
+                'Malay' => 'Malay',
+                'Chinese' => 'Chinese',
+                'Indian' => 'Indian',
+                'Others' => 'Others',
+            ],
+            'selected' => '',
+            'extra' => [
+                'class' => validation_show_error('race') ? 'custom-select is-invalid' : 'custom-select',
+                'onchange' => 'checkValue(this.value, "race", null)'
+            ]
+        ];
+    }
+    protected function maritalOption()
+    {
+        return [
+            'name' => 'marital_status',
+            'options' => [
+                'Not set' => 'Choose...',
+                'Single' => 'Single',
+                'Married' => 'Married',
+                'Divorced/Seperated' => 'Divorced/Seperated',
+                'Widowed (Spoused died)' => 'Widowed (Spoused died)',
+            ],
+            'selected' => 'Not set',
+            'extra' => [
+                'class' => validation_show_error('marital') ? 'custom-select is-invalid' : 'custom-select',
+            ]
+        ];
+    }
+    protected function educationalOption()
+    {
+        return [
+            'name' => 'educational_status',
+            'options' => [
+                'Not set' => 'Choose...',
+                'None' => 'None',
+                'Non-formal' => 'Non-formal',
+                'Formal' => [
+                    'Primary' => 'Primary',
+                    'Secondary' => 'Secondary',
+                ],
+                'Tertiary' => [
+                    'Sijil' => 'Sijil',
+                    'Diploma' => 'Diploma',
+                    'Degree' => 'Degree',
+                    'Master' => 'Master',
+                    'PhD' => 'PhD',
+                ],
+            ],
+            'selected' => 'Not set',
+            'extra' => [
+                'class' => validation_show_error('educational_status') ? 'custom-select is-invalid' : 'custom-select',
+            ]
+        ];
+    }
+    protected function occupationOption()
+    {
+        return [
+            'name' => 'occupation',
+            'options' => [
+                'Not set' => 'Choose...',
+                'Not working' => 'Not working',
+                'Student' => 'Student',
+                'Government' => [
+                    'Police' => 'Police',
+                    'Teacher' => 'Teacher',
+                    'Others' => 'Others',
+                ],
+                'Forestry, agriculture' => 'Forestry, agriculture',
+                'Fishing' => 'Fishing',
+                'Manufacturing' => 'Manufacturing',
+                'Construction' => 'Construction',
+                'Painting' => 'Painting',
+                'Textile' => 'Textile',
+                'Others' => 'Others',
+            ],
+            'selected' => 'Not set',
+            'extra' => [
+                'class' => validation_show_error('occupation') ? 'custom-select is-invalid' : 'custom-select',
+                'onchange' => 'checkValue(this.value, "occupation", null)'
+            ]
+        ];
+    }
+
+    protected function illnessOption()
+    {
+        return [
+            'name' => 'illness_present',
+            'options' => [
+                'Not set' => 'Choose...',
+                'Lump' => 'Lump',
+                'Pain' => 'Pain',
+                'Nipple discharge' => 'Nipple discharge',
+                'Asymptomatic' => 'Asymptomatic',
+                'Others' => 'Others',
+            ],
+            'selected' => 'Not set',
+            'extra' => [
+                'class' => 'custom-select',
+                'onchange' => 'checkValue(this.value, "illness_present",)'
+            ]
+        ];
+    }
+    protected function symptomOption()
+    {
+        return [
+            'name' => 'metastases_symptom',
+            'options' => [
+                'Not set' => 'Choose...',
+                'Shortness of breath' => 'Shortness of breath',
+                "Lost of weight" => [
+                    'weight' => 'Weight loss (kg)'
+                ],
+                'Jaudice' => 'Jaudice',
+                'Headache' => 'Headache',
+                'Bone pain' => 'Bone pain',
+                'Others' => 'Others',
+            ],
+            'selected' => 'Not set',
+            'extra' => [
+                'class' => 'custom-select',
+                'onchange' => 'checkValue(this.value, "metastases_symptom", "weight")'
+            ]
+        ];
+    }
+    protected function medicalOption()
+    {
+        return [
+            'name' => 'med_history',
+            'options' => [
+                'Not set' => 'Choose...',
+                'Hypertension' => 'Hypertension',
+                'Diabetes mellitus' => 'Diabetes mellitus',
+                'Hyperlipidaemia' => 'Hyperlipidaemia',
+                "Chronic kidney disease" => [
+                    'stage' => 'Stage'
+                ],
+                'Others' => 'Others',
+            ],
+            'selected' => 'Not set',
+            'extra' => [
+                'class' => 'custom-select',
+                'onchange' => 'checkValue(this.value, "med_history", "stage")'
+            ]
         ];
     }
 }
