@@ -24,7 +24,7 @@ $menuItems = [
         'icon' => 'fa-images', // You can choose the appropriate icon class
         'subItems' => [
             ['id' => 52, 'name' => 'Images', 'icon' => ''],
-            ['id' => 53, 'name' => 'Form', 'icon' => ''],
+            ['id' => 53, 'name' => 'Upload', 'icon' => ''],
         ]
     ],
     [
@@ -32,7 +32,7 @@ $menuItems = [
         'name' => 'Urine Test',
         'icon' => 'fa-flask', // You can choose the appropriate icon class
         'subItems' => [
-            ['id' => 51, 'name' => 'Form', 'icon' => ''],
+            ['id' => 51, 'name' => 'Add new test', 'icon' => ''],
         ]
     ],
 ];
