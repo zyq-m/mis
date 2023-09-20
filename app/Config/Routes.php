@@ -35,30 +35,32 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-$routes->get('dashboard', 'Dashboard::index');
+// Admin routes
+$routes->group('', ['filter' => 'group:admin,user'], static function ($routes) {
+    $routes->get('dashboard', 'Dashboard::index');
 
-$routes->group('urine_test', static function ($routes) {
-    $routes->get('', [UrineTest::class, 'index']);
-    $routes->post('', [UrineTest::class, 'submitForm']);
-    $routes->get('patient', [UrineTest::class, 'searchPatient']);
-});
+    $routes->group('urine_test', static function ($routes) {
+        $routes->get('', [UrineTest::class, 'index']);
+        $routes->post('', [UrineTest::class, 'submitForm']);
+        $routes->get('patient', [UrineTest::class, 'searchPatient']);
+    });
 
-$routes->group('image_repo', static function ($routes) {
-    $routes->get('', [UrineTest::class, 'index']);
-    $routes->get('form', [UrineTest::class, 'form']);
-    $routes->get('patient', [UrineTest::class, 'searchPatient']);
-    $routes->post('upload', [UrineTest::class, 'upload']);
-    $routes->get('patient/(:segment)', [ImageRepo::class, 'searchFile']);
-});
+    $routes->group('image_repo', static function ($routes) {
+        $routes->get('', [UrineTest::class, 'index']);
+        $routes->get('form', [UrineTest::class, 'form']);
+        $routes->get('patient', [UrineTest::class, 'searchPatient']);
+        $routes->post('upload', [UrineTest::class, 'upload']);
+        $routes->get('patient/(:segment)', [ImageRepo::class, 'searchFile']);
+    });
 
-
-$routes->group('patient', static function ($routes) {
-    $routes->get('', [PatientController::class, 'index']);
-    $routes->get('(:num)', [PatientController::class, 'viewPatient']);
-    $routes->get('register', [PatientController::class, 'addPatient']);
-    $routes->post('register', [PatientController::class, 'addPatient']);
-    $routes->get('edit/(:num)', [PatientController::class, 'editPatient']);
-    $routes->post('edit/(:num)', [PatientController::class, 'editPatient']);
+    $routes->group('patient', static function ($routes) {
+        $routes->get('', [PatientController::class, 'index']);
+        $routes->get('(:num)', [PatientController::class, 'viewPatient']);
+        $routes->get('register', [PatientController::class, 'addPatient']);
+        $routes->post('register', [PatientController::class, 'addPatient']);
+        $routes->get('edit/(:num)', [PatientController::class, 'editPatient']);
+        $routes->post('edit/(:num)', [PatientController::class, 'editPatient']);
+    });
 });
 
 /**
