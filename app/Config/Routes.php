@@ -46,10 +46,10 @@ $routes->group('', ['filter' => 'group:admin,user'], static function ($routes) {
     });
 
     $routes->group('image_repo', static function ($routes) {
-        $routes->get('', [UrineTest::class, 'index']);
-        $routes->get('form', [UrineTest::class, 'form']);
-        $routes->get('patient', [UrineTest::class, 'searchPatient']);
-        $routes->post('upload', [UrineTest::class, 'upload']);
+        $routes->get('', [ImageRepo::class, 'index']);
+        $routes->get('form', [ImageRepo::class, 'form']);
+        $routes->get('patient', [ImageRepo::class, 'searchPatient']);
+        $routes->post('upload', [ImageRepo::class, 'upload']);
         $routes->get('patient/(:segment)', [ImageRepo::class, 'searchFile']);
     });
 
@@ -62,6 +62,8 @@ $routes->group('', ['filter' => 'group:admin,user'], static function ($routes) {
         $routes->post('edit/(:num)', [PatientController::class, 'editPatient']);
     });
 });
+
+// User routes
 
 /**
  * REST API
