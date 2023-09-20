@@ -35,11 +35,8 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-// $routes->post('/login', 'Login::login');
+$routes->get('dashboard', 'Dashboard::index');
 
-// $routes->get('/register', 'Register::index');
-
-// $routes->get('/login', 'Login::index');
 $routes->group('urine_test', static function ($routes) {
     $routes->get('', [UrineTest::class, 'index']);
     $routes->post('', [UrineTest::class, 'submitForm']);
@@ -54,35 +51,6 @@ $routes->group('image_repo', static function ($routes) {
     $routes->get('patient/(:segment)', [ImageRepo::class, 'searchFile']);
 });
 
-// $routes->get('/dashboard', 'Dashboard::index');
-
-// $routes->get('/', 'Login::index');
-
-$routes->get('dashboard', 'Dashboard::index');
-
-// $routes->get('user', 'UserController::index');
-// $routes->get('user/edit/(:segment)', 'UserController::edit/$1');
-// $routes->post('user/update', 'UserController::update');
-// $routes->get('user/add', 'UserController::add');
-// $routes->post('user/add', 'UserController::store');
-
-// $routes->get('profile', 'UserController::profile');
-// $routes->post('profile', 'UserController::updateprofile');
-// $routes->get('profile/password', 'UserController::password');
-// $routes->post('profile/password', 'UserController::updatepassword');
-
-// $routes->get('community', 'CommunityController::index');
-
-// $routes->get('hospital', 'HospitalController::index');
-
-// $routes->get('registration', 'RegisterController::index');
-// $routes->get('registration/add', 'RegisterController::add');
-
-// $routes->get('logout', 'AuthController::logouthandler', ['as' => 'admin.logout']);
-
-
-// $routes->get('login', 'Login::index', ['as' => 'admin.login.form']);
-// $routes->post('login', 'AuthController::loginhandler');
 
 $routes->group('patient', static function ($routes) {
     $routes->get('', [PatientController::class, 'index']);
