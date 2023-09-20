@@ -40,16 +40,19 @@ $routes->set404Override();
 // $routes->get('/register', 'Register::index');
 
 // $routes->get('/login', 'Login::index');
+$routes->group('urine_test', static function ($routes) {
+    $routes->get('', [UrineTest::class, 'index']);
+    $routes->post('', [UrineTest::class, 'submitForm']);
+    $routes->get('patient', [UrineTest::class, 'searchPatient']);
+});
 
-$routes->get('urine_test', 'UrineTest::index');
-$routes->get('urine_test/patient', [UrineTest::class, 'searchPatient']);
-$routes->post('urine_test', 'UrineTest::submitForm');
-
-$routes->get('image_repo', 'ImageRepo::index');
-$routes->get('image_repo/form', 'ImageRepo::form');
-$routes->get('image_repo/patient', 'ImageRepo::searchPatient');
-$routes->post('image_repo/upload', 'ImageRepo::upload');
-$routes->get('image_repo/patient/(:segment)', [ImageRepo::class, 'searchFile']);
+$routes->group('image_repo', static function ($routes) {
+    $routes->get('', [UrineTest::class, 'index']);
+    $routes->get('form', [UrineTest::class, 'form']);
+    $routes->get('patient', [UrineTest::class, 'searchPatient']);
+    $routes->post('upload', [UrineTest::class, 'upload']);
+    $routes->get('patient/(:segment)', [ImageRepo::class, 'searchFile']);
+});
 
 // $routes->get('/dashboard', 'Dashboard::index');
 
@@ -81,12 +84,14 @@ $routes->get('dashboard', 'Dashboard::index');
 // $routes->get('login', 'Login::index', ['as' => 'admin.login.form']);
 // $routes->post('login', 'AuthController::loginhandler');
 
-$routes->get('patient', 'PatientController::index');
-$routes->get('patient/(:num)', [PatientController::class, 'viewPatient']);
-$routes->get('patient/register', 'PatientController::addPatient');
-$routes->post('patient/register', 'PatientController::addPatient');
-$routes->get('patient/edit/(:num)', [PatientController::class, 'editPatient']);
-$routes->post('patient/edit/(:num)', [PatientController::class, 'editPatient']);
+$routes->group('patient', static function ($routes) {
+    $routes->get('', [PatientController::class, 'index']);
+    $routes->get('(:num)', [PatientController::class, 'viewPatient']);
+    $routes->get('register', [PatientController::class, 'addPatient']);
+    $routes->post('register', [PatientController::class, 'addPatient']);
+    $routes->get('edit/(:num)', [PatientController::class, 'editPatient']);
+    $routes->post('edit/(:num)', [PatientController::class, 'editPatient']);
+});
 
 /**
  * REST API
