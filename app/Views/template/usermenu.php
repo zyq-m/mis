@@ -102,8 +102,9 @@ function isSubMenuItemActive($subItemId)
                 <img src="<?php echo base_url(); ?>assets/images/avatar.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">
-                </a>
+                <p class="d-block text-white">
+                    <?= auth()->user()->getEmail() ?>
+                </p>
             </div>
         </div>
         <!-- Sidebar Menu -->
