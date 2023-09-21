@@ -36,7 +36,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 // Admin routes
-$routes->group('', ['filter' => 'group:admin,user'], static function ($routes) {
+$routes->group('', ['filter' => 'group:admin'], static function ($routes) {
     $routes->get('dashboard', 'Dashboard::index');
 
     $routes->group('urine_test', static function ($routes) {
