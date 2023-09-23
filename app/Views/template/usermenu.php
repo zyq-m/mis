@@ -1,43 +1,11 @@
 <?php
-$uri = service('uri');
 
-$menuItems = [
-    [
-        'id' => 1,
-        'name' => 'Dashboard',
-        'icon' => 'fa-home',
-        'link' => site_url('dashboard')
-    ],
-    [
-        'id' => 2,
-        'name' => 'Patients',
-        'icon' => 'fa-bed-pulse', // You can choose the appropriate icon class
-        'link' => '#',
-        'subItems' => [
-            ['id' => 21, 'name' => 'Patients List', 'link' => site_url('patient')],
-            ['id' => 22, 'name' => 'Register Patient', 'link' => site_url('patient/register')],
-        ]
-    ],
-    [
-        'id' => 3,
-        'name' => 'Image Repository',
-        'icon' => 'fa-images', // You can choose the appropriate icon class
-        'link' => '#',
-        'subItems' => [
-            ['id' => 52, 'name' => 'Images', 'link' => site_url('image_repo')],
-            ['id' => 53, 'name' => 'Upload', 'link' => site_url('image_repo/form')],
-        ]
-    ],
-    [
-        'id' => 5,
-        'name' => 'Urine Test',
-        'icon' => 'fa-flask', // You can choose the appropriate icon class
-        'link' => '#',
-        'subItems' => [
-            ['id' => 51, 'name' => 'Add new test', 'link' => site_url('urine_test')],
-        ]
-    ],
-];
+use App\Helpers\MenuHelper;
+
+$uri = service('uri');
+$menu = new MenuHelper();
+
+$menuItems = $menu->getMenu();
 ?>
 <aside class="main-sidebar elevation-4 sidebar-dark-pink">
     <!-- Brand Logo -->
@@ -64,7 +32,7 @@ $menuItems = [
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <?php foreach ($menuItems as $menuItem) : ?>
                     <li class="nav-item">
-                        <a href="<?= $menuItem['link'] ?>" class="nav-link <?= current_url() == $menuItem['link'] ? 'active' : '' ?>">
+                        <a href="<?= site_url($menuItem['link']) ?>" class="nav-link <?= current_url() == site_url($menuItem['link']) ? 'active' : '' ?>">
                             <i class="nav-icon fas <?= $menuItem['icon'] ?>"></i>
                             <p class="text">
                                 <?= $menuItem['name'] ?>
@@ -77,7 +45,7 @@ $menuItems = [
                             <ul class="nav nav-treeview">
                                 <?php foreach ($menuItem['subItems'] as $subItem) : ?>
                                     <li class="nav-item">
-                                        <a href="<?= $subItem['link'] ?>" class="nav-link <?= current_url() == $subItem['link'] ? 'active' : '' ?>">
+                                        <a href="<?= site_url($subItem['link']) ?>" class="nav-link <?= current_url() == site_url($subItem['link']) ? 'active' : '' ?>">
                                             <div class="d-flex align-items-center">
                                                 <!-- <i class="far fa-circle nav-icon"></i> -->
                                                 <p class="text" style="margin-left: 2rem;"><?= $subItem['name'] ?></p>
