@@ -409,7 +409,7 @@ class Auth extends ShieldAuth
      */
     public function loginRedirect(): string
     {
-        if (auth()->user()->inGroup('admin', 'user')) { // remove 'user' later
+        if (auth()->user()->inGroup('admin')) {
             return '/dashboard';
         }
 
