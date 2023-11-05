@@ -17,7 +17,7 @@
                             <!-- Test Information -->
                             <h3 class="mb-3">Test Details</h3>
                             <!-- Patient Id -->
-                            <input type="hidden" name="patient_id" value="<?= $patient_id ?>">
+                            <input type="hidden" name="myKad" value="<?= $myKad ?>">
 
                             <div class="row">
                                 <div class="col-md-4 form-group">
@@ -161,7 +161,7 @@
                 <div class="card-footer">
                     <div>
                         <button type="reset" class="btn btn-default" id="reset">Cancel</button>
-                        <button type="submit" class="btn btn-primary" id="submit" <?= $patient_id ? '' : 'disabled' ?>>Submit</button>
+                        <button type="submit" class="btn btn-primary" id="submit" <?= $myKad ? '' : 'disabled' ?>>Submit</button>
                     </div>
                 </div>
 
