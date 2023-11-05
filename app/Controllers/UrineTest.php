@@ -12,7 +12,7 @@ class UrineTest extends BaseController
     {
         $data['title'] = "Urine Test";
         $data['patient'] = [];
-        $data['patient_id'] = null;
+        $data['myKad'] = null;
 
         return view('urine_test/urine_test', $data);
     }
@@ -46,7 +46,7 @@ class UrineTest extends BaseController
             return redirect()->back()->with('error', 'Patient not found');
         }
 
-        $data['patient_id'] = $patient_details[0]['id'];
+        $data['myKad'] = $patient_details[0]['myKad'];
 
         return view('urine_test/urine_test', $data);
     }
