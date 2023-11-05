@@ -10,7 +10,6 @@ class UrineTestModel extends Model
     protected $primaryKey = "id";
 
     protected $allowedFields = [
-        'id',
         'descriptions',
         'blood',
         'bilirubin',
@@ -24,6 +23,6 @@ class UrineTestModel extends Model
         'leukocytes',
         'test_taken',
         'test_result',
-        'patient_id'
+        'myKad'
     ];
 }
