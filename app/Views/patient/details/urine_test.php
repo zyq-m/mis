@@ -54,6 +54,6 @@
     </div>
 <?php else : ?>
     <div>
-        <div>No record found. Click <a href="<?= base_url('urine_test') ?>">here</a> to add.</div>
+        <div>No record found. Click <a href="<?= base_url('urine_test/patient?patient=' . $patient['profile'][0]['myKad']) ?>">here</a> to add.</div>
     </div>
 <?php endif ?>
