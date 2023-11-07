@@ -37,7 +37,7 @@
     </div>
 <?php else : ?>
     <div>
-        <div>No record found. Click <a href="<?= base_url('image_repo/form') ?>">here</a> to add.</div>
+        <div>No record found. Click <a href="<?= base_url('image_repo/patient?patient=' . $patient['profile'][0]['myKad']) ?>">here</a> to add.</div>
     </div>
 <?php endif ?>
 
