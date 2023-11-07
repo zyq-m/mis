@@ -7,6 +7,7 @@ use App\Models\PatientModel;
 use App\Models\DemographicModel;
 use App\Models\ClinicalHistroyModel;
 use CodeIgniter\Files\File;
+use CodeIgniter\Shield\Entities\User;
 
 class PatientController extends BaseController
 {
@@ -64,14 +65,32 @@ class PatientController extends BaseController
         $demographic = $this->demographicData($post);
         $clinical = $this->clinicalData($post);
 
+        // Create user account
+        // Get the User Provider (UserModel by default)
+        $users = auth()->getProvider();
+        $user = new User([
+            'username' => null,
+            'email'    => $this->request->getPost('email'),
+            'password' => $this->request->getPost('myKad'),
+        ]);
+
         // save data
         $identityModel = model(PatientModel::class);
         $demographicModel = model(DemographicModel::class);
         $clinicalModel = model(ClinicalHistroyModel::class);
 
-        if ($identityModel->save($identity)) {
+        if ($users->save($user)) {
+            $identityModel->save($identity);
             $demographicModel->save($demographic);
             $clinicalModel->save($clinical);
+
+            // To get the complete user object with ID, we need to get from the database
+            $user = $users->findById($users->getInsertID());
+
+            // Add to default group
+            $users->addToDefaultGroup($user);
+        } else {
+            return redirect()->back()->with('register_error', 'Email has already been registered');
         }
 
         return redirect()->back()->with('register_success', 'Patient successfully registered');
