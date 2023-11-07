@@ -68,7 +68,7 @@ $routes->group('', ['filter' => 'group:admin'], static function ($routes) {
 /**
  * REST API
  */
-$routes->get('image/(:segment)/(:segment)', [ImageController::class, 'index']);
+$routes->get('image/(:segment)', [ImageController::class, 'index']);
 
 /**
  * this route is used for testing & development purposes

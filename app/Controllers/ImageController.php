@@ -12,9 +12,10 @@ class ImageController extends BaseController
      * Instead of reveal the actual image path, it response the image itself
      * and URL.
      */
-    public function index($dir = null, $target = null)
+    public function index($path = null)
     {
-        $path = WRITEPATH . 'uploads/' . $dir . '/' . $target;
+        return var_dump($path);
+        $path = WRITEPATH . 'uploads/' . $path;
 
         if (file_exists($path)) {
             $mime = mime_content_type($path); //<-- detect file type

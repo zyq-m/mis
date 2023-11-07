@@ -182,6 +182,21 @@ class Validation extends BaseConfig
             'errors' => [
                 'required' => 'Please select a {field}',
             ]
+        ],
+        'session' => [
+            'label' => 'Session',
+            'rules' => ['required', 'is_natural_no_zero'],
+            'errors' => [
+                'required' => 'Please select a {field}',
+                'is_natural_no_zero' => 'Please select a valid {field}',
+            ]
+        ],
+        'hospital' => [
+            'label' => 'Hospital',
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Please fill in {field}',
+            ]
         ]
     ];
 
