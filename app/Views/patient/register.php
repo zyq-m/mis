@@ -28,12 +28,18 @@
                 <!-- Indetity -->
                 <?= $this->include('patient/register_details/identity') ?>
                 <!-- End indentity -->
+
                 <!-- Demographic -->
                 <?= $this->include('patient/register_details/demographic') ?>
                 <!-- End Demographic -->
+
                 <!-- Clinical History -->
                 <?= $this->include('patient/register_details/clinical_history') ?>
                 <!-- End Clinical History -->
+
+                <!-- Genetic Factor -->
+                <?= $this->include('patient/register_details/genetic_factor') ?>
+                <!-- End Genetic Factor -->
             </div>
         </div>
         <div class="card-footer px-4">
@@ -57,26 +63,38 @@
         label.textContent = input.files[0] ? input.files[0].name : label.getAttribute("data-placeholder");
     }
 
-    function checkValue(val, target, custom) {
+    function checkValue(val, target, custom, style) {
         if (custom) {
-            if (val === custom) {
-                document.getElementById(custom).style.display = 'block';
+            if (!style) {
+                if (val === custom) {
+                    changeDisplay(custom, 'block');
+                } else {
+                    changeDisplay(custom, 'none');
+                }
             } else {
-                document.getElementById(custom).style.display = 'none';
+                if (val === custom) {
+                    changeDisplay(custom, style);
+                } else {
+                    changeDisplay(custom, 'none');
+                }
             }
 
             if (val === "Others") {
-                document.getElementById(target).style.display = 'block';
+                changeDisplay(target, 'block');
             } else {
-                document.getElementById(target).style.display = 'none';
+                changeDisplay(target, 'none');
             }
         } else {
             if (val === "Others") {
-                document.getElementById(target).style.display = 'block';
+                changeDisplay(target, 'block');
             } else {
-                document.getElementById(target).style.display = 'none';
+                changeDisplay(target, 'none');
             }
         }
+    }
+
+    function changeDisplay(target, style) {
+        document.getElementById(target).style.display = style;
     }
 </script>
 <?= $this->endSection() ?>
