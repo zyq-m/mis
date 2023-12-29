@@ -36,7 +36,7 @@
             <!-- End Clinical History -->
 
             <!-- Genetic Factor -->
-            <?= $this->include('patient/register_details/genetic_factor') ?>
+            <?= view('patient/register_details/genetic_factor') ?>
             <!-- End Genetic Factor -->
         </div>
         <div class="card-footer">
@@ -69,13 +69,9 @@
                     changeDisplay(custom, style);
                 } else {
                     changeDisplay(custom, 'none');
+                    clearInput('#date');
+                    clearInput('#diagnose');
                 }
-            }
-
-            if (val === "Others") {
-                changeDisplay(target, 'block');
-            } else {
-                changeDisplay(target, 'none');
             }
         } else {
             if (val === "Others") {
@@ -88,6 +84,10 @@
 
     function changeDisplay(target, style) {
         document.getElementById(target).style.display = style;
+    }
+
+    function clearInput(target) {
+        document.querySelector(target).value = "";
     }
 
     $(document).ready(function() {
@@ -105,7 +105,23 @@
         $('select[name="illness_present"]').val('<?= $patient[0]['presenting_illness'] ?>');
         $('select[name="metastases_symptom"]').val('<?= $patient[0]['metastases_symptom'] ?>');
         $('select[name="med_history"]').val('<?= $patient[0]['medical_history'] ?>');
+
+        $('select[name="family_history"]').val('<?= $patient[0]['family_history'] ?>');
+        $('select[name="past_cancer_history"]').val('<?= $patient[0]['past_cancer'] ?>');
+        $('#date').val('<?= $patient[0]['diagnose_date'] ?>');
+        $('#diagnose').val('<?= $patient[0]['diagnose'] ?>');
     });
+
+    function onLoad() {
+        const pastCancerHistory = '<?= $patient[0]['past_cancer'] ?>';
+        const container = document.querySelector('#Yes');
+
+        if (pastCancerHistory === "Yes") {
+            container.style.display = "flex";
+        }
+    }
+
+    onLoad();
 </script>
 <?= $this->endSection() ?>
 

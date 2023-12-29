@@ -76,13 +76,9 @@
                     changeDisplay(custom, style);
                 } else {
                     changeDisplay(custom, 'none');
+                    clearInput('#date');
+                    clearInput('#diagnose');
                 }
-            }
-
-            if (val === "Others") {
-                changeDisplay(target, 'block');
-            } else {
-                changeDisplay(target, 'none');
             }
         } else {
             if (val === "Others") {
@@ -95,6 +91,10 @@
 
     function changeDisplay(target, style) {
         document.getElementById(target).style.display = style;
+    }
+
+    function clearInput(target) {
+        document.querySelector(target).value = "";
     }
 </script>
 <?= $this->endSection() ?>
