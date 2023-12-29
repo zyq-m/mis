@@ -29,6 +29,12 @@
                             <button class="btn nav-link active" id="profile-tab" data-toggle="tab" data-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Demographic</button>
                         </li>
                         <li role="presentation">
+                            <button class="btn nav-link" id="clinical-tab" data-toggle="tab" data-target="#clinical" type="button" role="tab" aria-controls="clinical" aria-selected="false">Clinical History</button>
+                        </li>
+                        <li role="presentation">
+                            <button class="btn nav-link" id="genetic-tab" data-toggle="tab" data-target="#genetic" type="button" role="tab" aria-controls="genetic" aria-selected="false">Genetic Factor</button>
+                        </li>
+                        <li role="presentation">
                             <button class="btn nav-link" id="urine-tab" data-toggle="tab" data-target="#urine" type="button" role="tab" aria-controls="urine" aria-selected="false">Urine Test</button>
                         </li>
                         <li role="presentation">
@@ -43,6 +49,16 @@
                             <!-- Demographic Detail -->
                             <div class="tab-pane fade show active mt-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <?= view('patient/details/demographic', ['patient' => $patient]) ?>
+                            </div>
+
+                            <!-- Clinical Detail -->
+                            <div class="tab-pane fade show mt-4" id="clinical" role="tabpanel" aria-labelledby="clinical-tab">
+                                <?= view('patient/details/clinical_history', ['patient' => $patient]) ?>
+                            </div>
+
+                            <!-- Genetic Factor Detail -->
+                            <div class="tab-pane fade show mt-4" id="genetic" role="tabpanel" aria-labelledby="genetic-tab">
+                                <?= view('patient/details/genetic_factor', ['patient' => $patient]) ?>
                             </div>
 
                             <!-- Urine Test -->
