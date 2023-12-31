@@ -127,6 +127,7 @@ class PatientController extends BaseController
         if ($this->request->is('get')) {
             $join = $patientModel->select('*')->join('clinical_history', 'clinical_history.myKad = patients.myKad')
                 ->join('demographic', 'demographic.myKad = patients.myKad')
+                ->join('genetic_factor', 'genetic_factor.myKad = patients.myKad')
                 ->where('patients.myKad', $myKad)
                 ->find();
 
@@ -457,6 +458,7 @@ class PatientController extends BaseController
             ],
             'selected' => set_value('past_cancer_history'),
             'extra' => [
+                'id' => 'past_cancer_history',
                 'class' => 'custom-select',
                 'onchange' => 'checkValue(this.value, "past_cancer_history", "Yes", "flex")'
             ]
