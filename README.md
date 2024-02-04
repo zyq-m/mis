@@ -50,7 +50,7 @@ Pages located [at](app/Views/)
 
 Database will be upload soon.
 
-ER Diagram [here](https://lucid.app/lucidchart/a21aa534-b6c0-4b84-a343-b19050e88d2a/edit?viewport_loc=-13%2C-210%2C1664%2C831%2C0_0&invitationId=inv_8bbfed06-f13c-4310-82b9-fbe06f3a9284)
+ER Diagram [here](https://lucid.app/lucidchart/a3f41b40-cbb6-478b-8caa-a59d15f78001/edit?viewport_loc=-817%2C52%2C2894%2C1304%2C0_0&invitationId=inv_527431f4-2190-4e14-9f08-17be1d5557a2)
 
 ## System Flow
 

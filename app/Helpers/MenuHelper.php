@@ -38,7 +38,13 @@ class MenuHelper
         ],
     ];
 
-    protected array $userMenu = [];
+    protected array $userMenu = [
+        [
+            'name' => 'Home',
+            'icon' => 'fa-home',
+            'link' => 'home'
+        ],
+    ];
 
     public function getMenu()
     {

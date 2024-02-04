@@ -70,6 +70,9 @@ $routes->group('', ['filter' => 'group:admin'], static function ($routes) {
 });
 
 // User routes
+$routes->group('', ['filter' => 'group:user'], static function ($routes) {
+    $routes->get('home', 'Dashboard::userHome');
+});
 
 /**
  * REST API

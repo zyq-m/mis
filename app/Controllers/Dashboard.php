@@ -22,4 +22,13 @@ class Dashboard extends BaseController
 
         return view('dashboard', $data);
     }
+
+    public function userHome()
+    {
+        $data = [
+            "title" => "Home"
+        ];
+
+        return view('user/dashboard', $data);
+    }
 }
