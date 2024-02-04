@@ -13,6 +13,7 @@
             <thead>
                 <tr>
                     <th scope="col">Name</th>
+                    <th scope="col">Session</th>
                     <th scope="col">Date taken</th>
                     <th scope="col">Time</th>
                     <th scope="col">Date uploaded</th>
@@ -22,11 +23,12 @@
                 <?php foreach ($patient['img_repo'] as $patient_details) : ?>
                     <tr>
                         <td scope="row">
-                            <img src="<?= base_url('image/' . $patient_details['path']) ?>" alt="..." class="img-fluid mr-1" style="height: 20px; object-fit: cover; width: 20px;">
-                            <a href="<?= base_url('image/' . $patient_details['path']) ?>" target="_blank">
-                                <?= $patient_details['path'] ?>
+                            <img src="<?= base_url('image/' . $patient_details['file_name']) ?>" alt="..." class="img-fluid mr-1" style="height: 20px; object-fit: cover; width: 20px;">
+                            <a href="<?= base_url('image/' . $patient_details['file_name']) ?>" target="_blank">
+                                <?= $patient_details['file_name'] ?>
                             </a>
                         </td>
+                        <td><?= $patient_details['session'] ?></td>
                         <td><?= $patient_details['screening_date'] ?></td>
                         <td><?= $patient_details['screening_time'] ?></td>
                         <td class="text-muted"><?= $patient_details['time_stamp'] ?></td>
