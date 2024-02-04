@@ -132,4 +132,15 @@ class ImageRepo extends BaseController
 
         return var_dump($total . ' images created');
     }
+
+    public function downloadImages()
+    {
+        $files = [ // Array of image files
+            new File('/path/to/file/image1.png'),
+            new File('/path/to/file/image2.png')
+        ];
+        $zipFile = new File('/root/myarchive.zip'); // Zip file path
+        $zipFile->compress($files); // Create the zip file with the image files
+
+    }
 }

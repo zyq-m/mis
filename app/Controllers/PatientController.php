@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\PatientModel;
 use App\Models\DemographicModel;
 use App\Models\ClinicalHistroyModel;
+use App\Models\GeneticFactorModel;
 use CodeIgniter\Files\File;
 use CodeIgniter\Shield\Entities\User;
 
@@ -23,6 +24,8 @@ class PatientController extends BaseController
         $data['illness_option'] = $this->illnessOption();
         $data['symptom_option'] = $this->symptomOption();
         $data['medical_option'] = $this->medicalOption();
+        $data['family_option'] = $this->familyHistoryOption();
+        $data['past_option'] = $this->pastCancerOption();
 
         return $data;
     }
@@ -64,6 +67,7 @@ class PatientController extends BaseController
         $identity = $this->indentityData($post);
         $demographic = $this->demographicData($post);
         $clinical = $this->clinicalData($post);
+        $genetic = $this->geneticFactorData($post);
 
         // Create user account
         // Get the User Provider (UserModel by default)
@@ -78,11 +82,13 @@ class PatientController extends BaseController
         $identityModel = model(PatientModel::class);
         $demographicModel = model(DemographicModel::class);
         $clinicalModel = model(ClinicalHistroyModel::class);
+        $geneticModel = model(GeneticFactorModel::class);
 
         if ($users->save($user)) {
             $identityModel->save($identity);
             $demographicModel->save($demographic);
             $clinicalModel->save($clinical);
+            $geneticModel->save($genetic);
 
             // To get the complete user object with ID, we need to get from the database
             $user = $users->findById($users->getInsertID());
@@ -115,11 +121,13 @@ class PatientController extends BaseController
         $patientModel = model(PatientModel::class);
         $clinicalModel = model(ClinicalHistroyModel::class);
         $demographicModel = model(DemographicModel::class);
+        $geneticModel = model(GeneticFactorModel::class);
 
         // Load data from db
         if ($this->request->is('get')) {
             $join = $patientModel->select('*')->join('clinical_history', 'clinical_history.myKad = patients.myKad')
                 ->join('demographic', 'demographic.myKad = patients.myKad')
+                ->join('genetic_factor', 'genetic_factor.myKad = patients.myKad')
                 ->where('patients.myKad', $myKad)
                 ->find();
 
@@ -142,19 +150,12 @@ class PatientController extends BaseController
             $identity = $this->indentityData($post);
             $demographic = $this->demographicData($post);
             $clinical = $this->clinicalData($post);
+            $genetic = $this->geneticFactorData($post);
 
-            $patientModel
-                ->set($identity)
-                ->where(['myKad' => $myKad])
-                ->update();
-            $demographicModel
-                ->set($demographic)
-                ->where(['myKad' => $myKad])
-                ->update();
-            $clinicalModel
-                ->set($clinical)
-                ->where(['myKad' => $myKad])
-                ->update();
+            $patientModel->set($identity)->where(['myKad' => $myKad])->update();
+            $demographicModel->set($demographic)->where(['myKad' => $myKad])->update();
+            $clinicalModel->set($clinical)->where(['myKad' => $myKad])->update();
+            $geneticModel->set($genetic)->where(['myKad' => $myKad])->update();
 
             return redirect()->back()->with('register_success', 'Patient successfully updated');
         }
@@ -241,6 +242,17 @@ class PatientController extends BaseController
         ];
     }
 
+    protected function geneticFactorData($post)
+    {
+        return [
+            'myKad' => $post['myKad'],
+            'family_history' => $post['family_history'],
+            'past_cancer' => $post['past_cancer_history'],
+            'diagnose_date' => $post['date'],
+            'diagnose' => $post['diagnose'],
+        ];
+    }
+
     // FORM HELPER SELECT OPTIONS
     protected function sexOption()
     {
@@ -251,7 +263,7 @@ class PatientController extends BaseController
                 'Male' => 'Male',
                 'Female' => 'Female',
             ],
-            'selected' => '',
+            'selected' => set_value('sex'),
             'extra' => [
                 'class' => validation_show_error('race') ? 'custom-select is-invalid' : 'custom-select',
             ]
@@ -268,7 +280,7 @@ class PatientController extends BaseController
                 'Indian' => 'Indian',
                 'Others' => 'Others',
             ],
-            'selected' => '',
+            'selected' => set_value('race'),
             'extra' => [
                 'class' => validation_show_error('race') ? 'custom-select is-invalid' : 'custom-select',
                 'onchange' => 'checkValue(this.value, "race", null)'
@@ -286,7 +298,7 @@ class PatientController extends BaseController
                 'Divorced/Seperated' => 'Divorced/Seperated',
                 'Widowed (Spoused died)' => 'Widowed (Spoused died)',
             ],
-            'selected' => 'Not set',
+            'selected' => set_value('marital_status'),
             'extra' => [
                 'class' => validation_show_error('marital') ? 'custom-select is-invalid' : 'custom-select',
             ]
@@ -312,7 +324,7 @@ class PatientController extends BaseController
                     'PhD' => 'PhD',
                 ],
             ],
-            'selected' => 'Not set',
+            'selected' => set_value('educational_status'),
             'extra' => [
                 'class' => validation_show_error('educational_status') ? 'custom-select is-invalid' : 'custom-select',
             ]
@@ -339,7 +351,7 @@ class PatientController extends BaseController
                 'Textile' => 'Textile',
                 'Others' => 'Others',
             ],
-            'selected' => 'Not set',
+            'selected' => set_value('occupation'),
             'extra' => [
                 'class' => validation_show_error('occupation') ? 'custom-select is-invalid' : 'custom-select',
                 'onchange' => 'checkValue(this.value, "occupation", null)'
@@ -359,7 +371,7 @@ class PatientController extends BaseController
                 'Asymptomatic' => 'Asymptomatic',
                 'Others' => 'Others',
             ],
-            'selected' => 'Not set',
+            'selected' => set_value('illness_present'),
             'extra' => [
                 'class' => 'custom-select',
                 'onchange' => 'checkValue(this.value, "illness_present",)'
@@ -381,7 +393,7 @@ class PatientController extends BaseController
                 'Bone pain' => 'Bone pain',
                 'Others' => 'Others',
             ],
-            'selected' => 'Not set',
+            'selected' => set_value('metastases_symptom'),
             'extra' => [
                 'class' => 'custom-select',
                 'onchange' => 'checkValue(this.value, "metastases_symptom", "weight")'
@@ -402,10 +414,53 @@ class PatientController extends BaseController
                 ],
                 'Others' => 'Others',
             ],
-            'selected' => 'Not set',
+            'selected' => set_value('med_history'),
             'extra' => [
                 'class' => 'custom-select',
                 'onchange' => 'checkValue(this.value, "med_history", "stage")'
+            ]
+        ];
+    }
+    protected function familyHistoryOption()
+    {
+        return [
+            'name' => 'family_history',
+            'options' => [
+                'Not set' => 'Choose...',
+                'No' => 'No',
+                "Yes" => [
+                    'Breast cancer' => 'Breast cancer',
+                    'Ovarian cancer' => 'Ovarian cancer',
+                    'Uterine cancer' => 'Uterine cancer',
+                    'Colorectal cancer' => 'Colorectal cancer',
+                    'Thyroid cancer' => 'Thyroid cancer',
+                    'Prostate cancer' => 'Prostate cancer',
+                    'Unknown' => 'Unknown',
+                    'Others' => 'Others',
+                ],
+            ],
+            'selected' => set_value('family_history'),
+            'extra' => [
+                'class' => 'custom-select',
+                'onchange' => 'checkValue(this.value, "family_history", "family_history")',
+            ]
+        ];
+    }
+
+    protected function pastCancerOption()
+    {
+        return [
+            'name' => 'past_cancer_history',
+            'options' => [
+                'Not set' => 'Choose...',
+                'No' => 'No',
+                "Yes" => "Yes",
+            ],
+            'selected' => set_value('past_cancer_history'),
+            'extra' => [
+                'id' => 'past_cancer_history',
+                'class' => 'custom-select',
+                'onchange' => 'checkValue(this.value, "past_cancer_history", "Yes", "flex")'
             ]
         ];
     }

@@ -107,23 +107,18 @@ class PatientModel extends Model
     {
         $profile = $this->getPatient($myKad);
         $demographic = model(DemographicModel::class)->where(['myKad' => $myKad])->find();
+        $clinical = model(ClinicalHistroyModel::class)->where(['myKad' => $myKad])->find();
+        $genetic = model(GeneticFactorModel::class)->where(['myKad' => $myKad])->find();
         $urine_test = model(UrineTestModel::class)->where(['myKad' => $myKad])->find();
         $img_repo = model(ImageRepoModel::class)->where(['myKad' => $myKad])->find();
 
-        $patient = $this->select('*')
-            ->join('clinical_history', 'clinical_history.myKad = patients.myKad')
-            ->join('demographic', 'demographic.myKad = patients.myKad')
-            ->join('urine_test', 'urine_test.myKad = patients.myKad')
-            ->join('image_repo', 'image_repo.myKad = patients.myKad')
-            ->where('patients.myKad', $myKad)
-            ->find();
-
-        // return $patient;
         $data = [
             'profile' => $profile,
             'demographic' => $demographic,
+            'clinical' => $clinical,
+            'genetic' => $genetic,
             'urine_test' => $urine_test,
-            'img_repo' => $img_repo
+            'img_repo' => $img_repo,
         ];
 
         return $data;

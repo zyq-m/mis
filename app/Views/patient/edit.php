@@ -34,6 +34,10 @@
             <!-- Clinical History -->
             <?= view('patient/register_details/clinical_history') ?>
             <!-- End Clinical History -->
+
+            <!-- Genetic Factor -->
+            <?= view('patient/register_details/genetic_factor') ?>
+            <!-- End Genetic Factor -->
         </div>
         <div class="card-footer">
             <div>
@@ -52,27 +56,38 @@
         label.textContent = input.files[0] ? input.files[0].name : label.getAttribute("data-placeholder");
     }
 
-    function checkValue(val, target, custom) {
+    function checkValue(val, target, custom, style) {
         if (custom) {
-            if (val === custom) {
-                document.getElementById(custom).style.display = 'block';
+            if (!style) {
+                if (val === custom) {
+                    changeDisplay(custom, 'block');
+                } else {
+                    changeDisplay(custom, 'none');
+                }
             } else {
-                document.getElementById(custom).style.display = 'none';
-            }
-
-            if (val === "Others") {
-                document.getElementById(target).style.display = 'block';
-            } else {
-                document.getElementById(target).style.display = 'none';
+                if (val === custom) {
+                    changeDisplay(custom, style);
+                } else {
+                    changeDisplay(custom, 'none');
+                    clearInput('#date');
+                    clearInput('#diagnose');
+                }
             }
         } else {
             if (val === "Others") {
-                document.getElementById(target).style.display = 'block';
+                changeDisplay(target, 'block');
             } else {
-                document.getElementById(target).style.display = 'none';
+                changeDisplay(target, 'none');
             }
         }
+    }
 
+    function changeDisplay(target, style) {
+        document.getElementById(target).style.display = style;
+    }
+
+    function clearInput(target) {
+        document.querySelector(target).value = "";
     }
 
     $(document).ready(function() {
@@ -90,7 +105,23 @@
         $('select[name="illness_present"]').val('<?= $patient[0]['presenting_illness'] ?>');
         $('select[name="metastases_symptom"]').val('<?= $patient[0]['metastases_symptom'] ?>');
         $('select[name="med_history"]').val('<?= $patient[0]['medical_history'] ?>');
+
+        $('select[name="family_history"]').val('<?= $patient[0]['family_history'] ?>');
+        $('select[name="past_cancer_history"]').val('<?= $patient[0]['past_cancer'] ?>');
+        $('#date').val('<?= $patient[0]['diagnose_date'] ?>');
+        $('#diagnose').val('<?= $patient[0]['diagnose'] ?>');
     });
+
+    function onLoad() {
+        const pastCancerHistory = '<?= $patient[0]['past_cancer'] ?>';
+        const container = document.querySelector('#Yes');
+
+        if (pastCancerHistory === "Yes") {
+            container.style.display = "flex";
+        }
+    }
+
+    onLoad();
 </script>
 <?= $this->endSection() ?>
 
