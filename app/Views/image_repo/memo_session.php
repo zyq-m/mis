@@ -24,7 +24,10 @@
         <div class="row justify-content-between align-items-center">
             <nav aria-label="breadcrumb" class="col-auto">
                 <ol class="breadcrumb p-0 m-0 bg-white">
-                    <li class="breadcrumb-item active" aria-current="page">All</li>
+                    <li class="breadcrumb-item" aria-current="page">
+                        <a href="<?= base_url('image_repo') ?>">All</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"><?= $images[0]['name'] ?></li>
                 </ol>
             </nav>
             <div class="row">
@@ -51,10 +54,10 @@
         <?php if (!empty($images)) : ?>
             <div class="row justify-content-center justify-content-md-start" style="gap: 1.5rem;">
                 <?php foreach ($images as $image) : ?>
-                    <a href="<?= base_url('image_repo/patient/' . $image['myKad']) ?>" id="output">
+                    <a href="<?= base_url('image_repo/patient/' . $image['myKad'] . '/' . $image['session']) ?>" id="output">
                         <div class="col-auto file-card pl-0 pr-0 row justify-content-center">
                             <i class="col-auto fa-solid fa-folder" style="font-size: 14rem;"></i>
-                            <div class="col-auto text-center text-muted text-sm mt-2" id="target"><?= $image['name'] ?></div>
+                            <div class="col-auto text-center text-muted text-sm mt-2" id="target">Session <?= $image['session'] ?></div>
                         </div>
                     </a>
                 <?php endforeach ?>
@@ -76,15 +79,6 @@
 
 <?= $this->section("scripts"); ?>
 <script>
-    $(document).ready(function() {
-        $("img").click(function() {
-            const img = $(this).attr('src');
-
-            $("#show-img").attr('src', img);
-            $("#imgmodal").modal('show');
-        });
-    });
-
     function onSearch() {
         const input = document.getElementById('input');
         const filter = input.value.toUpperCase();

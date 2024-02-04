@@ -99,11 +99,10 @@ class ImageRepo extends BaseController
         return view('image_repo/form', $data);
     }
 
-    public function searchFile($mykad = null)
+    public function searchFile($mykad = null, $memo_session = null)
     {
         $imgModel = model(ImageRepoModel::class);
 
-        // Get all image & user detail
         $data['images'] = $imgModel
             ->select('*')
             ->join('patients', 'patients.myKad = image_repo.myKad')
@@ -114,8 +113,28 @@ class ImageRepo extends BaseController
             return redirect()->back()->withInput();
         }
 
-        $data['title'] = "Image Repository";
-        return view('image_repo/detail', $data);
+        if (empty($memo_session)) {
+            $data['title'] = "Memogram Session";
+            $data['images'] = $imgModel
+                ->select('patients.myKad, COUNT(session), session, name')
+                ->join('patients', 'patients.myKad = image_repo.myKad')
+                ->groupBy('session')
+                ->orderBy('session', 'ASC')
+                ->where(['patients.myKad' => $mykad])
+                ->find();
+
+            return view('image_repo/memo_session', $data);
+        } else {
+            $data['title'] = "Image Repository";
+            // Get all image & user detail
+            $data['images'] = $imgModel
+                ->select('*')
+                ->join('patients', 'patients.myKad = image_repo.myKad')
+                ->where(['patients.myKad' => $mykad, 'session' => $memo_session])
+                ->find();
+
+            return view('image_repo/detail', $data);
+        }
     }
 
     public function fakeImageRepo()

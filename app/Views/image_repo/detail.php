@@ -22,14 +22,17 @@
 <div class="card">
     <div class="card-header">
         <div class="row justify-content-between align-items-center">
-            <nav aria-label="breadcrumb" class="col-3">
+            <nav aria-label="breadcrumb" class="col-auto">
                 <ol class="breadcrumb p-0 m-0 bg-white">
                     <li class="breadcrumb-item" aria-current="page">
-                        <a href="<?= base_url('image_repo') ?>">
-                            All
+                        <a href="<?= base_url('image_repo') ?>">All</a>
+                    </li>
+                    <li class="breadcrumb-item" aria-current="page">
+                        <a href="<?= base_url('image_repo/patient/' . $images[0]['myKad']) ?>">
+                            <?= $images[0]['name'] ?>
                         </a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page"><?= !empty($images) ? $images[0]['name'] : 'Not found' ?></li>
+                    <li class="breadcrumb-item active" aria-current="page">Session <?= $images[0]['session'] ?></li>
                 </ol>
             </nav>
             <div class="row">
@@ -63,7 +66,7 @@
             <div class="row justify-content-center justify-content-md-start" style="gap: 1.5rem;">
                 <?php foreach ($images as $image) : ?>
                     <div class="col-auto file-card pl-0 pr-0">
-                        <img loading="lazy" src="<?= base_url('image/' . $image['path']) ?>" alt="..." class="img-file">
+                        <img loading="lazy" src="<?= base_url('image/' . $image['file_name']) ?>" alt="..." class="img-file">
                         <div class="text-center text-muted text-sm mt-2"><?= $image['file_name'] ?></div>
                     </div>
                 <?php endforeach ?>
