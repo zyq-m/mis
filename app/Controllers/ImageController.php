@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\ImageRepoModel;
 
 class ImageController extends BaseController
 {
@@ -12,10 +13,17 @@ class ImageController extends BaseController
      * Instead of reveal the actual image path, it response the image itself
      * and URL.
      */
-    public function index($path = null)
+    public function index($file_name = null)
     {
-        return var_dump($path);
-        $path = WRITEPATH . 'uploads/' . $path;
+
+        $img_model = model(ImageRepoModel::class);
+        $img_data = $img_model
+            ->select('*')
+            ->where(['file_name' => $file_name])
+            ->find();
+
+        $path = WRITEPATH . 'uploads/memo-img/' . $img_data[0]['myKad']
+            . '/' . 'session-' . $img_data[0]['session'] . '/' . $img_data[0]['file_name'];
 
         if (file_exists($path)) {
             $mime = mime_content_type($path); //<-- detect file type
