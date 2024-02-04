@@ -44,26 +44,27 @@ class ImageRepo extends BaseController
         }
 
         // Grab submitted form data
-        $formData = [
+        $memo_img = [
             'myKad' => $this->request->getPost('myKad'),
+            'session' => $this->request->getPost('session'),
+            'hospital' => $this->request->getPost('hospital'),
             'screening_date' => $this->request->getPost('screening_date'),
             'screening_time' => $this->request->getPost('screening_time'),
             'description' => $this->request->getPost('description'),
         ];
-        $memoSession = $this->request->getPost('session');
 
         // Handle upload multiple files
         if ($imagefile = $this->request->getFiles()) {
             foreach ($imagefile['memo_img'] as $img) {
                 if ($img->isValid() && !$img->hasMoved()) {
                     $fileName = $img->getName();
-                    $fileInfo = new File($img->store('memo-img/' . $formData['myKad'] . '/session-' . $memoSession, $fileName));
+                    $img->store('memo-img/' . $memo_img['myKad'] . '/session-' . $memo_img['session'], $fileName);
 
                     // Store path in database
                     $imageRepo = model(ImageRepoModel::class);
-                    $formData['file_name'] = $fileName;
-                    $formData['path'] = $fileInfo->getPathname();
-                    $imageRepo->save($formData);
+                    $memo_img['file_name'] = $fileName;
+
+                    $imageRepo->save($memo_img);
                 }
             }
 
