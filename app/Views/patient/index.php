@@ -34,7 +34,8 @@
                             <tr role="row">
                                 <th width="3%">No</th>
                                 <th>Name</th>
-                                <th width="10%">My Kad</th>
+                                <th width="8%">Sex</th>
+                                <th width="15%">My Kad</th>
                                 <th width="15%">Email</th>
                                 <th width="15%">Phone No.</th>
                             </tr>
@@ -57,6 +58,7 @@
                                                 <?= esc($patient['name']) ?>
                                             </a>
                                         </td>
+                                        <td><?= esc($patient['sex']) ?></td>
                                         <td><?= esc($patient['myKad']) ?></td>
                                         <td><?= esc($patient['email']) ?></td>
                                         <td><?= esc($patient['phone_number']) ?></td>
