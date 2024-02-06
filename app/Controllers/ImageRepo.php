@@ -6,11 +6,12 @@ use App\Models\ImageRepoModel;
 use App\Models\PatientModel;
 
 use App\Controllers\BaseController;
+use ZipArchive;
 use CodeIgniter\Files\File;
 
 class ImageRepo extends BaseController
 {
-    protected $helpers = ['form'];
+    protected $helpers = ['form', 'filesystem'];
 
     public function index()
     {
@@ -153,14 +154,57 @@ class ImageRepo extends BaseController
         return var_dump($total . ' images created');
     }
 
-    public function downloadImages()
+    public function downloadImages($param = null)
     {
-        $files = [ // Array of image files
-            new File('/path/to/file/image1.png'),
-            new File('/path/to/file/image2.png')
-        ];
-        $zipFile = new File('/root/myarchive.zip'); // Zip file path
-        $zipFile->compress($files); // Create the zip file with the image files
+        $myKad = $this->request->getPost('myKad');
+        $images = $this->request->getPost('selectedImg');
+        $zip = new ZipArchive;
+        $zip_name = WRITEPATH . 'uploads/memo-img/' . $myKad . '/' . $myKad . '.zip';
 
+        // If file exist, delete
+        if (is_file($zip_name)) {
+            unlink($zip_name);
+        }
+
+        $res = $zip->open($zip_name, ZipArchive::CREATE);
+
+        if ($param === 'file' && $res === TRUE) {
+            $session = $this->request->getPost('session');
+
+            if ($res === TRUE) {
+                $file_dir = WRITEPATH . 'uploads/memo-img/' . $myKad . '/session-' . $session;
+                $sub_dir = 'session-' . $session;
+
+                // Add file
+                foreach ($images as $image) {
+                    $zip->addFile($file_dir . '/' . $image, $sub_dir . '/' . $image);
+                }
+
+                // Close zip
+                $zip->close();
+
+                return $this->response->download($zip_name, null);
+            }
+        }
+
+        if ($param === 'folder' && $res === TRUE) {
+            foreach ($images as $session) {
+                $dir_path = WRITEPATH . 'uploads/memo-img/' . $myKad . '/session-' . $session;
+                $sub_dir = 'session-' . $session;
+                $zip->addEmptyDir($sub_dir);
+
+                $files = glob($dir_path . '/*.*');
+
+                foreach ($files as $file) {
+                    $zip->addFile($file, $sub_dir . '/' . basename($file));
+                }
+            }
+
+            $zip->close();
+
+            return $this->response->download($zip_name, null);
+        }
+
+        return redirect()->back();
     }
 }

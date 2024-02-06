@@ -55,6 +55,7 @@ $routes->group('', ['filter' => 'group:admin'], static function ($routes) {
         $routes->get('', [ImageRepo::class, 'index']);
         $routes->get('form', [ImageRepo::class, 'form']);
         $routes->get('patient', [ImageRepo::class, 'searchPatient']);
+        $routes->post('download/(:segment)', [ImageRepo::class, 'downloadImages']);
         $routes->post('upload', [ImageRepo::class, 'upload']);
         $routes->get('patient/(:segment)', [ImageRepo::class, 'searchFile']);
         $routes->get('patient/(:segment)/(:segment)', [ImageRepo::class, 'searchFile']);
