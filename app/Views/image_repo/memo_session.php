@@ -41,6 +41,12 @@
                         <input type="search" name="input" id="input" onkeyup="onSearch()" class="form-control" placeholder="Search for file..">
                     </div>
                 </div>
+                <div class="col-auto pl-0">
+                    <button class="btn btn-default" id="download-btn">
+                        <i class="fa-solid fa-arrow-down"></i>
+                        Download
+                    </button>
+                </div>
                 <div class="col-auto">
                     <a href="<?= base_url('image_repo/form') ?>" class="btn btn-primary">
                         <i class="fa-solid fa-arrow-up"></i>
@@ -52,9 +58,17 @@
     </div>
     <div class="card-body">
         <?php if (!empty($images)) : ?>
+            <?= form_open(base_url('image_repo/download/folder'), ['method' => 'post', 'id' => 'download-img']) ?>
+            <?= csrf_field() ?>
+            <?= form_hidden('myKad', $images[0]['myKad']) ?>
             <div class="row justify-content-center justify-content-md-start" style="gap: 1.5rem;">
+                <div class="col-12 pl-0 pr-0">
+                    <input type="checkbox" id="all" />
+                    <label for="all">Select all</label>
+                </div>
                 <?php foreach ($images as $image) : ?>
                     <a href="<?= base_url('image_repo/patient/' . $image['myKad'] . '/' . $image['session']) ?>" id="output">
+                        <input type="checkbox" name="selectedImg[]" value="<?= $image['session'] ?>" />
                         <div class="col-auto file-card pl-0 pr-0 row justify-content-center">
                             <i class="col-auto fa-solid fa-folder" style="font-size: 14rem;"></i>
                             <div class="col-auto text-center text-muted text-sm mt-2" id="target">Session <?= $image['session'] ?></div>
@@ -95,5 +109,34 @@
             }
         }
     }
+
+    const selectAll = document.getElementById('all');
+    const imgs = document.querySelectorAll("input[name='selectedImg[]']")
+
+    selectAll.addEventListener('change', () => {
+        imgs.forEach(img => {
+            if (selectAll.checked) {
+                img.checked = true
+            } else {
+                img.checked = false
+            }
+
+            img.addEventListener('change', () => {
+                if (!img.checked) {
+                    selectAll.checked = false;
+                } else {
+                    selectAll.checked = true;
+                }
+            });
+        });
+    })
+
+
+    const btn = document.getElementById('download-btn');
+    const form = document.getElementById('download-img');
+
+    btn.addEventListener('click', () => {
+        form.submit();
+    })
 </script>
 <?= $this->endSection() ?>
