@@ -283,7 +283,7 @@ class PatientController extends BaseController
             'selected' => set_value('race'),
             'extra' => [
                 'class' => validation_show_error('race') ? 'custom-select is-invalid' : 'custom-select',
-                'onchange' => 'checkValue(this.value, "race", null)'
+                'onchange' => 'checkValue(this.value, "race", null);'
             ]
         ];
     }
@@ -341,7 +341,6 @@ class PatientController extends BaseController
                 'Government' => [
                     'Police' => 'Police',
                     'Teacher' => 'Teacher',
-                    'Others' => 'Others',
                 ],
                 'Forestry, agriculture' => 'Forestry, agriculture',
                 'Fishing' => 'Fishing',
@@ -374,7 +373,7 @@ class PatientController extends BaseController
             'selected' => set_value('illness_present'),
             'extra' => [
                 'class' => 'custom-select',
-                'onchange' => 'checkValue(this.value, "illness_present",)'
+                'onchange' => 'checkValue(this.value, "illness_present", null)'
             ]
         ];
     }
@@ -396,7 +395,7 @@ class PatientController extends BaseController
             'selected' => set_value('metastases_symptom'),
             'extra' => [
                 'class' => 'custom-select',
-                'onchange' => 'checkValue(this.value, "metastases_symptom", "weight")'
+                'onchange' => 'checkValue(this.value, "metastases_symptom", "weight"); checkValue(this.value, "metastases_symptoms", null);'
             ]
         ];
     }
@@ -417,7 +416,7 @@ class PatientController extends BaseController
             'selected' => set_value('med_history'),
             'extra' => [
                 'class' => 'custom-select',
-                'onchange' => 'checkValue(this.value, "med_history", "stage")'
+                'onchange' => 'checkValue(this.value, "med_history", "stage"), checkValue(this.value, "med_history", null)'
             ]
         ];
     }
@@ -442,7 +441,7 @@ class PatientController extends BaseController
             'selected' => set_value('family_history'),
             'extra' => [
                 'class' => 'custom-select',
-                'onchange' => 'checkValue(this.value, "family_history", "family_history")',
+                'onchange' => 'checkValue(this.value, "family_history", "family_history"); checkValue(this.value, "family_history", null);',
             ]
         ];
     }

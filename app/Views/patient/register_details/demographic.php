@@ -16,7 +16,6 @@
         <div class="form-group col-md-4 <?= (validation_show_error('race')) ? 'has-error' : '' ?>">
             <label for="race">Race</label>
             <?= form_dropdown($race_option['name'], $race_option['options'], $race_option['selected'], $race_option['extra']) ?>
-            <input type="text" name="other_race" id="race" style='display:none;' class="form-control border-top-0 border-left-0 border-right-0" placeholder="Others race" value="<?= set_value('other_race') ?>" />
             <?php if (validation_show_error('race')) : ?>
                 <span class="error-message"><?= validation_show_error('race') ?></span>
             <?php endif; ?>
@@ -36,7 +35,7 @@
 
     <div class="form-row">
         <!-- Marital Status -->
-        <div class="form-group col-md-6 <?= (validation_show_error('marital_status')) ? 'has-error' : '' ?>">
+        <div class="form-group col <?= (validation_show_error('marital_status')) ? 'has-error' : '' ?>">
             <label for="marital_status">Marital Status</label>
             <?= form_dropdown($marital_option['name'], $marital_option['options'], $marital_option['selected'], $marital_option['extra']) ?>
             <?php if (validation_show_error('marital_status')) : ?>
@@ -46,13 +45,29 @@
         <!-- End Marital Status -->
 
         <!-- Occupation -->
-        <div class="form-group col-md-6 <?= (validation_show_error('occupation')) ? 'has-error' : '' ?>">
+        <div class="form-group col <?= (validation_show_error('occupation')) ? 'has-error' : '' ?>">
             <label for="occupation">Occupation</label>
             <?= form_dropdown($occupation_option['name'], $occupation_option['options'], $occupation_option['selected'], $occupation_option['extra']) ?>
-            <input type="text" name="other_occupation" id="occupation" class="form-control border-top-0 border-left-0 border-right-0" style="display:none;" placeholder="Others occupation" value="<?= set_value('other_occupation',) ?>" />
             <?php if (validation_show_error('occupation')) : ?>
                 <span class="error-message"><?= validation_show_error('occupation') ?></span>
             <?php endif; ?>
+        </div>
+        <!-- End Occupation -->
+
+    </div>
+
+    <div class="form-row">
+        <!-- Race -->
+        <div class="form-group col" id="race" style="display:none;">
+            <label for="other_race">Other Occupation</label>
+            <input type="text" name="other_race" class="form-control" placeholder="Others race" value="<?= set_value('other_occupation') ?>" />
+        </div>
+        <!-- End Race -->
+
+        <!-- Occupation -->
+        <div class="form-group col" id="occupation" style="display:none;">
+            <label for="occupation">Other Occupation</label>
+            <input type="text" name="other_occupation" class="form-control" placeholder="Others occupation" value="<?= set_value('other_occupation') ?>" />
         </div>
         <!-- End Occupation -->
     </div>
