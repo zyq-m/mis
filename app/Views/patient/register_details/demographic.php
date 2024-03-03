@@ -59,8 +59,15 @@
     <div class="form-row">
         <!-- Race -->
         <div class="form-group col" id="race" style="display:none;">
-            <label for="other_race">Other Occupation</label>
-            <input type="text" name="other_race" class="form-control" placeholder="Others race" value="<?= set_value('other_occupation') ?>" />
+            <label for="other_race">Other Race</label>
+            <input type="text" name="other_race" class="form-control" placeholder="Others race" value="<?= set_value('other_race') ?>" />
+        </div>
+        <!-- End Race -->
+
+        <!-- Race -->
+        <div class="form-group col" id="education" style="display:none;">
+            <label for="other_race">Other Non Formal Education</label>
+            <input type="text" name="other_education" class="form-control" placeholder="Specify education" value="<?= set_value('other_education') ?>" />
         </div>
         <!-- End Race -->
 

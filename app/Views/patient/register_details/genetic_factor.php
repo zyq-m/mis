@@ -10,19 +10,12 @@
                 <span class="error-message"><?= validation_show_error('family_history') ?></span>
             <?php endif; ?>
         </div>
-
-        <div class="form-group col" id="family_history" style="display:none;">
-            <label for="other_family_history">Other Family History</label>
-            <input type="text" name="other_family_history" id="family_history" class="form-control" placeholder="Others Family History" value="<?= set_value('other_family_history') ?>" />
-        </div>
         <!-- End Family History -->
 
         <!-- Past Cancer History -->
         <div class="form-group col <?= (validation_show_error('past_cancer_history')) ? 'has-error' : '' ?>">
             <label for="past_cancer_history">Past Cancer History</label>
             <?= form_dropdown($past_option['name'], $past_option['options'], $past_option['selected'], $past_option['extra']) ?>
-            <input type="text" name="other_past_cancer_history" id="past_cancer_history" class="form-control" style="display:none;" placeholder="Others symptom" value=" <?= set_value('other_past_cancer_history') ?>" />
-            <input type="number" name="weight_loss" id="weight" class="form-control" style="display:none;" placeholder="Weight (kg)" value=" <?= set_value('weight') ?>" />
             <?php if (validation_show_error('past_cancer_history')) : ?>
                 <span class="error-message"><?= validation_show_error('past_cancer_history') ?></span>
             <?php endif; ?>
@@ -30,7 +23,7 @@
         <!-- End Past Cancer History -->
     </div>
 
-    <div id="Yes" class="form-row" style="display: none;">
+    <div id="past_cancer_history_extend" class="form-row" style="display: none;">
         <!-- Date of diagnose -->
         <div class="form-group col-md-6 <?= (validation_show_error('date')) ? 'has-error' : '' ?>">
             <label for="date">Date of diagnose</label>
@@ -51,4 +44,49 @@
         </div>
         <!-- End Hospital diagnose -->
     </div>
+
+    <div id="family_history_extend" class="form-row" style="display: none;">
+        <!-- Parental -->
+        <div class="form-group col-md-6 <?= (validation_show_error('date')) ? 'has-error' : '' ?>">
+            <label for="date">Parental</label>
+            <?= form_dropdown($parental_option['name'], $parental_option['options'], $parental_option['selected'], $parental_option['extra']) ?>
+            <?php if (validation_show_error('parental')) : ?>
+                <span class="error-message"><?= validation_show_error('parental') ?></span>
+            <?php endif; ?>
+        </div>
+        <!-- End Parental -->
+
+        <!-- Disease -->
+        <div class="form-group col-md-6 <?= (validation_show_error('date')) ? 'has-error' : '' ?>">
+            <label for="date">Disease</label>
+            <?= form_dropdown($disease_option['name'], $disease_option['options'], $disease_option['selected'], $disease_option['extra']) ?>
+            <?php if (validation_show_error('disease')) : ?>
+                <span class="error-message"><?= validation_show_error('disease') ?></span>
+            <?php endif; ?>
+        </div>
+        <!-- End Disease -->
+    </div>
 </div>
+
+
+<!-- THIS LINE OF CODE NEED TO BE REFACTOR!! -->
+<script>
+    const familyHistory = document.getElementById('family_history');
+    const extendedHistory = document.getElementById('family_history_extend');
+
+    const pastCancer = document.getElementById('past_cancer_history');
+    const extendedPastCancer = document.getElementById('past_cancer_history_extend');
+
+    function hideForm(parent, child) {
+        parent.addEventListener('change', (e) => {
+            if (e.target.value === "Yes") {
+                child.style.display = 'flex';
+            } else {
+                child.style.display = 'none';
+            }
+        });
+    }
+
+    hideForm(familyHistory, extendedHistory);
+    hideForm(pastCancer, extendedPastCancer);
+</script>

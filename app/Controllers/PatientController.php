@@ -25,6 +25,9 @@ class PatientController extends BaseController
         $data['symptom_option'] = $this->symptomOption();
         $data['medical_option'] = $this->medicalOption();
         $data['family_option'] = $this->familyHistoryOption();
+        $data['parental_option'] = $this->parentalOption();
+        $data['disease_option'] = $this->diseaseOption();
+        $data['family_option'] = $this->familyHistoryOption();
         $data['past_option'] = $this->pastCancerOption();
 
         return $data;
@@ -311,7 +314,11 @@ class PatientController extends BaseController
             'options' => [
                 'Not set' => 'Choose...',
                 'None' => 'None',
-                'Non-formal' => 'Non-formal',
+                'Non-formal' => [
+                    'Home Schooling' => 'Home Schooling',
+                    'Religous Based School (Tahfiz, Pondok)' => 'Religous Based School (Tahfiz,Pondol)',
+                    'Others' => 'Others',
+                ],
                 'Formal' => [
                     'Primary' => 'Primary',
                     'Secondary' => 'Secondary',
@@ -327,6 +334,7 @@ class PatientController extends BaseController
             'selected' => set_value('educational_status'),
             'extra' => [
                 'class' => validation_show_error('educational_status') ? 'custom-select is-invalid' : 'custom-select',
+                'onchange' => 'checkValue(this.value, "education", null)'
             ]
         ];
     }
@@ -341,7 +349,10 @@ class PatientController extends BaseController
                 'Government' => [
                     'Police' => 'Police',
                     'Teacher' => 'Teacher',
+                    'Army' => 'Army',
+                    'HealthCare Worker' => 'Healthcare Worker',
                 ],
+                'Oil and Gases' => 'Oil and Gases',
                 'Forestry, agriculture' => 'Forestry, agriculture',
                 'Fishing' => 'Fishing',
                 'Manufacturing' => 'Manufacturing',
@@ -427,21 +438,49 @@ class PatientController extends BaseController
             'options' => [
                 'Not set' => 'Choose...',
                 'No' => 'No',
-                "Yes" => [
-                    'Breast cancer' => 'Breast cancer',
-                    'Ovarian cancer' => 'Ovarian cancer',
-                    'Uterine cancer' => 'Uterine cancer',
-                    'Colorectal cancer' => 'Colorectal cancer',
-                    'Thyroid cancer' => 'Thyroid cancer',
-                    'Prostate cancer' => 'Prostate cancer',
-                    'Unknown' => 'Unknown',
-                    'Others' => 'Others',
-                ],
+                "Yes" => "Yes",
             ],
             'selected' => set_value('family_history'),
             'extra' => [
+                'id' => 'family_history',
                 'class' => 'custom-select',
-                'onchange' => 'checkValue(this.value, "family_history", "family_history"); checkValue(this.value, "family_history", null);',
+            ]
+        ];
+    }
+    protected function parentalOption()
+    {
+        return [
+            'name' => 'parental',
+            'options' => [
+                'Not set' => 'Choose...',
+                "Paternal (Father Side)" => "Paternal (Father Side)",
+                "Maternal (Mother Side)" => "Maternal (Mother Side)",
+            ],
+            'selected' => set_value('parental'),
+            'extra' => [
+                'class' => 'custom-select',
+            ]
+        ];
+    }
+    protected function diseaseOption()
+    {
+        return [
+            'name' => 'disease',
+            'options' => [
+                'Not set' => 'Choose...',
+                'Breast cancer' => 'Breast cancer',
+                'Ovarian cancer' => 'Ovarian cancer',
+                'Uterine cancer' => 'Uterine cancer',
+                'Colorectal cancer' => 'Colorectal cancer',
+                'Thyroid cancer' => 'Thyroid cancer',
+                'Prostate cancer' => 'Prostate cancer',
+                'Unknown' => 'Unknown',
+                'Others' => 'Others',
+            ],
+            'selected' => set_value('disease'),
+            'extra' => [
+                'class' => 'custom-select',
+                'onchange' => 'checkValue(this.value, "family_history", null);',
             ]
         ];
     }
@@ -459,7 +498,6 @@ class PatientController extends BaseController
             'extra' => [
                 'id' => 'past_cancer_history',
                 'class' => 'custom-select',
-                'onchange' => 'checkValue(this.value, "past_cancer_history", "Yes", "flex")'
             ]
         ];
     }

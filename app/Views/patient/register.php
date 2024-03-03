@@ -57,6 +57,7 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('scripts') ?>
+<!-- THIS LINE OF CODE NEED TO BE REFACTOR!! -->
 <script>
     function updateFileName(input) {
         const label = input.nextElementSibling;
