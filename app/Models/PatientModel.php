@@ -60,7 +60,10 @@ class PatientModel extends Model
     public function getPatient($myKad = null)
     {
         if ($myKad == null) {
-            return $this->findAll();
+            return $this
+                ->select('*')
+                ->join('demographic', 'demographic.myKad = patients.myKad')
+                ->findAll();
         }
 
         $data = $this->where(['myKad' => $myKad])->find();
